@@ -214,6 +214,14 @@ labels change, and with them two sentences of prose: the introduction’s
 than half a point” are both true of the published figure and false of
 the corrected one.
 
+There is a second thing wrong with Figure 6 and it is not the rewrite’s
+doing. Six of its eight labels are exactly what the deposited objects
+give. The two Overall labels are not: the deposit returns -0.23 and 0.19
+where the page prints -0.19 and 0.18. The figure script reads those two
+labels straight out of `ft_targets_meta_w1_all_adj.rds` and rounds them
+to two decimals, so the published pair cannot be recovered from the
+archive as deposited. The cause is not established.
+
 These stay findings here rather than errata. The published cells
 reproduce from the deposit exactly, so what is wrong with them is a
 matter of method rather than of arithmetic, and correcting a column of

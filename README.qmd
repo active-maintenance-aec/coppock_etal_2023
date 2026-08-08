@@ -263,6 +263,15 @@ eight of the figure's labels change, and with them two sentences of prose: the i
 "smaller than one-quarter of a point" and the Results section's "smaller than half a point" are
 both true of the published figure and false of the corrected one.
 
+There is a second thing wrong with Figure 6 and it is not the rewrite's doing. Six of its eight
+labels are exactly what the deposited objects give. The two Overall labels are not: the deposit
+returns `r value("fig6_overall_treatmentcontrol", "value_script")` and
+`r value("fig6_overall_treatmentfactcheck", "value_script")` where the page prints
+`r value("fig6_overall_treatmentcontrol", "value_paper")` and
+`r value("fig6_overall_treatmentfactcheck", "value_paper")`. The figure script reads those two
+labels straight out of `ft_targets_meta_w1_all_adj.rds` and rounds them to two decimals, so the
+published pair cannot be recovered from the archive as deposited. The cause is not established.
+
 These stay findings here rather than errata. The published cells reproduce from the deposit
 exactly, so what is wrong with them is a matter of method rather than of arithmetic, and
 correcting a column of cells the deposit reproduces exactly is a different act from correcting a
