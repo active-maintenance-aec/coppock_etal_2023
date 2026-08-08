@@ -1,0 +1,11 @@
+claim,value
+Balance regressions run,816
+Balance regressions with raw p < 0.05,42
+"Balance regressions with raw p < 0.05, per cent",5.147058823529411
+Balance regressions significant after Benjamini-Hochberg,0
+Joint balance tests run,24
+Joint balance tests with raw p < 0.05,2
+Joint balance tests significant after Benjamini-Hochberg,0
+Attrition tests run,108
+Attrition tests with raw p < 0.05,3
+Attrition tests significant after Benjamini-Hochberg,0

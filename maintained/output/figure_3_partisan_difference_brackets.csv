@@ -1,0 +1,49 @@
+fc,panel,topic_short_2,term,estimate,std.error,statistic,p.value,conf.low,conf.high,df,outcome,type,congeniality,lo,hi,lab,mid,yint
+1,panel_1_lucid,A black man invented the light bulb (Lucid),treatmentcontrol:lucid_pid_3Republican,9.03086369390434,3.916342521912964,2.305943273187748,0.02123236845658613,1.3495618374129317,16.71216555039575,1718,outcome_w1,Misinformation effect,"False claim
+congenial to
+Democrats",4.557090844575959,13.587954538480316,*,9.072522691528137,0
+1,panel_1_mturk,A black man invented the light bulb (MTurk),treatmentfactcheck:lucid_pid_3Republican,6.632806195198713,3.260749861576407,2.034135237835167,0.0420755230463193,0.23781202853928465,13.02780036185814,1915,outcome_w1,Correction effect,"False claim
+congenial to
+Democrats",-7.617721506433152,-0.984915311234607,*,-4.301318408833879,0
+1,panel_4_mturk,Trump chose Judge Barrett on basis of looks,treatmentfactcheck:lucid_pid_3Republican,7.366221513782205,3.2913752993914365,2.238037550790453,0.02531518903007409,0.911804517027548,13.82063851053686,2271,outcome_w1,Correction effect,"False claim
+congenial to
+Democrats",-23.47722509081788,-16.11100357703565,*,-19.794114333926764,0
+1,panel_7_lucid,Wisconsin has more votes than registered voters,treatmentfactcheck:lucid_pid_3Republican,-12.13321680829563,4.092356087735122,-2.964848744384473,0.0030677854737129,-20.159436769727257,-4.106996846864005,1816,outcome_w1,Correction effect,"False claim
+congenial to
+Republicans",-19.71250457043457,-7.579287762138923,**,-13.645896166286747,-10
+2,panel_2_mturk,Trump holds Bible upside down,treatmentfactcheck:lucid_pid_3Republican,15.87025031079242,3.658041360219098,4.338455678325593,1.5122905037321868e-5,8.695924693880213,23.044575927704628,1849,outcome_w1,Correction effect,"False claim
+congenial to
+Democrats",-27.710921204994904,-11.840670894202386,***,-19.775796049598647,0
+2,panel_3_lucid,Obama failed to nominate US judges,treatmentcontrol:lucid_pid_3Republican,-8.871611874337914,3.8746637504656265,-2.2896469076243826,0.02216186059977722,-16.471136243598455,-1.2720875050773728,1728,outcome_w1,Misinformation effect,"False claim
+congenial to
+Republicans",2.492094183030211,11.363706057368097,*,6.927900120199154,-10
+2,panel_4_mturk,WHO: children to be vaccinated without parents' consent,treatmentcontrol:lucid_pid_3Republican,-7.939186550336283,3.22408980094807,-2.462458256591271,0.01387270577529928,-14.2616620192944,-1.616711081378165,2267,outcome_w1,Misinformation effect,"False claim
+congenial to
+Republicans",-8.733346682496213,-0.7941601321599164,*,-4.763753407328065,-10
+2,panel_5_lucid,Biden and Obama plotted to have Seal Team 6 murdered,treatmentcontrol:lucid_pid_3Republican,-14.81114612825934,4.1466585945268815,-3.571826758973688,3.648060469151769e-4,-22.94449071603779,-6.677801540480891,1629,outcome_w1,Misinformation effect,"False claim
+congenial to
+Republicans",-0.22043082282817036,14.590715305431235,***,7.1851422413015325,-10
+2,panel_7_lucid,GOP voters' pens invisible to voting machines,treatmentcontrol:lucid_pid_3Republican,-9.62247550438436,3.9465438327924134,-2.4382031245744176,0.01485604076950197,-17.362732348138415,-1.8822186606303033,1811,outcome_w1,Misinformation effect,"False claim
+congenial to
+Republicans",7.780567586865185,17.403043091249486,*,12.591805339057336,-10
+3,panel_1_mturk,SARS-CoV-2 man made virus created in the lab (MTurk),treatmentfactcheck:lucid_pid_3Republican,6.88933658912874,3.286236351479191,2.0964215145474037,0.03617566136633063,0.44436035563562903,13.33431282262185,1916,outcome_w1,Correction effect,"False claim
+congenial to
+Republicans",-7.014567579776575,-0.12523099064782947,*,-3.5698992852122022,-10
+3,panel_2_mturk,Trump responsible for all Covid deaths,treatmentfactcheck:lucid_pid_3Republican,14.962083336974954,3.843038742921606,3.89329495169239,1.0240314720503113e-4,7.424932007861172,22.499234666088736,1849,outcome_w1,Correction effect,"False claim
+congenial to
+Democrats",-15.741563176666668,-0.779479839691677,***,-8.260521508179172,0
+3,panel_3_lucid,Judge Barrett made homophobic and racist statements,treatmentfactcheck:lucid_pid_3Republican,10.543449909193232,3.771043097901337,2.795897483924509,0.00523294415574684,3.1471516238321655,17.9397481945543,1725,outcome_w1,Correction effect,"False claim
+congenial to
+Democrats",-19.66256881554561,-9.119118906352352,**,-14.390843860948982,0
+3,panel_5_lucid,Joe Biden has never made more than $400k,treatmentcontrol:lucid_pid_3Republican,15.34377515281719,4.146998990085729,3.6999707956282855,2.227542267098501e-4,7.209792462322666,23.47775784331171,1637,outcome_w1,Misinformation effect,"False claim
+congenial to
+Democrats",2.6784825787157063,18.022257731532928,***,10.350370155124317,0
+3,panel_5_lucid,Joe Biden has never made more than $400k,treatmentfactcheck:lucid_pid_3Republican,14.27840738011584,4.217703098527686,3.385351468931073,7.276777336503559e-4,6.005744647598483,22.55107011263319,1637,outcome_w1,Correction effect,"False claim
+congenial to
+Democrats",-24.33947316876173,-10.06106578864587,***,-17.200269478703802,0
+3,panel_6_mturk,Trump said 'Good' to children's separation,treatmentcontrol:lucid_pid_3Republican,15.961782093492172,5.604663181802472,2.8479467143213464,0.00452744012100767,4.9580862382145625,26.965477948769784,710,outcome_w1,Misinformation effect,"False claim
+congenial to
+Democrats",-10.25053420276408,5.7112478907281234,**,-2.269643156017978,0
+3,panel_6_mturk,Trump said 'Good' to children's separation,treatmentfactcheck:lucid_pid_3Republican,29.200538063702066,5.894589328939804,4.953786673541521,9.105749819991472e-7,17.627627067370128,40.773449060034,710,outcome_w1,Correction effect,"False claim
+congenial to
+Democrats",-34.17637464992533,-4.97583658622326,***,-19.576105618074294,0

@@ -1,0 +1,30 @@
+nms,vals,panel_1_lucid,panel_1_mturk,panel_2_mturk,panel_3_lucid,panel_4_mturk,panel_5_lucid,panel_6_mturk,panel_7_lucid
+date_lo,NA,25th Sep,25th Sep,8th Oct,16th Oct,24th Oct,29th Oct,2nd Nov,12th Nov
+date_hi,NA,29th Sep,25th Sep,8th Oct,20th Oct,25th Oct,3rd Nov,2nd Nov,22nd Nov
+obs,NA,"2,321","2,090","2,059","2,390","2,582","2,200","1,599","2,388"
+Gender,Female,53,NA,NA,54,51,54,50,53
+,Male,47,NA,NA,46,49,46,50,47
+Race,White,71,56,64,72,69,72,70,70
+,Hispanic,10,24,19,11,12,12,15,13
+,Black,10,14,10,9,9,9,9,10
+,Asian,6,4,5,4,7,4,4,4
+,Other,3,3,2,4,2,4,2,3
+Age,18-34,25,43,41,26,40,30,46,31
+,35-50,30,38,40,30,37,29,39,31
+,51-65,26,15,15,27,17,25,13,22
+,>65,18,4,4,17,5,15,2,16
+Education,HSD or less,24,6,9,27,11,28,11,25
+,Some college,27,16,22,26,25,25,23,29
+,BA degree,28,46,43,29,38,28,42,24
+,Graduate education,22,32,25,18,25,20,24,22
+Income,<$40k,40,35,34,44,33,40,33,39
+,$40-80k,29,46,43,28,39,30,43,30
+,$80-120k,15,13,16,14,18,13,16,16
+,>$120k,16,6,8,14,10,17,8,16
+Partisanship,Democrat,45,44,49,44,55,43,50,51
+,Independent,14,4,6,15,8,14,7,13
+,Republican,41,52,45,41,37,44,42,36
+Region,West,20,NA,NA,18,NA,20,NA,20
+,Northeast,22,NA,NA,22,NA,22,NA,24
+,South,39,NA,NA,39,NA,39,NA,38
+,Midwest,19,NA,NA,20,NA,19,NA,18

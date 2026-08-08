@@ -1,0 +1,20 @@
+claim_id,claim,quantity,threshold,holds
+d_fig1_republican_congenial,Republicans are more likely than Democrats to believe all of the Republican-congenial false statements,14,14,TRUE
+d_fig1_democratic_congenial,Democrats are more likely than Republicans to believe only two of the Democratic-congenial false statements,2,2,TRUE
+d_no_backfire,"none backfired, or increased false beliefs",0,0,TRUE
+d_fig3_misinformation_symmetric,"Being exposed to misinformation increased belief in the false claim by about the same amount across categories, both among Republicans and among Democrats",4.7873954982620415,NA,NA
+d_fig3_republican_congenial_symmetric,"For false claims congenial to Republicans, the effects are approximately equal in magnitude across party lines",1.4050625695222996,NA,NA
+d_fig3_democrats_update_further,Democrats update substantially further than Republicans when corrected about congenial false claims,10.211761292685399,0,TRUE
+d_fig5_no_misinformation_moderation,None of these covariates moderate the effects of misinformation,0,0,TRUE
+d_fig5_several_correction_moderation,Several of them moderate the effects of fact-checks,8,1,TRUE
+d_discussion_named_moderators,"The Big Five personality traits, need for cognition, and political interest all moderate the effect of fact-checks",7,7,TRUE
+d_heterogeneity_pattern_persists,The same pattern of heterogeneity persists after one week,9,9,TRUE
+d_heterogeneity_diminished,The pattern of heterogeneity after one week is at diminished magnitudes,18,18,TRUE
+d_time_ranking_matches,The within-trait ranking of conditional effects in Figure 5 is matched exactly by the within-trait ranking of average time spent reading the fact-check,8,8,TRUE
+d_attitudes_expected_direction,Fact-checks made respondents more positive and misinformation more negative,0.7971782184117906,0,TRUE
+d_attitudes_quarter_point,The effects of fact-checks and misinformation on subsequent attitudes are smaller than one-quarter of a point,0.7971782184117906,0.25,FALSE
+d_attitudes_half_point,The overall effects of misinformation and fact-checks on attitudes were each smaller than half a point,0.7971782184117906,0.5,FALSE
+d_correction_more_than_twice,The magnitude of the effects of fact-checks is more than twice that of misinformation,2.4444567725873556,2,TRUE
+d_balance,These randomizations generated experimental groups balanced on pretreatment covariates,0,0,TRUE
+d_fig4_three_wave_flat,"In the All Subjects panel for issues across three waves, the Wave 1 and Wave 2 estimates are identical",6.097702603651773,0,FALSE
+d_attrition,Our treatments do not appear to change whether subjects respond to outcome questions,0,0,TRUE

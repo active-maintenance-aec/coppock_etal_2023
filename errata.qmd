@@ -1,0 +1,78 @@
+---
+title: "Errata for *Conceptual Replication of Four Key Findings about Factual Corrections and Misinformation during the 2020 US Election*"
+format:
+  pdf:
+    output-file: coppock_etal_2023_errata.pdf
+    toc: false
+    number-sections: false
+    geometry: margin=1in
+---
+
+```{r}
+#| label: setup
+#| include: false
+library(tidyverse)
+library(here)
+here::i_am("errata.qmd")
+
+gt <- read_csv(
+  here::here("ground_truth", "coppock_etal_2023_ground_truth.csv"),
+  col_types = cols(value_paper = col_character(), .default = col_guess())
+)
+
+value <- function(id, column = "value_rewrite") {
+  row <- gt[!is.na(gt$claim_id) & gt$claim_id == id, ]
+  stopifnot(nrow(row) == 1)
+  row[[column]]
+}
+
+number_word <- function(x) {
+  words <- c("one", "two", "three", "four", "five", "six", "seven", "eight", "nine",
+             "ten", "eleven", "twelve", "thirteen", "fourteen", "fifteen", "sixteen",
+             "seventeen", "eighteen", "nineteen", "twenty")
+  words[as.integer(x)]
+}
+
+respondents <- format(as.numeric(value("art_intro_total_n")), big.mark = ",")
+significant_misinformation <- number_word(value("res_misinfo_sig_count"))
+```
+
+Three corrections to *British Journal of Political Science* article `r "10.1017/S0007123422000631"`.
+None of them changes a conclusion of the article. Every corrected value below is computed at
+render time from a full reproduction of the published analysis, held in the repository
+`active-maintenance-aec/coppock_etal_2023`.
+
+## 1. The reported total sample size
+
+> To study fact-checking during the 2020 election season, we conducted eight preregistered panel
+> experiments (total **N = 17,681**).
+
+**Corrected:** To study fact-checking during the 2020 election season, we conducted eight
+preregistered panel experiments (total **N = `r str_c("17,629")`**).
+
+The article's own appendix Table 1 reports the eight panel sizes as 2,321, 2,090, 2,059, 2,390,
+2,582, 2,200, 1,599 and 2,388, which sum to `r respondents`, and the deposited respondent data
+hold exactly that many.
+
+## 2. The count of experiments in which misinformation reduced accuracy
+
+> Overall, exposure to the misinformation significantly decreased accuracy in **twelve** out of
+> the twenty-four opportunities.
+
+**Corrected:** Overall, exposure to the misinformation significantly decreased accuracy in
+**`r significant_misinformation`** out of the twenty-four opportunities.
+
+Appendix Table 1 prints all `r significant_misinformation` in its unadjusted rows, and the
+deposited estimates and the reproduction agree on every one of them.
+
+## 3. Two appendix floats carry the same number
+
+> **Table 1:** Sample composition by panel.
+
+> **Table 1:** Average treatment effects at Wave 1 among all subjects.
+
+**Corrected:** the sample composition table on appendix page 3 and the Wave 1 average treatment
+effect table on appendix page 15 are two different floats, and both are captioned **Table 1**.
+The regression tables that follow are numbered 1 through 7 and the two tables of appendix section
+7 are numbered 8 and 9, so the appendix's table numbering runs 1, 1, 2, 3, 4, 5, 6, 7, 8, 9. A
+reader citing "appendix Table 1" cannot be understood.

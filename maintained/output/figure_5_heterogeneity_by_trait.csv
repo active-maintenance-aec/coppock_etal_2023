@@ -1,0 +1,89 @@
+name,value,type2,term,type,estimate,std.error,statistic,p.value,conf.low,conf.high,rfac,cfac,yint
+Personality - Agreeableness,low,treatmentcontrol,overall,summary,3.959814619789668,1.089598595557932,3.634195781761296,2.7884906312508455e-4,1.824240614890698,6.095388624688638,"Personality
+traits",Misinformation effects,-4
+Personality - Agreeableness,low,treatmentfactcheck,overall,summary,-8.088785807946113,1.1020112097497416,-7.34002135040261,2.135597843558196e-13,-10.24868808961502,-5.928883526277206,"Personality
+traits",Correction effects,-4
+Personality - Agreeableness,high,treatmentcontrol,overall,summary,5.182631055255368,1.146636137310021,4.519856724046469,6.188149617804853e-6,2.935265522755604,7.429996587755133,"Personality
+traits",Misinformation effects,-4
+Personality - Agreeableness,high,treatmentfactcheck,overall,summary,-13.394319465818812,1.4591487637348628,-9.179543442530475,4.3292301339854493e-20,-16.25419849082529,-10.534440440812338,"Personality
+traits",Correction effects,-4
+Personality - Conscientiousness,low,treatmentcontrol,overall,summary,3.038573643017127,0.8061636329556084,3.769177272208267,1.637865338658607e-4,1.4585219567781675,4.618625329256087,"Personality
+traits",Misinformation effects,-4
+Personality - Conscientiousness,low,treatmentfactcheck,overall,summary,-7.970369621299806,1.2666834875376611,-6.292313509820527,3.1276897961977206e-10,-10.453023636685211,-5.487715605914401,"Personality
+traits",Correction effects,-4
+Personality - Conscientiousness,high,treatmentcontrol,overall,summary,4.855031269596541,1.259156957913676,3.855779249030991,1.15361556501546e-4,2.38712898120272,7.322933557990362,"Personality
+traits",Misinformation effects,-4
+Personality - Conscientiousness,high,treatmentfactcheck,overall,summary,-13.00692954028899,1.4493374004209438,-8.974397222145287,2.8490749348411843e-19,-15.847578646560946,-10.166280434017034,"Personality
+traits",Correction effects,-4
+Cognitive Reflection Test,low,treatmentcontrol,overall,summary,4.171896706093582,0.9382701633574656,4.44637042615215,8.733330345665193e-6,2.332920978144437,6.010872434042727,"Other
+heterogeneity
+dimensions",Misinformation effects,0
+Cognitive Reflection Test,low,treatmentfactcheck,overall,summary,-8.848047205772334,1.0265198685216022,-8.619460253132095,6.727044632150672e-18,-10.859989177489464,-6.836105234055203,"Other
+heterogeneity
+dimensions",Correction effects,0
+Cognitive Reflection Test,high,treatmentcontrol,overall,summary,4.5702919090776515,1.348396170362239,3.3894281291601924,7.003856597922835e-4,1.9274839782759292,7.213099839879374,"Other
+heterogeneity
+dimensions",Misinformation effects,0
+Cognitive Reflection Test,high,treatmentfactcheck,overall,summary,-13.412932377894755,1.4974045276881296,-8.957454134724188,3.322608636263482e-19,-16.347791322450696,-10.478073433338812,"Other
+heterogeneity
+dimensions",Correction effects,0
+Personality - Emotional Stability,low,treatmentcontrol,overall,summary,3.3409172904707867,1.0295143463445753,3.2451391302444192,0.00117393251958722,1.3231062500681243,5.358728330873449,"Personality
+traits",Misinformation effects,-4
+Personality - Emotional Stability,low,treatmentfactcheck,overall,summary,-8.125258132719239,1.340934510349426,-6.059399672398563,1.366305162020855e-9,-10.753441478630965,-5.497074786807513,"Personality
+traits",Correction effects,-4
+Personality - Emotional Stability,high,treatmentcontrol,overall,summary,5.635223807284479,1.0657573937673883,5.2875296387710735,1.2397927778170736e-7,3.546377699243126,7.724069915325832,"Personality
+traits",Misinformation effects,-4
+Personality - Emotional Stability,high,treatmentfactcheck,overall,summary,-13.208298601767185,1.2593227459172769,-10.488414224700124,9.76535466360166e-26,-15.676525828677132,-10.740071374857235,"Personality
+traits",Correction effects,-4
+Personality - Extraversion,low,treatmentcontrol,overall,summary,3.561273801181895,1.096883456785873,3.246720313949548,0.0011674305263203,1.411421730643788,5.711125871720002,"Personality
+traits",Misinformation effects,-4
+Personality - Extraversion,low,treatmentfactcheck,overall,summary,-13.36304697543805,1.5423539851708932,-8.664059680150157,4.552548641799319e-18,-16.386005237784822,-10.340088713091276,"Personality
+traits",Correction effects,-4
+Personality - Extraversion,high,treatmentcontrol,overall,summary,3.785365192818415,1.3217754085448017,2.863849008195639,0.00418527463384913,1.194732996419889,6.375997389216942,"Personality
+traits",Misinformation effects,-4
+Personality - Extraversion,high,treatmentfactcheck,overall,summary,-7.857891894701825,1.0912295581920086,-7.200952206354348,5.979350540645492e-13,-9.996662527623716,-5.719121261779934,"Personality
+traits",Correction effects,-4
+Need for Cognition,low,treatmentcontrol,overall,summary,4.5198684308241965,1.2228745762193018,3.696101398066546,2.189355603412871e-4,2.1230783038246845,6.916658557823709,"Other
+heterogeneity
+dimensions",Misinformation effects,0
+Need for Cognition,low,treatmentfactcheck,overall,summary,-8.988519005926147,1.1440523673054426,-7.856737386153552,3.942682728384645e-15,-11.230820442272602,-6.7462175695796915,"Other
+heterogeneity
+dimensions",Correction effects,0
+Need for Cognition,high,treatmentcontrol,overall,summary,4.3461638338074025,1.2560787098123554,3.4601046891851808,5.399654149929222e-4,1.8842948008276488,6.808032866787157,"Other
+heterogeneity
+dimensions",Misinformation effects,0
+Need for Cognition,high,treatmentfactcheck,overall,summary,-14.280256237348867,1.5708835821823748,-9.09058850657144,9.850441098908349e-20,-17.359131482331588,-11.20138099236615,"Other
+heterogeneity
+dimensions",Correction effects,0
+Personality - Openness,low,treatmentcontrol,overall,summary,3.293594859607098,0.921049870339596,3.575913710723104,3.4900676543578286e-4,1.488370285776204,5.098819433437992,"Personality
+traits",Misinformation effects,-4
+Personality - Openness,low,treatmentfactcheck,overall,summary,-6.598453852446859,0.9475616248496118,-6.963614481004446,3.3165141365666316e-12,-8.45564051028435,-4.7412671946093665,"Personality
+traits",Correction effects,-4
+Personality - Openness,high,treatmentcontrol,overall,summary,5.864898345620539,1.4419760880112578,4.0672646338465155,4.756821365490477e-5,3.038677146550515,8.691119544690562,"Personality
+traits",Misinformation effects,-4
+Personality - Openness,high,treatmentfactcheck,overall,summary,-13.34563253689717,1.4412785408351585,-9.259579018753694,2.0523980912249524e-20,-16.170486568624522,-10.52077850516982,"Personality
+traits",Correction effects,-4
+Political knowledge,low,treatmentcontrol,overall,summary,3.9726718046506337,1.0918306430566125,3.638542140133585,2.7418576814281236e-4,1.8327230670424672,6.1126205422588,"Other
+heterogeneity
+dimensions",Misinformation effects,0
+Political knowledge,low,treatmentfactcheck,overall,summary,-7.934133458063068,1.498465929342625,-5.294837408511357,1.1912235111122567e-7,-10.871072711634952,-4.997194204491182,"Other
+heterogeneity
+dimensions",Correction effects,0
+Political knowledge,high,treatmentcontrol,overall,summary,4.415452643685434,1.1050615780655233,3.995662080130366,6.45137015125238e-5,2.2495717499780117,6.581333537392856,"Other
+heterogeneity
+dimensions",Misinformation effects,0
+Political knowledge,high,treatmentfactcheck,overall,summary,-11.2129887628333,1.2926555612139323,-8.674382487708625,4.158005607061444e-18,-13.746547107228018,-8.679430418438582,"Other
+heterogeneity
+dimensions",Correction effects,0
+Political interest,low,treatmentcontrol,overall,summary,4.5374554434690815,1.3201920220064285,3.4369662653869506,5.882688669596677e-4,1.949926627659372,7.124984259278791,"Other
+heterogeneity
+dimensions",Misinformation effects,0
+Political interest,low,treatmentfactcheck,overall,summary,-12.2517200369704,1.072637045110076,-11.422055664423848,3.2446713496376396e-30,-14.354050013869614,-10.149390060071187,"Other
+heterogeneity
+dimensions",Correction effects,0
+Political interest,high,treatmentcontrol,overall,summary,4.3056070218884175,0.8675108279451731,4.96317381085246,6.935046722654332e-7,2.6053170429173553,6.00589700085948,"Other
+heterogeneity
+dimensions",Misinformation effects,0
+Political interest,high,treatmentfactcheck,overall,summary,-8.894387533331535,1.2865870944431304,-6.913163960486691,4.7396159512844936e-12,-11.416051901414104,-6.372723165248967,"Other
+heterogeneity
+dimensions",Correction effects,0

@@ -1,0 +1,379 @@
+week_index,page_views,dat_vec,fn,rd,rd2,topic_short,congeniality,panel,cume_views
+1,142784,2020-09-30,gs_pfact_traffic/Biden-wire - content-pages.csv,2020-10-03,2020-09-23,Biden wears wire at debate,False claim congenial to Republicans,"Panel 2
+(MTurk)",0
+1,20776,2020-09-10,gs_pfact_traffic/antifa-wildfires - content-pages.csv,2020-09-12,2020-09-03,Antifa start West Coast wildfires,False claim congenial to Republicans,"Panel 1
+(Lucid)",0
+1,964,2020-10-19,gs_pfact_traffic/childs-presence-school-doesnt-automatically-enroll_ - content-pages.csv,2020-10-17,2020-10-12,WHO: children to be vaccinated without parents' consent,False claim congenial to Republicans,"Panel 4
+(MTurk)",0
+1,23892,2020-11-05,gs_pfact_traffic/claim-postal-service-failed-deliver-27-mail-ballot - content-pages.csv,2020-11-07,2020-10-29,USPS fails to deliver 27% of mail ballots in South FL,False claim congenial to Democrats,"Panel 7
+(Lucid)",0
+1,59351,2020-10-28,gs_pfact_traffic/donald-trump-wrong-winner-has-be-announced-electio - content-pages.csv,2020-10-31,2020-10-21,Presidential winner must be announced election night,False claim congenial to Republicans,"Panel 6
+(MTurk)",0
+1,11282,2020-10-02,gs_pfact_traffic/fact-check-why-barack-obama-failed-fill-over-100-j_ - content-pages.csv,2020-10-03,2020-09-25,Obama failed to nominate US judges,False claim congenial to Republicans,"Panel 3
+(Lucid)",0
+1,3929,2020-09-10,gs_pfact_traffic/fact-checking-joe-bidens-claim-about-his-own-incom_ - content-pages.csv,2020-09-12,2020-09-03,Joe Biden has never made more than $400k,False claim congenial to Democrats,"Panel 5
+(Lucid)",0
+1,220767,2020-10-20,gs_pfact_traffic/fact-checking-unproven-claims-about-hunter-biden-a_ - content-pages.csv,2020-10-17,2020-10-13,Hunter Biden's laptop had photos torturing children,False claim congenial to Republicans,"Panel 4
+(MTurk)",0
+1,4475,2020-09-18,gs_pfact_traffic/joe-biden-wrongly-claims-trump-couldve-prevented-e - content-pages.csv,2020-09-19,2020-09-11,Trump responsible for all Covid deaths,False claim congenial to Democrats,"Panel 2
+(MTurk)",0
+1,37911,2020-10-26,gs_pfact_traffic/no-evidence-hunter-biden-had-photos-coons-daughter - content-pages.csv,2020-10-24,2020-10-19,Sen Coon's daughter's photo on Hunter Biden's laptop,False claim congenial to Republicans,"Panel 6
+(MTurk)",0
+1,24164,2020-10-13,gs_pfact_traffic/no-trump-didnt-say-he-nominated-amy-coney-barrett-_ - content-pages.csv,2020-10-10,2020-10-06,Judge Barrett made homophobic and racist statements,False claim congenial to Democrats,"Panel 3
+(Lucid)",0
+1,382048,2020-11-04,gs_pfact_traffic/no-wisconsin-doesnt-have-more-ballots-cast-registe_ - content-pages.csv,2020-11-07,2020-10-28,Wisconsin has more votes than registered voters,False claim congenial to Republicans,"Panel 7
+(Lucid)",0
+1,14261,2020-10-13,gs_pfact_traffic/social-media-posts-push-false-claims-about-kamala- - content-pages.csv,2020-10-10,2020-10-06,Kamala Harris imprisoned prolife activists,False claim congenial to Republicans,"Panel 5
+(Lucid)",0
+1,10553,2020-10-23,gs_pfact_traffic/trump-did-not-say-good-when-talking-about-family-s - content-pages.csv,2020-10-24,2020-10-16,Trump said 'Good' to children's separation,False claim congenial to Democrats,"Panel 6
+(MTurk)",0
+1,37239,2020-10-14,gs_pfact_traffic/trump-retweets-benghazi-conspiracy-theory-falsely- - content-pages.csv,2020-10-17,2020-10-07,Biden and Obama plotted to have Seal Team 6 murdered,False claim congenial to Republicans,"Panel 5
+(Lucid)",0
+1,159609,2020-10-07,gs_pfact_traffic/trump-was-triumphant-after-leaving-hospital-he-did - content-pages.csv,2020-10-10,2020-09-30,Donald Trump claimed his DNA was USA,False claim congenial to Democrats,"Panel 3
+(Lucid)",0
+1,65189,2020-09-16,gs_pfact_traffic/tucker-carlson-guest-airs-debunked-conspiracy-theo_ - content-pages.csv,2020-09-19,2020-09-09,SARS-CoV-2 man made virus created in the lab,False claim congenial to Republicans,"Panel 1
+(Lucid)",0
+1,184490,2020-11-04,gs_pfact_traffic/voting-machines-dont-read-ballots-filled-sharpies - content-pages.csv,2020-11-07,2020-10-28,GOP voters' pens invisible to voting machines,False claim congenial to Republicans,"Panel 7
+(Lucid)",0
+1,18743,2020-09-25,gs_pfact_traffic/what-social-media-posts-get-wrong-about-amy-coney- - content-pages.csv,2020-09-26,2020-09-18,Trump chose Judge Barrett on basis of looks,False claim congenial to Democrats,"Panel 4
+(MTurk)",0
+1,7960,2020-09-18,gs_pfact_traffic/wrong-about-donald-trump-holding-bible-u - content-pages.csv,2020-09-19,2020-09-11,Trump holds Bible upside down,False claim congenial to Democrats,"Panel 2
+(MTurk)",0
+1,142784,2020-09-30,gs_pfact_traffic/Biden-wire - content-pages.csv,2020-10-03,2020-09-30,Biden wears wire at debate,False claim congenial to Republicans,"Panel 2
+(MTurk)",142784
+2,9146,2020-09-30,gs_pfact_traffic/Biden-wire - content-pages.csv,2020-10-03,2020-10-07,Biden wears wire at debate,False claim congenial to Republicans,"Panel 2
+(MTurk)",151930
+3,829,2020-09-30,gs_pfact_traffic/Biden-wire - content-pages.csv,2020-10-03,2020-10-14,Biden wears wire at debate,False claim congenial to Republicans,"Panel 2
+(MTurk)",152759
+4,523,2020-09-30,gs_pfact_traffic/Biden-wire - content-pages.csv,2020-10-03,2020-10-21,Biden wears wire at debate,False claim congenial to Republicans,"Panel 2
+(MTurk)",153282
+5,209,2020-09-30,gs_pfact_traffic/Biden-wire - content-pages.csv,2020-10-03,2020-10-28,Biden wears wire at debate,False claim congenial to Republicans,"Panel 2
+(MTurk)",153491
+6,291,2020-09-30,gs_pfact_traffic/Biden-wire - content-pages.csv,2020-10-03,2020-11-04,Biden wears wire at debate,False claim congenial to Republicans,"Panel 2
+(MTurk)",153782
+7,135,2020-09-30,gs_pfact_traffic/Biden-wire - content-pages.csv,2020-10-03,2020-11-11,Biden wears wire at debate,False claim congenial to Republicans,"Panel 2
+(MTurk)",153917
+8,57,2020-09-30,gs_pfact_traffic/Biden-wire - content-pages.csv,2020-10-03,2020-11-18,Biden wears wire at debate,False claim congenial to Republicans,"Panel 2
+(MTurk)",153974
+9,30,2020-09-30,gs_pfact_traffic/Biden-wire - content-pages.csv,2020-10-03,2020-11-25,Biden wears wire at debate,False claim congenial to Republicans,"Panel 2
+(MTurk)",154004
+1,20776,2020-09-10,gs_pfact_traffic/antifa-wildfires - content-pages.csv,2020-09-12,2020-09-10,Antifa start West Coast wildfires,False claim congenial to Republicans,"Panel 1
+(Lucid)",20776
+2,10923,2020-09-10,gs_pfact_traffic/antifa-wildfires - content-pages.csv,2020-09-12,2020-09-17,Antifa start West Coast wildfires,False claim congenial to Republicans,"Panel 1
+(Lucid)",31699
+3,1986,2020-09-10,gs_pfact_traffic/antifa-wildfires - content-pages.csv,2020-09-12,2020-09-24,Antifa start West Coast wildfires,False claim congenial to Republicans,"Panel 1
+(Lucid)",33685
+4,708,2020-09-10,gs_pfact_traffic/antifa-wildfires - content-pages.csv,2020-09-12,2020-10-01,Antifa start West Coast wildfires,False claim congenial to Republicans,"Panel 1
+(Lucid)",34393
+5,321,2020-09-10,gs_pfact_traffic/antifa-wildfires - content-pages.csv,2020-09-12,2020-10-08,Antifa start West Coast wildfires,False claim congenial to Republicans,"Panel 1
+(Lucid)",34714
+6,224,2020-09-10,gs_pfact_traffic/antifa-wildfires - content-pages.csv,2020-09-12,2020-10-15,Antifa start West Coast wildfires,False claim congenial to Republicans,"Panel 1
+(Lucid)",34938
+7,122,2020-09-10,gs_pfact_traffic/antifa-wildfires - content-pages.csv,2020-09-12,2020-10-22,Antifa start West Coast wildfires,False claim congenial to Republicans,"Panel 1
+(Lucid)",35060
+8,71,2020-09-10,gs_pfact_traffic/antifa-wildfires - content-pages.csv,2020-09-12,2020-10-29,Antifa start West Coast wildfires,False claim congenial to Republicans,"Panel 1
+(Lucid)",35131
+9,68,2020-09-10,gs_pfact_traffic/antifa-wildfires - content-pages.csv,2020-09-12,2020-11-05,Antifa start West Coast wildfires,False claim congenial to Republicans,"Panel 1
+(Lucid)",35199
+10,42,2020-09-10,gs_pfact_traffic/antifa-wildfires - content-pages.csv,2020-09-12,2020-11-12,Antifa start West Coast wildfires,False claim congenial to Republicans,"Panel 1
+(Lucid)",35241
+11,23,2020-09-10,gs_pfact_traffic/antifa-wildfires - content-pages.csv,2020-09-12,2020-11-19,Antifa start West Coast wildfires,False claim congenial to Republicans,"Panel 1
+(Lucid)",35264
+12,28,2020-09-10,gs_pfact_traffic/antifa-wildfires - content-pages.csv,2020-09-12,2020-11-26,Antifa start West Coast wildfires,False claim congenial to Republicans,"Panel 1
+(Lucid)",35292
+1,9488,2020-09-04,gs_pfact_traffic/biden overlooked-black-history-biden-misses - content-pages.csv,2020-09-05,2020-09-04,A black man invented the light bulb,False claim congenial to Democrats,"Panel 1
+(Lucid)",9488
+2,14528,2020-09-04,gs_pfact_traffic/biden overlooked-black-history-biden-misses - content-pages.csv,2020-09-05,2020-09-11,A black man invented the light bulb,False claim congenial to Democrats,"Panel 1
+(Lucid)",24016
+3,1071,2020-09-04,gs_pfact_traffic/biden overlooked-black-history-biden-misses - content-pages.csv,2020-09-05,2020-09-18,A black man invented the light bulb,False claim congenial to Democrats,"Panel 1
+(Lucid)",25087
+4,516,2020-09-04,gs_pfact_traffic/biden overlooked-black-history-biden-misses - content-pages.csv,2020-09-05,2020-09-25,A black man invented the light bulb,False claim congenial to Democrats,"Panel 1
+(Lucid)",25603
+5,462,2020-09-04,gs_pfact_traffic/biden overlooked-black-history-biden-misses - content-pages.csv,2020-09-05,2020-10-02,A black man invented the light bulb,False claim congenial to Democrats,"Panel 1
+(Lucid)",26065
+6,251,2020-09-04,gs_pfact_traffic/biden overlooked-black-history-biden-misses - content-pages.csv,2020-09-05,2020-10-09,A black man invented the light bulb,False claim congenial to Democrats,"Panel 1
+(Lucid)",26316
+7,201,2020-09-04,gs_pfact_traffic/biden overlooked-black-history-biden-misses - content-pages.csv,2020-09-05,2020-10-16,A black man invented the light bulb,False claim congenial to Democrats,"Panel 1
+(Lucid)",26517
+8,300,2020-09-04,gs_pfact_traffic/biden overlooked-black-history-biden-misses - content-pages.csv,2020-09-05,2020-10-23,A black man invented the light bulb,False claim congenial to Democrats,"Panel 1
+(Lucid)",26817
+9,229,2020-09-04,gs_pfact_traffic/biden overlooked-black-history-biden-misses - content-pages.csv,2020-09-05,2020-10-30,A black man invented the light bulb,False claim congenial to Democrats,"Panel 1
+(Lucid)",27046
+10,298,2020-09-04,gs_pfact_traffic/biden overlooked-black-history-biden-misses - content-pages.csv,2020-09-05,2020-11-06,A black man invented the light bulb,False claim congenial to Democrats,"Panel 1
+(Lucid)",27344
+11,226,2020-09-04,gs_pfact_traffic/biden overlooked-black-history-biden-misses - content-pages.csv,2020-09-05,2020-11-13,A black man invented the light bulb,False claim congenial to Democrats,"Panel 1
+(Lucid)",27570
+12,88,2020-09-04,gs_pfact_traffic/biden overlooked-black-history-biden-misses - content-pages.csv,2020-09-05,2020-11-20,A black man invented the light bulb,False claim congenial to Democrats,"Panel 1
+(Lucid)",27658
+13,29,2020-09-04,gs_pfact_traffic/biden overlooked-black-history-biden-misses - content-pages.csv,2020-09-05,2020-11-27,A black man invented the light bulb,False claim congenial to Democrats,"Panel 1
+(Lucid)",27687
+1,964,2020-10-19,gs_pfact_traffic/childs-presence-school-doesnt-automatically-enroll_ - content-pages.csv,2020-10-17,2020-10-19,WHO: children to be vaccinated without parents' consent,False claim congenial to Republicans,"Panel 4
+(MTurk)",964
+2,73,2020-10-19,gs_pfact_traffic/childs-presence-school-doesnt-automatically-enroll_ - content-pages.csv,2020-10-17,2020-10-26,WHO: children to be vaccinated without parents' consent,False claim congenial to Republicans,"Panel 4
+(MTurk)",1037
+3,30,2020-10-19,gs_pfact_traffic/childs-presence-school-doesnt-automatically-enroll_ - content-pages.csv,2020-10-17,2020-11-02,WHO: children to be vaccinated without parents' consent,False claim congenial to Republicans,"Panel 4
+(MTurk)",1067
+4,103,2020-10-19,gs_pfact_traffic/childs-presence-school-doesnt-automatically-enroll_ - content-pages.csv,2020-10-17,2020-11-09,WHO: children to be vaccinated without parents' consent,False claim congenial to Republicans,"Panel 4
+(MTurk)",1170
+5,22,2020-10-19,gs_pfact_traffic/childs-presence-school-doesnt-automatically-enroll_ - content-pages.csv,2020-10-17,2020-11-16,WHO: children to be vaccinated without parents' consent,False claim congenial to Republicans,"Panel 4
+(MTurk)",1192
+6,20,2020-10-19,gs_pfact_traffic/childs-presence-school-doesnt-automatically-enroll_ - content-pages.csv,2020-10-17,2020-11-23,WHO: children to be vaccinated without parents' consent,False claim congenial to Republicans,"Panel 4
+(MTurk)",1212
+7,39,2020-10-19,gs_pfact_traffic/childs-presence-school-doesnt-automatically-enroll_ - content-pages.csv,2020-10-17,2020-11-30,WHO: children to be vaccinated without parents' consent,False claim congenial to Republicans,"Panel 4
+(MTurk)",1251
+1,23892,2020-11-05,gs_pfact_traffic/claim-postal-service-failed-deliver-27-mail-ballot - content-pages.csv,2020-11-07,2020-11-05,USPS fails to deliver 27% of mail ballots in South FL,False claim congenial to Democrats,"Panel 7
+(Lucid)",23892
+2,1989,2020-11-05,gs_pfact_traffic/claim-postal-service-failed-deliver-27-mail-ballot - content-pages.csv,2020-11-07,2020-11-12,USPS fails to deliver 27% of mail ballots in South FL,False claim congenial to Democrats,"Panel 7
+(Lucid)",25881
+3,232,2020-11-05,gs_pfact_traffic/claim-postal-service-failed-deliver-27-mail-ballot - content-pages.csv,2020-11-07,2020-11-19,USPS fails to deliver 27% of mail ballots in South FL,False claim congenial to Democrats,"Panel 7
+(Lucid)",26113
+4,114,2020-11-05,gs_pfact_traffic/claim-postal-service-failed-deliver-27-mail-ballot - content-pages.csv,2020-11-07,2020-11-26,USPS fails to deliver 27% of mail ballots in South FL,False claim congenial to Democrats,"Panel 7
+(Lucid)",26227
+1,59351,2020-10-28,gs_pfact_traffic/donald-trump-wrong-winner-has-be-announced-electio - content-pages.csv,2020-10-31,2020-10-28,Presidential winner must be announced election night,False claim congenial to Republicans,"Panel 6
+(MTurk)",59351
+2,9147,2020-10-28,gs_pfact_traffic/donald-trump-wrong-winner-has-be-announced-electio - content-pages.csv,2020-10-31,2020-11-04,Presidential winner must be announced election night,False claim congenial to Republicans,"Panel 6
+(MTurk)",68498
+3,579,2020-10-28,gs_pfact_traffic/donald-trump-wrong-winner-has-be-announced-electio - content-pages.csv,2020-10-31,2020-11-11,Presidential winner must be announced election night,False claim congenial to Republicans,"Panel 6
+(MTurk)",69077
+4,219,2020-10-28,gs_pfact_traffic/donald-trump-wrong-winner-has-be-announced-electio - content-pages.csv,2020-10-31,2020-11-18,Presidential winner must be announced election night,False claim congenial to Republicans,"Panel 6
+(MTurk)",69296
+5,66,2020-10-28,gs_pfact_traffic/donald-trump-wrong-winner-has-be-announced-electio - content-pages.csv,2020-10-31,2020-11-25,Presidential winner must be announced election night,False claim congenial to Republicans,"Panel 6
+(MTurk)",69362
+1,11282,2020-10-02,gs_pfact_traffic/fact-check-why-barack-obama-failed-fill-over-100-j_ - content-pages.csv,2020-10-03,2020-10-02,Obama failed to nominate US judges,False claim congenial to Republicans,"Panel 3
+(Lucid)",11282
+2,15776,2020-10-02,gs_pfact_traffic/fact-check-why-barack-obama-failed-fill-over-100-j_ - content-pages.csv,2020-10-03,2020-10-09,Obama failed to nominate US judges,False claim congenial to Republicans,"Panel 3
+(Lucid)",27058
+3,7726,2020-10-02,gs_pfact_traffic/fact-check-why-barack-obama-failed-fill-over-100-j_ - content-pages.csv,2020-10-03,2020-10-16,Obama failed to nominate US judges,False claim congenial to Republicans,"Panel 3
+(Lucid)",34784
+4,3585,2020-10-02,gs_pfact_traffic/fact-check-why-barack-obama-failed-fill-over-100-j_ - content-pages.csv,2020-10-03,2020-10-23,Obama failed to nominate US judges,False claim congenial to Republicans,"Panel 3
+(Lucid)",38369
+5,4892,2020-10-02,gs_pfact_traffic/fact-check-why-barack-obama-failed-fill-over-100-j_ - content-pages.csv,2020-10-03,2020-10-30,Obama failed to nominate US judges,False claim congenial to Republicans,"Panel 3
+(Lucid)",43261
+6,2248,2020-10-02,gs_pfact_traffic/fact-check-why-barack-obama-failed-fill-over-100-j_ - content-pages.csv,2020-10-03,2020-11-06,Obama failed to nominate US judges,False claim congenial to Republicans,"Panel 3
+(Lucid)",45509
+7,1122,2020-10-02,gs_pfact_traffic/fact-check-why-barack-obama-failed-fill-over-100-j_ - content-pages.csv,2020-10-03,2020-11-13,Obama failed to nominate US judges,False claim congenial to Republicans,"Panel 3
+(Lucid)",46631
+8,472,2020-10-02,gs_pfact_traffic/fact-check-why-barack-obama-failed-fill-over-100-j_ - content-pages.csv,2020-10-03,2020-11-20,Obama failed to nominate US judges,False claim congenial to Republicans,"Panel 3
+(Lucid)",47103
+9,361,2020-10-02,gs_pfact_traffic/fact-check-why-barack-obama-failed-fill-over-100-j_ - content-pages.csv,2020-10-03,2020-11-27,Obama failed to nominate US judges,False claim congenial to Republicans,"Panel 3
+(Lucid)",47464
+1,3929,2020-09-10,gs_pfact_traffic/fact-checking-joe-bidens-claim-about-his-own-incom_ - content-pages.csv,2020-09-12,2020-09-10,Joe Biden has never made more than $400k,False claim congenial to Democrats,"Panel 5
+(Lucid)",3929
+2,1875,2020-09-10,gs_pfact_traffic/fact-checking-joe-bidens-claim-about-his-own-incom_ - content-pages.csv,2020-09-12,2020-09-17,Joe Biden has never made more than $400k,False claim congenial to Democrats,"Panel 5
+(Lucid)",5804
+3,988,2020-09-10,gs_pfact_traffic/fact-checking-joe-bidens-claim-about-his-own-incom_ - content-pages.csv,2020-09-12,2020-09-24,Joe Biden has never made more than $400k,False claim congenial to Democrats,"Panel 5
+(Lucid)",6792
+4,9614,2020-09-10,gs_pfact_traffic/fact-checking-joe-bidens-claim-about-his-own-incom_ - content-pages.csv,2020-09-12,2020-10-01,Joe Biden has never made more than $400k,False claim congenial to Democrats,"Panel 5
+(Lucid)",16406
+5,1834,2020-09-10,gs_pfact_traffic/fact-checking-joe-bidens-claim-about-his-own-incom_ - content-pages.csv,2020-09-12,2020-10-08,Joe Biden has never made more than $400k,False claim congenial to Democrats,"Panel 5
+(Lucid)",18240
+6,3068,2020-09-10,gs_pfact_traffic/fact-checking-joe-bidens-claim-about-his-own-incom_ - content-pages.csv,2020-09-12,2020-10-15,Joe Biden has never made more than $400k,False claim congenial to Democrats,"Panel 5
+(Lucid)",21308
+7,10809,2020-09-10,gs_pfact_traffic/fact-checking-joe-bidens-claim-about-his-own-incom_ - content-pages.csv,2020-09-12,2020-10-22,Joe Biden has never made more than $400k,False claim congenial to Democrats,"Panel 5
+(Lucid)",32117
+8,2988,2020-09-10,gs_pfact_traffic/fact-checking-joe-bidens-claim-about-his-own-incom_ - content-pages.csv,2020-09-12,2020-10-29,Joe Biden has never made more than $400k,False claim congenial to Democrats,"Panel 5
+(Lucid)",35105
+9,1939,2020-09-10,gs_pfact_traffic/fact-checking-joe-bidens-claim-about-his-own-incom_ - content-pages.csv,2020-09-12,2020-11-05,Joe Biden has never made more than $400k,False claim congenial to Democrats,"Panel 5
+(Lucid)",37044
+10,1017,2020-09-10,gs_pfact_traffic/fact-checking-joe-bidens-claim-about-his-own-incom_ - content-pages.csv,2020-09-12,2020-11-12,Joe Biden has never made more than $400k,False claim congenial to Democrats,"Panel 5
+(Lucid)",38061
+11,486,2020-09-10,gs_pfact_traffic/fact-checking-joe-bidens-claim-about-his-own-incom_ - content-pages.csv,2020-09-12,2020-11-19,Joe Biden has never made more than $400k,False claim congenial to Democrats,"Panel 5
+(Lucid)",38547
+12,202,2020-09-10,gs_pfact_traffic/fact-checking-joe-bidens-claim-about-his-own-incom_ - content-pages.csv,2020-09-12,2020-11-26,Joe Biden has never made more than $400k,False claim congenial to Democrats,"Panel 5
+(Lucid)",38749
+1,220767,2020-10-20,gs_pfact_traffic/fact-checking-unproven-claims-about-hunter-biden-a_ - content-pages.csv,2020-10-17,2020-10-20,Hunter Biden's laptop had photos torturing children,False claim congenial to Republicans,"Panel 4
+(MTurk)",220767
+2,160447,2020-10-20,gs_pfact_traffic/fact-checking-unproven-claims-about-hunter-biden-a_ - content-pages.csv,2020-10-17,2020-10-27,Hunter Biden's laptop had photos torturing children,False claim congenial to Republicans,"Panel 4
+(MTurk)",381214
+3,47473,2020-10-20,gs_pfact_traffic/fact-checking-unproven-claims-about-hunter-biden-a_ - content-pages.csv,2020-10-17,2020-11-03,Hunter Biden's laptop had photos torturing children,False claim congenial to Republicans,"Panel 4
+(MTurk)",428687
+4,57340,2020-10-20,gs_pfact_traffic/fact-checking-unproven-claims-about-hunter-biden-a_ - content-pages.csv,2020-10-17,2020-11-10,Hunter Biden's laptop had photos torturing children,False claim congenial to Republicans,"Panel 4
+(MTurk)",486027
+5,6169,2020-10-20,gs_pfact_traffic/fact-checking-unproven-claims-about-hunter-biden-a_ - content-pages.csv,2020-10-17,2020-11-17,Hunter Biden's laptop had photos torturing children,False claim congenial to Republicans,"Panel 4
+(MTurk)",492196
+6,3356,2020-10-20,gs_pfact_traffic/fact-checking-unproven-claims-about-hunter-biden-a_ - content-pages.csv,2020-10-17,2020-11-24,Hunter Biden's laptop had photos torturing children,False claim congenial to Republicans,"Panel 4
+(MTurk)",495552
+1,4475,2020-09-18,gs_pfact_traffic/joe-biden-wrongly-claims-trump-couldve-prevented-e - content-pages.csv,2020-09-19,2020-09-18,Trump responsible for all Covid deaths,False claim congenial to Democrats,"Panel 2
+(MTurk)",4475
+2,13201,2020-09-18,gs_pfact_traffic/joe-biden-wrongly-claims-trump-couldve-prevented-e - content-pages.csv,2020-09-19,2020-09-25,Trump responsible for all Covid deaths,False claim congenial to Democrats,"Panel 2
+(MTurk)",17676
+3,4880,2020-09-18,gs_pfact_traffic/joe-biden-wrongly-claims-trump-couldve-prevented-e - content-pages.csv,2020-09-19,2020-10-02,Trump responsible for all Covid deaths,False claim congenial to Democrats,"Panel 2
+(MTurk)",22556
+4,4151,2020-09-18,gs_pfact_traffic/joe-biden-wrongly-claims-trump-couldve-prevented-e - content-pages.csv,2020-09-19,2020-10-09,Trump responsible for all Covid deaths,False claim congenial to Democrats,"Panel 2
+(MTurk)",26707
+5,5436,2020-09-18,gs_pfact_traffic/joe-biden-wrongly-claims-trump-couldve-prevented-e - content-pages.csv,2020-09-19,2020-10-16,Trump responsible for all Covid deaths,False claim congenial to Democrats,"Panel 2
+(MTurk)",32143
+6,2329,2020-09-18,gs_pfact_traffic/joe-biden-wrongly-claims-trump-couldve-prevented-e - content-pages.csv,2020-09-19,2020-10-23,Trump responsible for all Covid deaths,False claim congenial to Democrats,"Panel 2
+(MTurk)",34472
+7,1468,2020-09-18,gs_pfact_traffic/joe-biden-wrongly-claims-trump-couldve-prevented-e - content-pages.csv,2020-09-19,2020-10-30,Trump responsible for all Covid deaths,False claim congenial to Democrats,"Panel 2
+(MTurk)",35940
+8,1405,2020-09-18,gs_pfact_traffic/joe-biden-wrongly-claims-trump-couldve-prevented-e - content-pages.csv,2020-09-19,2020-11-06,Trump responsible for all Covid deaths,False claim congenial to Democrats,"Panel 2
+(MTurk)",37345
+9,960,2020-09-18,gs_pfact_traffic/joe-biden-wrongly-claims-trump-couldve-prevented-e - content-pages.csv,2020-09-19,2020-11-13,Trump responsible for all Covid deaths,False claim congenial to Democrats,"Panel 2
+(MTurk)",38305
+10,408,2020-09-18,gs_pfact_traffic/joe-biden-wrongly-claims-trump-couldve-prevented-e - content-pages.csv,2020-09-19,2020-11-20,Trump responsible for all Covid deaths,False claim congenial to Democrats,"Panel 2
+(MTurk)",38713
+11,239,2020-09-18,gs_pfact_traffic/joe-biden-wrongly-claims-trump-couldve-prevented-e - content-pages.csv,2020-09-19,2020-11-27,Trump responsible for all Covid deaths,False claim congenial to Democrats,"Panel 2
+(MTurk)",38952
+1,37911,2020-10-26,gs_pfact_traffic/no-evidence-hunter-biden-had-photos-coons-daughter - content-pages.csv,2020-10-24,2020-10-26,Sen Coon's daughter's photo on Hunter Biden's laptop,False claim congenial to Republicans,"Panel 6
+(MTurk)",37911
+2,4488,2020-10-26,gs_pfact_traffic/no-evidence-hunter-biden-had-photos-coons-daughter - content-pages.csv,2020-10-24,2020-11-02,Sen Coon's daughter's photo on Hunter Biden's laptop,False claim congenial to Republicans,"Panel 6
+(MTurk)",42399
+3,2460,2020-10-26,gs_pfact_traffic/no-evidence-hunter-biden-had-photos-coons-daughter - content-pages.csv,2020-10-24,2020-11-09,Sen Coon's daughter's photo on Hunter Biden's laptop,False claim congenial to Republicans,"Panel 6
+(MTurk)",44859
+4,663,2020-10-26,gs_pfact_traffic/no-evidence-hunter-biden-had-photos-coons-daughter - content-pages.csv,2020-10-24,2020-11-16,Sen Coon's daughter's photo on Hunter Biden's laptop,False claim congenial to Republicans,"Panel 6
+(MTurk)",45522
+5,630,2020-10-26,gs_pfact_traffic/no-evidence-hunter-biden-had-photos-coons-daughter - content-pages.csv,2020-10-24,2020-11-23,Sen Coon's daughter's photo on Hunter Biden's laptop,False claim congenial to Republicans,"Panel 6
+(MTurk)",46152
+6,470,2020-10-26,gs_pfact_traffic/no-evidence-hunter-biden-had-photos-coons-daughter - content-pages.csv,2020-10-24,2020-11-30,Sen Coon's daughter's photo on Hunter Biden's laptop,False claim congenial to Republicans,"Panel 6
+(MTurk)",46622
+1,24164,2020-10-13,gs_pfact_traffic/no-trump-didnt-say-he-nominated-amy-coney-barrett-_ - content-pages.csv,2020-10-10,2020-10-13,Judge Barrett made homophobic and racist statements,False claim congenial to Democrats,"Panel 3
+(Lucid)",24164
+2,416,2020-10-13,gs_pfact_traffic/no-trump-didnt-say-he-nominated-amy-coney-barrett-_ - content-pages.csv,2020-10-10,2020-10-20,Judge Barrett made homophobic and racist statements,False claim congenial to Democrats,"Panel 3
+(Lucid)",24580
+3,349,2020-10-13,gs_pfact_traffic/no-trump-didnt-say-he-nominated-amy-coney-barrett-_ - content-pages.csv,2020-10-10,2020-10-27,Judge Barrett made homophobic and racist statements,False claim congenial to Democrats,"Panel 3
+(Lucid)",24929
+4,228,2020-10-13,gs_pfact_traffic/no-trump-didnt-say-he-nominated-amy-coney-barrett-_ - content-pages.csv,2020-10-10,2020-11-03,Judge Barrett made homophobic and racist statements,False claim congenial to Democrats,"Panel 3
+(Lucid)",25157
+5,74,2020-10-13,gs_pfact_traffic/no-trump-didnt-say-he-nominated-amy-coney-barrett-_ - content-pages.csv,2020-10-10,2020-11-10,Judge Barrett made homophobic and racist statements,False claim congenial to Democrats,"Panel 3
+(Lucid)",25231
+6,20,2020-10-13,gs_pfact_traffic/no-trump-didnt-say-he-nominated-amy-coney-barrett-_ - content-pages.csv,2020-10-10,2020-11-17,Judge Barrett made homophobic and racist statements,False claim congenial to Democrats,"Panel 3
+(Lucid)",25251
+7,12,2020-10-13,gs_pfact_traffic/no-trump-didnt-say-he-nominated-amy-coney-barrett-_ - content-pages.csv,2020-10-10,2020-11-24,Judge Barrett made homophobic and racist statements,False claim congenial to Democrats,"Panel 3
+(Lucid)",25263
+1,382048,2020-11-04,gs_pfact_traffic/no-wisconsin-doesnt-have-more-ballots-cast-registe_ - content-pages.csv,2020-11-07,2020-11-04,Wisconsin has more votes than registered voters,False claim congenial to Republicans,"Panel 7
+(Lucid)",382048
+2,7180,2020-11-04,gs_pfact_traffic/no-wisconsin-doesnt-have-more-ballots-cast-registe_ - content-pages.csv,2020-11-07,2020-11-11,Wisconsin has more votes than registered voters,False claim congenial to Republicans,"Panel 7
+(Lucid)",389228
+3,782,2020-11-04,gs_pfact_traffic/no-wisconsin-doesnt-have-more-ballots-cast-registe_ - content-pages.csv,2020-11-07,2020-11-18,Wisconsin has more votes than registered voters,False claim congenial to Republicans,"Panel 7
+(Lucid)",390010
+4,1121,2020-11-04,gs_pfact_traffic/no-wisconsin-doesnt-have-more-ballots-cast-registe_ - content-pages.csv,2020-11-07,2020-11-25,Wisconsin has more votes than registered voters,False claim congenial to Republicans,"Panel 7
+(Lucid)",391131
+1,14261,2020-10-13,gs_pfact_traffic/social-media-posts-push-false-claims-about-kamala- - content-pages.csv,2020-10-10,2020-10-13,Kamala Harris imprisoned prolife activists,False claim congenial to Republicans,"Panel 5
+(Lucid)",14261
+2,18280,2020-10-13,gs_pfact_traffic/social-media-posts-push-false-claims-about-kamala- - content-pages.csv,2020-10-10,2020-10-20,Kamala Harris imprisoned prolife activists,False claim congenial to Republicans,"Panel 5
+(Lucid)",32541
+3,2344,2020-10-13,gs_pfact_traffic/social-media-posts-push-false-claims-about-kamala- - content-pages.csv,2020-10-10,2020-10-27,Kamala Harris imprisoned prolife activists,False claim congenial to Republicans,"Panel 5
+(Lucid)",34885
+4,2438,2020-10-13,gs_pfact_traffic/social-media-posts-push-false-claims-about-kamala- - content-pages.csv,2020-10-10,2020-11-03,Kamala Harris imprisoned prolife activists,False claim congenial to Republicans,"Panel 5
+(Lucid)",37323
+5,2112,2020-10-13,gs_pfact_traffic/social-media-posts-push-false-claims-about-kamala- - content-pages.csv,2020-10-10,2020-11-10,Kamala Harris imprisoned prolife activists,False claim congenial to Republicans,"Panel 5
+(Lucid)",39435
+6,593,2020-10-13,gs_pfact_traffic/social-media-posts-push-false-claims-about-kamala- - content-pages.csv,2020-10-10,2020-11-17,Kamala Harris imprisoned prolife activists,False claim congenial to Republicans,"Panel 5
+(Lucid)",40028
+7,313,2020-10-13,gs_pfact_traffic/social-media-posts-push-false-claims-about-kamala- - content-pages.csv,2020-10-10,2020-11-24,Kamala Harris imprisoned prolife activists,False claim congenial to Republicans,"Panel 5
+(Lucid)",40341
+1,10553,2020-10-23,gs_pfact_traffic/trump-did-not-say-good-when-talking-about-family-s - content-pages.csv,2020-10-24,2020-10-23,Trump said 'Good' to children's separation,False claim congenial to Democrats,"Panel 6
+(MTurk)",10553
+2,19970,2020-10-23,gs_pfact_traffic/trump-did-not-say-good-when-talking-about-family-s - content-pages.csv,2020-10-24,2020-10-30,Trump said 'Good' to children's separation,False claim congenial to Democrats,"Panel 6
+(MTurk)",30523
+3,280,2020-10-23,gs_pfact_traffic/trump-did-not-say-good-when-talking-about-family-s - content-pages.csv,2020-10-24,2020-11-06,Trump said 'Good' to children's separation,False claim congenial to Democrats,"Panel 6
+(MTurk)",30803
+4,149,2020-10-23,gs_pfact_traffic/trump-did-not-say-good-when-talking-about-family-s - content-pages.csv,2020-10-24,2020-11-13,Trump said 'Good' to children's separation,False claim congenial to Democrats,"Panel 6
+(MTurk)",30952
+5,162,2020-10-23,gs_pfact_traffic/trump-did-not-say-good-when-talking-about-family-s - content-pages.csv,2020-10-24,2020-11-20,Trump said 'Good' to children's separation,False claim congenial to Democrats,"Panel 6
+(MTurk)",31114
+6,127,2020-10-23,gs_pfact_traffic/trump-did-not-say-good-when-talking-about-family-s - content-pages.csv,2020-10-24,2020-11-27,Trump said 'Good' to children's separation,False claim congenial to Democrats,"Panel 6
+(MTurk)",31241
+1,37239,2020-10-14,gs_pfact_traffic/trump-retweets-benghazi-conspiracy-theory-falsely- - content-pages.csv,2020-10-17,2020-10-14,Biden and Obama plotted to have Seal Team 6 murdered,False claim congenial to Republicans,"Panel 5
+(Lucid)",37239
+2,10133,2020-10-14,gs_pfact_traffic/trump-retweets-benghazi-conspiracy-theory-falsely- - content-pages.csv,2020-10-17,2020-10-21,Biden and Obama plotted to have Seal Team 6 murdered,False claim congenial to Republicans,"Panel 5
+(Lucid)",47372
+3,1875,2020-10-14,gs_pfact_traffic/trump-retweets-benghazi-conspiracy-theory-falsely- - content-pages.csv,2020-10-17,2020-10-28,Biden and Obama plotted to have Seal Team 6 murdered,False claim congenial to Republicans,"Panel 5
+(Lucid)",49247
+4,1020,2020-10-14,gs_pfact_traffic/trump-retweets-benghazi-conspiracy-theory-falsely- - content-pages.csv,2020-10-17,2020-11-04,Biden and Obama plotted to have Seal Team 6 murdered,False claim congenial to Republicans,"Panel 5
+(Lucid)",50267
+5,708,2020-10-14,gs_pfact_traffic/trump-retweets-benghazi-conspiracy-theory-falsely- - content-pages.csv,2020-10-17,2020-11-11,Biden and Obama plotted to have Seal Team 6 murdered,False claim congenial to Republicans,"Panel 5
+(Lucid)",50975
+6,394,2020-10-14,gs_pfact_traffic/trump-retweets-benghazi-conspiracy-theory-falsely- - content-pages.csv,2020-10-17,2020-11-18,Biden and Obama plotted to have Seal Team 6 murdered,False claim congenial to Republicans,"Panel 5
+(Lucid)",51369
+7,429,2020-10-14,gs_pfact_traffic/trump-retweets-benghazi-conspiracy-theory-falsely- - content-pages.csv,2020-10-17,2020-11-25,Biden and Obama plotted to have Seal Team 6 murdered,False claim congenial to Republicans,"Panel 5
+(Lucid)",51798
+1,159609,2020-10-07,gs_pfact_traffic/trump-was-triumphant-after-leaving-hospital-he-did - content-pages.csv,2020-10-10,2020-10-07,Donald Trump claimed his DNA was USA,False claim congenial to Democrats,"Panel 3
+(Lucid)",159609
+2,6543,2020-10-07,gs_pfact_traffic/trump-was-triumphant-after-leaving-hospital-he-did - content-pages.csv,2020-10-10,2020-10-14,Donald Trump claimed his DNA was USA,False claim congenial to Democrats,"Panel 3
+(Lucid)",166152
+3,1234,2020-10-07,gs_pfact_traffic/trump-was-triumphant-after-leaving-hospital-he-did - content-pages.csv,2020-10-10,2020-10-21,Donald Trump claimed his DNA was USA,False claim congenial to Democrats,"Panel 3
+(Lucid)",167386
+4,579,2020-10-07,gs_pfact_traffic/trump-was-triumphant-after-leaving-hospital-he-did - content-pages.csv,2020-10-10,2020-10-28,Donald Trump claimed his DNA was USA,False claim congenial to Democrats,"Panel 3
+(Lucid)",167965
+5,629,2020-10-07,gs_pfact_traffic/trump-was-triumphant-after-leaving-hospital-he-did - content-pages.csv,2020-10-10,2020-11-04,Donald Trump claimed his DNA was USA,False claim congenial to Democrats,"Panel 3
+(Lucid)",168594
+6,182,2020-10-07,gs_pfact_traffic/trump-was-triumphant-after-leaving-hospital-he-did - content-pages.csv,2020-10-10,2020-11-11,Donald Trump claimed his DNA was USA,False claim congenial to Democrats,"Panel 3
+(Lucid)",168776
+7,124,2020-10-07,gs_pfact_traffic/trump-was-triumphant-after-leaving-hospital-he-did - content-pages.csv,2020-10-10,2020-11-18,Donald Trump claimed his DNA was USA,False claim congenial to Democrats,"Panel 3
+(Lucid)",168900
+8,85,2020-10-07,gs_pfact_traffic/trump-was-triumphant-after-leaving-hospital-he-did - content-pages.csv,2020-10-10,2020-11-25,Donald Trump claimed his DNA was USA,False claim congenial to Democrats,"Panel 3
+(Lucid)",168985
+1,65189,2020-09-16,gs_pfact_traffic/tucker-carlson-guest-airs-debunked-conspiracy-theo_ - content-pages.csv,2020-09-19,2020-09-16,SARS-CoV-2 man made virus created in the lab,False claim congenial to Republicans,"Panel 1
+(Lucid)",65189
+2,16312,2020-09-16,gs_pfact_traffic/tucker-carlson-guest-airs-debunked-conspiracy-theo_ - content-pages.csv,2020-09-19,2020-09-23,SARS-CoV-2 man made virus created in the lab,False claim congenial to Republicans,"Panel 1
+(Lucid)",81501
+3,5991,2020-09-16,gs_pfact_traffic/tucker-carlson-guest-airs-debunked-conspiracy-theo_ - content-pages.csv,2020-09-19,2020-09-30,SARS-CoV-2 man made virus created in the lab,False claim congenial to Republicans,"Panel 1
+(Lucid)",87492
+4,2772,2020-09-16,gs_pfact_traffic/tucker-carlson-guest-airs-debunked-conspiracy-theo_ - content-pages.csv,2020-09-19,2020-10-07,SARS-CoV-2 man made virus created in the lab,False claim congenial to Republicans,"Panel 1
+(Lucid)",90264
+5,1123,2020-09-16,gs_pfact_traffic/tucker-carlson-guest-airs-debunked-conspiracy-theo_ - content-pages.csv,2020-09-19,2020-10-14,SARS-CoV-2 man made virus created in the lab,False claim congenial to Republicans,"Panel 1
+(Lucid)",91387
+6,807,2020-09-16,gs_pfact_traffic/tucker-carlson-guest-airs-debunked-conspiracy-theo_ - content-pages.csv,2020-09-19,2020-10-21,SARS-CoV-2 man made virus created in the lab,False claim congenial to Republicans,"Panel 1
+(Lucid)",92194
+7,760,2020-09-16,gs_pfact_traffic/tucker-carlson-guest-airs-debunked-conspiracy-theo_ - content-pages.csv,2020-09-19,2020-10-28,SARS-CoV-2 man made virus created in the lab,False claim congenial to Republicans,"Panel 1
+(Lucid)",92954
+8,511,2020-09-16,gs_pfact_traffic/tucker-carlson-guest-airs-debunked-conspiracy-theo_ - content-pages.csv,2020-09-19,2020-11-04,SARS-CoV-2 man made virus created in the lab,False claim congenial to Republicans,"Panel 1
+(Lucid)",93465
+9,419,2020-09-16,gs_pfact_traffic/tucker-carlson-guest-airs-debunked-conspiracy-theo_ - content-pages.csv,2020-09-19,2020-11-11,SARS-CoV-2 man made virus created in the lab,False claim congenial to Republicans,"Panel 1
+(Lucid)",93884
+10,433,2020-09-16,gs_pfact_traffic/tucker-carlson-guest-airs-debunked-conspiracy-theo_ - content-pages.csv,2020-09-19,2020-11-18,SARS-CoV-2 man made virus created in the lab,False claim congenial to Republicans,"Panel 1
+(Lucid)",94317
+11,377,2020-09-16,gs_pfact_traffic/tucker-carlson-guest-airs-debunked-conspiracy-theo_ - content-pages.csv,2020-09-19,2020-11-25,SARS-CoV-2 man made virus created in the lab,False claim congenial to Republicans,"Panel 1
+(Lucid)",94694
+1,184490,2020-11-04,gs_pfact_traffic/voting-machines-dont-read-ballots-filled-sharpies - content-pages.csv,2020-11-07,2020-11-04,GOP voters' pens invisible to voting machines,False claim congenial to Republicans,"Panel 7
+(Lucid)",184490
+2,4451,2020-11-04,gs_pfact_traffic/voting-machines-dont-read-ballots-filled-sharpies - content-pages.csv,2020-11-07,2020-11-11,GOP voters' pens invisible to voting machines,False claim congenial to Republicans,"Panel 7
+(Lucid)",188941
+3,611,2020-11-04,gs_pfact_traffic/voting-machines-dont-read-ballots-filled-sharpies - content-pages.csv,2020-11-07,2020-11-18,GOP voters' pens invisible to voting machines,False claim congenial to Republicans,"Panel 7
+(Lucid)",189552
+4,261,2020-11-04,gs_pfact_traffic/voting-machines-dont-read-ballots-filled-sharpies - content-pages.csv,2020-11-07,2020-11-25,GOP voters' pens invisible to voting machines,False claim congenial to Republicans,"Panel 7
+(Lucid)",189813
+1,18743,2020-09-25,gs_pfact_traffic/what-social-media-posts-get-wrong-about-amy-coney- - content-pages.csv,2020-09-26,2020-09-25,Trump chose Judge Barrett on basis of looks,False claim congenial to Democrats,"Panel 4
+(MTurk)",18743
+2,10132,2020-09-25,gs_pfact_traffic/what-social-media-posts-get-wrong-about-amy-coney- - content-pages.csv,2020-09-26,2020-10-02,Trump chose Judge Barrett on basis of looks,False claim congenial to Democrats,"Panel 4
+(MTurk)",28875
+3,1135,2020-09-25,gs_pfact_traffic/what-social-media-posts-get-wrong-about-amy-coney- - content-pages.csv,2020-09-26,2020-10-09,Trump chose Judge Barrett on basis of looks,False claim congenial to Democrats,"Panel 4
+(MTurk)",30010
+4,3173,2020-09-25,gs_pfact_traffic/what-social-media-posts-get-wrong-about-amy-coney- - content-pages.csv,2020-09-26,2020-10-16,Trump chose Judge Barrett on basis of looks,False claim congenial to Democrats,"Panel 4
+(MTurk)",33183
+5,924,2020-09-25,gs_pfact_traffic/what-social-media-posts-get-wrong-about-amy-coney- - content-pages.csv,2020-09-26,2020-10-23,Trump chose Judge Barrett on basis of looks,False claim congenial to Democrats,"Panel 4
+(MTurk)",34107
+6,2178,2020-09-25,gs_pfact_traffic/what-social-media-posts-get-wrong-about-amy-coney- - content-pages.csv,2020-09-26,2020-10-30,Trump chose Judge Barrett on basis of looks,False claim congenial to Democrats,"Panel 4
+(MTurk)",36285
+7,457,2020-09-25,gs_pfact_traffic/what-social-media-posts-get-wrong-about-amy-coney- - content-pages.csv,2020-09-26,2020-11-06,Trump chose Judge Barrett on basis of looks,False claim congenial to Democrats,"Panel 4
+(MTurk)",36742
+8,109,2020-09-25,gs_pfact_traffic/what-social-media-posts-get-wrong-about-amy-coney- - content-pages.csv,2020-09-26,2020-11-13,Trump chose Judge Barrett on basis of looks,False claim congenial to Democrats,"Panel 4
+(MTurk)",36851
+9,64,2020-09-25,gs_pfact_traffic/what-social-media-posts-get-wrong-about-amy-coney- - content-pages.csv,2020-09-26,2020-11-20,Trump chose Judge Barrett on basis of looks,False claim congenial to Democrats,"Panel 4
+(MTurk)",36915
+10,55,2020-09-25,gs_pfact_traffic/what-social-media-posts-get-wrong-about-amy-coney- - content-pages.csv,2020-09-26,2020-11-27,Trump chose Judge Barrett on basis of looks,False claim congenial to Democrats,"Panel 4
+(MTurk)",36970
+1,7960,2020-09-18,gs_pfact_traffic/wrong-about-donald-trump-holding-bible-u - content-pages.csv,2020-09-19,2020-09-18,Trump holds Bible upside down,False claim congenial to Democrats,"Panel 2
+(MTurk)",7960
+2,5047,2020-09-18,gs_pfact_traffic/wrong-about-donald-trump-holding-bible-u - content-pages.csv,2020-09-19,2020-09-25,Trump holds Bible upside down,False claim congenial to Democrats,"Panel 2
+(MTurk)",13007
+3,1247,2020-09-18,gs_pfact_traffic/wrong-about-donald-trump-holding-bible-u - content-pages.csv,2020-09-19,2020-10-02,Trump holds Bible upside down,False claim congenial to Democrats,"Panel 2
+(MTurk)",14254
+4,900,2020-09-18,gs_pfact_traffic/wrong-about-donald-trump-holding-bible-u - content-pages.csv,2020-09-19,2020-10-09,Trump holds Bible upside down,False claim congenial to Democrats,"Panel 2
+(MTurk)",15154
+5,536,2020-09-18,gs_pfact_traffic/wrong-about-donald-trump-holding-bible-u - content-pages.csv,2020-09-19,2020-10-16,Trump holds Bible upside down,False claim congenial to Democrats,"Panel 2
+(MTurk)",15690
+6,721,2020-09-18,gs_pfact_traffic/wrong-about-donald-trump-holding-bible-u - content-pages.csv,2020-09-19,2020-10-23,Trump holds Bible upside down,False claim congenial to Democrats,"Panel 2
+(MTurk)",16411
+7,626,2020-09-18,gs_pfact_traffic/wrong-about-donald-trump-holding-bible-u - content-pages.csv,2020-09-19,2020-10-30,Trump holds Bible upside down,False claim congenial to Democrats,"Panel 2
+(MTurk)",17037
+8,876,2020-09-18,gs_pfact_traffic/wrong-about-donald-trump-holding-bible-u - content-pages.csv,2020-09-19,2020-11-06,Trump holds Bible upside down,False claim congenial to Democrats,"Panel 2
+(MTurk)",17913
+9,600,2020-09-18,gs_pfact_traffic/wrong-about-donald-trump-holding-bible-u - content-pages.csv,2020-09-19,2020-11-13,Trump holds Bible upside down,False claim congenial to Democrats,"Panel 2
+(MTurk)",18513
+10,229,2020-09-18,gs_pfact_traffic/wrong-about-donald-trump-holding-bible-u - content-pages.csv,2020-09-19,2020-11-20,Trump holds Bible upside down,False claim congenial to Democrats,"Panel 2
+(MTurk)",18742
+11,174,2020-09-18,gs_pfact_traffic/wrong-about-donald-trump-holding-bible-u - content-pages.csv,2020-09-19,2020-11-27,Trump holds Bible upside down,False claim congenial to Democrats,"Panel 2
+(MTurk)",18916

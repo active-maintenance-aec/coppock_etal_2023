@@ -1,0 +1,255 @@
+claim_id,location,claim_type,claim,value_paper,digits,needs_block
+art_pages,"Article, masthead p. 1",structural,Pages in the published article,14,0,FALSE
+art_abstract_panels,"Abstract, p. 1",definitional,Panel experiments conducted,8,0,TRUE
+art_abstract_findings,"Abstract, p. 1",structural,Sets of existing findings the study corroborates,4,0,FALSE
+art_abstract_year,"Abstract, p. 1",structural,Election year studied,2020,0,FALSE
+art_intro_findings,"Introduction, p. 1",structural,Prior findings reviewed,4,0,FALSE
+art_intro_total_n,"Introduction, p. 2: ""we conducted eight preregistered panel experiments (total N = 17,681)""",pipeline,Total respondents across the eight panels,17681,0,TRUE
+art_intro_panels,"Introduction, p. 2",definitional,Preregistered panel experiments,8,0,TRUE
+art_intro_fact_checks,"Introduction, p. 2: ""we evaluated the effects of twenty-one widely disseminated pieces of misinformation""",definitional,Distinct pieces of misinformation and corresponding fact checks,21,0,TRUE
+art_intro_months,"Introduction, p. 2",structural,Months of the election covered,2,0,FALSE
+art_intro_lag_days,"Introduction, p. 2: ""on average, thirteen days separated the first appearance of the misinformation online from the inclusion of that misinformation in our experiments""",pipeline,Mean days from misinformation posting to fielding,13,0,TRUE
+art_intro_misinfo_effect,"Introduction, p. 2: ""Exposure to misinformation increased false beliefs by an average of 4.3 points""",pipeline,Meta-analytic misinformation effect,4.3,1,TRUE
+art_intro_belief_scale,"Introduction, p. 2",definitional,Upper endpoint of the belief certainty scale,100,0,TRUE
+art_intro_correction_effect,"Introduction, p. 2: ""decreasing false beliefs by 10.5 points""",pipeline,Meta-analytic correction effect magnitude,10.5,1,TRUE
+art_intro_persist_w2,"Introduction, p. 2: ""66 per cent of the initial effect of fact-checks on factual beliefs is still detectable one week after initial exposure""",pipeline,Share of the Wave 1 correction effect remaining at Wave 2,66,0,TRUE
+art_intro_week,"Introduction, p. 2",structural,Weeks to the second wave,1,0,FALSE
+art_intro_persist_w3,"Introduction, p. 2: ""with 50 percent detectable after more than two weeks""",pipeline,Share of the Wave 1 correction effect remaining at Wave 3,50,0,TRUE
+art_intro_two_weeks,"Introduction, p. 2",structural,Weeks to the third wave,2,0,FALSE
+art_intro_ft_scale,"Introduction, p. 2",definitional,Upper endpoint of the feeling thermometer,100,0,TRUE
+art_intro_attitudes_quarter,"Introduction, p. 2: ""the effects of fact-checks and misinformation on subsequent attitudes are smaller than one-quarter of a point""",descriptive,Largest overall thermometer effect is smaller than one-quarter of a point,1,0,TRUE
+prior_chan_studies,"Prior Research, p. 2",transcribed,Studies in the Chan et al. meta-analysis,20,0,FALSE
+prior_chan_treatments,"Prior Research, p. 2",transcribed,Independent treatments in the Chan et al. meta-analysis,52,0,FALSE
+prior_porterwood_issues,"Prior Research, p. 3",transcribed,Issues inspected by Porter and Wood 2019,63,0,FALSE
+prior_porterwood_share,"Prior Research, p. 3",transcribed,Share of issues where corrections improved accuracy,96,0,FALSE
+prior_guess_stories,"Prior Research, p. 3",transcribed,Fake news stories randomized by Guess et al.,2,0,FALSE
+prior_pw2021_countries,"Prior Research, p. 3",transcribed,Countries in Porter and Wood 2021,3,0,FALSE
+prior_pw2021_weeks,"Prior Research, p. 3",transcribed,Weeks to recontact in Porter and Wood 2021,2,0,FALSE
+prior_pw2021_issues,"Prior Research, p. 3",transcribed,Issues with detectable increases at recontact,11,0,FALSE
+prior_pw2021_of,"Prior Research, p. 3",transcribed,Issues studied in Porter and Wood 2021,17,0,FALSE
+prior_pw2021_share,"Prior Research, p. 3",transcribed,Share of the first-wave effect remaining in Porter and Wood 2021,40,0,FALSE
+prior_pvw_countries,"Prior Research, p. 3",transcribed,Countries in Porter Velez and Wood 2022,10,0,FALSE
+prior_pvw_weeks,"Prior Research, p. 3",transcribed,Weeks to recontact in Porter Velez and Wood 2022,2,0,FALSE
+prior_pvw_share,"Prior Research, p. 3",transcribed,Share of the correction effect remaining in Porter Velez and Wood 2022,39,0,FALSE
+prior_shin_year,"Prior Research, p. 3",transcribed,Election year observed by Shin and Thorson,2012,0,FALSE
+design_two_wave_panels,"Design, p. 3: ""We administered six two-wave panels and two three-wave panels""",definitional,Two-wave panels,6,0,TRUE
+design_three_wave_panels,"Design, p. 3",definitional,Three-wave panels,2,0,TRUE
+design_mturk_panels,"Design, p. 3: ""Four panels were fielded on Mechanical Turk and four were fielded on Lucid""",definitional,Panels fielded on Mechanical Turk,4,0,TRUE
+design_lucid_panels,"Design, p. 3",definitional,Panels fielded on Lucid,4,0,TRUE
+design_personality_items,"Design, p. 3",definitional,Items in the personality inventory,10,0,FALSE
+design_experiments_per_wave,"Design, p. 3: ""Subjects then participated in three independently randomized experiments""",definitional,Independently randomized experiments per respondent,3,0,TRUE
+design_conditions,"Design, p. 4: ""assigned to one of three conditions""",definitional,Experimental conditions,3,0,TRUE
+design_two_thirds,"Design, p. 4: ""Two-thirds of our tested fact-checks were produced by PolitiFact as part of their partnership with Facebook""",definitional,Share of tested fact checks from the Facebook partnership,2,0,FALSE
+design_tiers,"Design, p. 4",structural,Tiers Facebook divided misinformation into,3,0,FALSE
+design_facebook_fourteen,"Design, p. 4: ""The fourteen Facebook partnership fact-checks in our experiment were all from the first tier""",definitional,Facebook partnership fact checks in the experiment,14,0,FALSE
+design_first_tier,"Design, p. 4",structural,Tier the partnership fact checks came from,1,0,FALSE
+design_traffic_rep,"Design, p. 4: ""fact-checks of Republican-congenial misinformation (shown in the top panel) received 138,971 views over the eight weeks following the original post""",pipeline,Mean page views of Republican-congenial fact checks,138971,0,TRUE
+design_traffic_weeks,"Design, p. 4",definitional,Weeks of page views following the original post,8,0,TRUE
+design_traffic_dem,"Design, p. 4: ""the average fact-check of Democratic-congenial misinformation received 45,123 views""",pipeline,Mean page views of Democratic-congenial fact checks,45123,0,TRUE
+design_belief_questions,"Design, p. 4",definitional,Questions measuring belief in each piece of misinformation,2,0,FALSE
+design_min_days,"Design, p. 4: ""a minimum of seven days separating waves""",definitional,Minimum days between waves,7,0,FALSE
+design_six_of_eight,"Design, p. 4: ""Six of our eight panels were comprised of two waves; the remaining two featured a third wave""",definitional,Panels with two waves,6,0,TRUE
+design_remaining_two,"Design, p. 4",definitional,Panels with a third wave,2,0,TRUE
+design_balance,"Design, p. 4: ""we demonstrate that these randomizations generated experimental groups balanced on pretreatment covariates""",descriptive,Randomization produced balanced groups,1,0,TRUE
+design_attrition,"Design, p. 6: ""we demonstrate that our treatments do not appear to change whether subjects respond to outcome questions""",descriptive,Treatment does not change outcome response,1,0,TRUE
+res_fig1_rep_all,"Results, p. 6: ""Republicans are more likely than Democrats to believe all of the Republican-congenial false statements""",descriptive,Republicans believe every Republican-congenial false claim more than Democrats do,1,0,TRUE
+res_fig1_dem_two,"Results, p. 6: ""but Democrats are more likely than Republicans to believe only two of the Democratic-congenial false statements""",descriptive,Democrats believe exactly two Democratic-congenial false claims more than Republicans do,1,0,TRUE
+res_footnote_two_sided,"Results, p. 6, footnote 1",definitional,Sides of every reported test,2,0,FALSE
+res_scale_low,"Results, p. 6",definitional,Lower endpoint of the belief certainty axis,0,0,TRUE
+res_scale_high,"Results, p. 6",definitional,Upper endpoint of the belief certainty axis,100,0,TRUE
+res_misinfo_sig_count,"Results, p. 6: ""exposure to the misinformation significantly decreased accuracy in twelve out of the twenty-four opportunities""",pipeline,Experiments where misinformation significantly reduced accuracy,12,0,TRUE
+res_opportunities,"Results, p. 6",definitional,Experiments run,24,0,TRUE
+res_fc_sig_count,"Results, p. 6: ""twenty of the fact-checks had statistically significant negative average effects on belief certainty""",pipeline,Experiments with a significant negative correction effect,20,0,TRUE
+res_no_backfire,"Results, p. 6: ""and none ""backfired,"" or increased false beliefs""",descriptive,No correction significantly increased false belief,1,0,TRUE
+res_meta_misinfo,"Results, p. 6: ""we estimate the average misinformation effect (relative to control) to be 4.30 points""",pipeline,Meta-analytic misinformation effect covariate adjusted,4.30,2,TRUE
+res_meta_misinfo_se,"Results, p. 6: ""(standard error = 1.07)""",pipeline,Standard error of the meta-analytic misinformation effect,1.07,2,TRUE
+res_meta_correction,"Results, p. 6: ""the average fact-check effect (relative to misinformation) to be −10.5 points""",pipeline,Meta-analytic correction effect covariate adjusted,-10.5,1,TRUE
+res_meta_correction_se,"Results, p. 6: ""(standard error = 1.1)""",pipeline,Standard error of the meta-analytic correction effect,1.1,1,TRUE
+res_misinfo_symmetric,"Results, p. 6: ""Being exposed to misinformation increased belief in the false claim by about the same amount across categories, both among Republicans and among Democrats""",descriptive,Misinformation effects are similar across congeniality categories within party,1,0,TRUE
+res_rep_congenial_symmetric,"Results, p. 6: ""For false claims congenial to Republicans, the effects are approximately equal in magnitude across party lines""",descriptive,Correction effects on Republican-congenial claims are similar across parties,1,0,TRUE
+res_dems_update_further,"Results, p. 6: ""However, Democrats update substantially further than Republicans when corrected about congenial false claims""",descriptive,Democrats update further than Republicans on Democratic-congenial claims,1,0,TRUE
+res_persist_w2_precise,"Results, p. 7: ""The effects of fact-checks observed immediately after treatment dissipate somewhat from Wave 1 to Wave 2, on average, at 66.4 per cent of the initial magnitude""",pipeline,Share of the Wave 1 correction effect remaining at Wave 2,66.4,1,TRUE
+res_three_wave_issues,"Results, p. 8: ""the meta-analytic averages for the six issues in studies with three-wave panels""",definitional,Issues in the three-wave panels,6,0,TRUE
+res_persist_w3_precise,"Results, p. 8: ""On average, the effect in Wave 3 is 50 per cent the magnitude of the original effect""",pipeline,Share of the Wave 1 correction effect remaining at Wave 3,50,0,TRUE
+res_terciles,"Results, p. 8: ""Figure 5 shows the estimated effects for subjects in the top versus bottom tercile of each index""",definitional,Groups each index is split into,3,0,TRUE
+res_no_misinfo_moderation,"Results, p. 9: ""None of these covariates moderate the effects of misinformation (left panels)""",descriptive,No covariate moderates the misinformation effect,1,0,TRUE
+res_several_moderate,"Results, p. 9: ""but several of them moderate the effects of fact-checks (right panels)""",descriptive,Several covariates moderate the correction effect,1,0,TRUE
+res_heterogeneity_persists,"Results, p. 9: ""This same pattern of heterogeneity persists after one week, though at diminished magnitudes""",descriptive,The tercile with the stronger correction effect is the same one a week later,1,0,TRUE
+res_heterogeneity_diminished,"Results, p. 9: ""though at diminished magnitudes""",descriptive,Every conditional correction effect is smaller at Wave 2 than at Wave 1,1,0,TRUE
+res_time_ranking,"Results, p. 9: ""the within-trait ranking of conditional effects shown in Figure 5 is matched exactly by a within-trait ranking of average time spent reading the fact-check""",descriptive,Within-trait rankings of effect and of reading time agree,1,0,TRUE
+res_attitudes_half,"Results, p. 11: ""Meta-analysis shows that the overall effects of misinformation and fact-checks on attitudes were each smaller than half a point on the 100-point feeling thermometer""",descriptive,Both overall thermometer effects are smaller than half a point,1,0,TRUE
+res_ft_scale,"Results, p. 11",definitional,Upper endpoint of the feeling thermometer,100,0,TRUE
+res_attitudes_direction,"Results, p. 11: ""While the effects were in the expected direction, with fact-checks making respondents more positive and misinformation more negative""",descriptive,Corrections move thermometers up and misinformation moves them down,1,0,TRUE
+disc_experiments,"Discussion, p. 11: ""Eight multi-wave experiments extend prior findings""",definitional,Multi-wave experiments,8,0,TRUE
+disc_persist_w2,"Discussion, p. 11: ""The effects of fact-checks persisted at 66 per cent the original magnitude after one week""",pipeline,Share of the Wave 1 correction effect remaining at Wave 2,66,0,TRUE
+disc_persist_w3,"Discussion, p. 11: ""and at 50 per cent after more than two weeks""",pipeline,Share of the Wave 1 correction effect remaining at Wave 3,50,0,TRUE
+disc_named_moderators,"Discussion, p. 11: ""The Big Five personality traits, need for cognition, and political interest all moderate the effect of fact-checks""",descriptive,All seven named covariates moderate the correction effect,1,0,TRUE
+disc_more_than_twice,"Discussion, p. 12: ""the magnitude of the effects of fact-checks is more than twice that of misinformation""",descriptive,The correction effect is more than twice the misinformation effect,1,0,TRUE
+disc_roughly_twice,"Discussion, p. 12: ""corrections improved it by roughly twice the amount""",descriptive,The correction effect is roughly twice the misinformation effect,1,0,TRUE
+note_ci_level,"Figure notes, Figures 1, 3, 4",definitional,Confidence level of every plotted interval,95,0,TRUE
+note_p_0001,"Figure notes, Figures 2, 3, 5, 6",definitional,Highest significance threshold in the figure notes,0.001,3,FALSE
+note_p_001,"Figure notes, Figures 2, 3, 5, 6",definitional,Middle significance threshold in the figure notes,0.01,2,FALSE
+note_p_005,"Figure notes, Figures 2, 3, 5, 6",definitional,Lowest significance threshold in the figure notes,0.05,2,FALSE
+fig1_traffic_rows,Figure 1,structural,Fact check rows plotted in Figure 1,24,0,TRUE
+fig1_agreement_points,Figure 1,structural,Control-group agreement points plotted in Figure 1,48,0,TRUE
+fig2_mean_light_bulb_lucid_control,Figure 2,pipeline,Figure 2 conditional mean: A black man invented the light bulb (Lucid) control,31,0,TRUE
+fig2_mean_light_bulb_lucid_misinformation,Figure 2,pipeline,Figure 2 conditional mean: A black man invented the light bulb (Lucid) misinformation,40,0,TRUE
+fig2_mean_light_bulb_lucid_factcheck,Figure 2,pipeline,Figure 2 conditional mean: A black man invented the light bulb (Lucid) fact-check,37,0,TRUE
+fig2_mean_antifa_lucid_control,Figure 2,pipeline,Figure 2 conditional mean: Antifa start West Coast wildfires (Lucid) control,30,0,TRUE
+fig2_mean_antifa_lucid_misinformation,Figure 2,pipeline,Figure 2 conditional mean: Antifa start West Coast wildfires (Lucid) misinformation,39,0,TRUE
+fig2_mean_antifa_lucid_factcheck,Figure 2,pipeline,Figure 2 conditional mean: Antifa start West Coast wildfires (Lucid) fact-check,28,0,TRUE
+fig2_mean_sars_lucid_control,Figure 2,pipeline,Figure 2 conditional mean: SARS-CoV-2 man made virus created in the lab (Lucid) control,47,0,TRUE
+fig2_mean_sars_lucid_misinformation,Figure 2,pipeline,Figure 2 conditional mean: SARS-CoV-2 man made virus created in the lab (Lucid) misinformation,54,0,TRUE
+fig2_mean_sars_lucid_factcheck,Figure 2,pipeline,Figure 2 conditional mean: SARS-CoV-2 man made virus created in the lab (Lucid) fact-check,43,0,TRUE
+fig2_mean_light_bulb_mturk_control,Figure 2,pipeline,Figure 2 conditional mean: A black man invented the light bulb (MTurk) control,51,0,TRUE
+fig2_mean_light_bulb_mturk_misinformation,Figure 2,pipeline,Figure 2 conditional mean: A black man invented the light bulb (MTurk) misinformation,57,0,TRUE
+fig2_mean_light_bulb_mturk_factcheck,Figure 2,pipeline,Figure 2 conditional mean: A black man invented the light bulb (MTurk) fact-check,52,0,TRUE
+fig2_mean_antifa_mturk_control,Figure 2,pipeline,Figure 2 conditional mean: Antifa start West Coast wildfires (MTurk) control,49,0,TRUE
+fig2_mean_antifa_mturk_misinformation,Figure 2,pipeline,Figure 2 conditional mean: Antifa start West Coast wildfires (MTurk) misinformation,53,0,TRUE
+fig2_mean_antifa_mturk_factcheck,Figure 2,pipeline,Figure 2 conditional mean: Antifa start West Coast wildfires (MTurk) fact-check,51,0,TRUE
+fig2_mean_sars_mturk_control,Figure 2,pipeline,Figure 2 conditional mean: SARS-CoV-2 man made virus created in the lab (MTurk) control,60,0,TRUE
+fig2_mean_sars_mturk_misinformation,Figure 2,pipeline,Figure 2 conditional mean: SARS-CoV-2 man made virus created in the lab (MTurk) misinformation,62,0,TRUE
+fig2_mean_sars_mturk_factcheck,Figure 2,pipeline,Figure 2 conditional mean: SARS-CoV-2 man made virus created in the lab (MTurk) fact-check,58,0,TRUE
+fig2_mean_biden_wire_control,Figure 2,pipeline,Figure 2 conditional mean: Biden wears wire at debate control,47,0,TRUE
+fig2_mean_biden_wire_misinformation,Figure 2,pipeline,Figure 2 conditional mean: Biden wears wire at debate misinformation,46,0,TRUE
+fig2_mean_biden_wire_factcheck,Figure 2,pipeline,Figure 2 conditional mean: Biden wears wire at debate fact-check,41,0,TRUE
+fig2_mean_trump_bible_control,Figure 2,pipeline,Figure 2 conditional mean: Trump holds Bible upside down control,64,0,TRUE
+fig2_mean_trump_bible_misinformation,Figure 2,pipeline,Figure 2 conditional mean: Trump holds Bible upside down misinformation,70,0,TRUE
+fig2_mean_trump_bible_factcheck,Figure 2,pipeline,Figure 2 conditional mean: Trump holds Bible upside down fact-check,48,0,TRUE
+fig2_mean_trump_covid_control,Figure 2,pipeline,Figure 2 conditional mean: Trump responsible for all Covid deaths control,48,0,TRUE
+fig2_mean_trump_covid_misinformation,Figure 2,pipeline,Figure 2 conditional mean: Trump responsible for all Covid deaths misinformation,51,0,TRUE
+fig2_mean_trump_covid_factcheck,Figure 2,pipeline,Figure 2 conditional mean: Trump responsible for all Covid deaths fact-check,42,0,TRUE
+fig2_mean_trump_dna_control,Figure 2,pipeline,Figure 2 conditional mean: Donald Trump claimed his DNA was USA control,39,0,TRUE
+fig2_mean_trump_dna_misinformation,Figure 2,pipeline,Figure 2 conditional mean: Donald Trump claimed his DNA was USA misinformation,36,0,TRUE
+fig2_mean_trump_dna_factcheck,Figure 2,pipeline,Figure 2 conditional mean: Donald Trump claimed his DNA was USA fact-check,27,0,TRUE
+fig2_mean_obama_judges_control,Figure 2,pipeline,Figure 2 conditional mean: Obama failed to nominate US judges control,46,0,TRUE
+fig2_mean_obama_judges_misinformation,Figure 2,pipeline,Figure 2 conditional mean: Obama failed to nominate US judges misinformation,54,0,TRUE
+fig2_mean_obama_judges_factcheck,Figure 2,pipeline,Figure 2 conditional mean: Obama failed to nominate US judges fact-check,36,0,TRUE
+fig2_mean_barrett_homophobic_control,Figure 2,pipeline,Figure 2 conditional mean: Judge Barrett made homophobic and racist statements control,43,0,TRUE
+fig2_mean_barrett_homophobic_misinformation,Figure 2,pipeline,Figure 2 conditional mean: Judge Barrett made homophobic and racist statements misinformation,43,0,TRUE
+fig2_mean_barrett_homophobic_factcheck,Figure 2,pipeline,Figure 2 conditional mean: Judge Barrett made homophobic and racist statements fact-check,28,0,TRUE
+fig2_mean_barrett_looks_control,Figure 2,pipeline,Figure 2 conditional mean: Trump chose Judge Barrett on basis of looks control,36,0,TRUE
+fig2_mean_barrett_looks_misinformation,Figure 2,pipeline,Figure 2 conditional mean: Trump chose Judge Barrett on basis of looks misinformation,45,0,TRUE
+fig2_mean_barrett_looks_factcheck,Figure 2,pipeline,Figure 2 conditional mean: Trump chose Judge Barrett on basis of looks fact-check,25,0,TRUE
+fig2_mean_who_control,Figure 2,pipeline,Figure 2 conditional mean: WHO children to be vaccinated without parents consent control,40,0,TRUE
+fig2_mean_who_misinformation,Figure 2,pipeline,Figure 2 conditional mean: WHO children to be vaccinated without parents consent misinformation,34,0,TRUE
+fig2_mean_who_factcheck,Figure 2,pipeline,Figure 2 conditional mean: WHO children to be vaccinated without parents consent fact-check,26,0,TRUE
+fig2_mean_hunter_laptop_control,Figure 2,pipeline,Figure 2 conditional mean: Hunter Bidens laptop had photos torturing children control,25,0,TRUE
+fig2_mean_hunter_laptop_misinformation,Figure 2,pipeline,Figure 2 conditional mean: Hunter Bidens laptop had photos torturing children misinformation,28,0,TRUE
+fig2_mean_hunter_laptop_factcheck,Figure 2,pipeline,Figure 2 conditional mean: Hunter Bidens laptop had photos torturing children fact-check,24,0,TRUE
+fig2_mean_kamala_control,Figure 2,pipeline,Figure 2 conditional mean: Kamala Harris imprisoned prolife activists control,47,0,TRUE
+fig2_mean_kamala_misinformation,Figure 2,pipeline,Figure 2 conditional mean: Kamala Harris imprisoned prolife activists misinformation,60,0,TRUE
+fig2_mean_kamala_factcheck,Figure 2,pipeline,Figure 2 conditional mean: Kamala Harris imprisoned prolife activists fact-check,47,0,TRUE
+fig2_mean_seal_team_control,Figure 2,pipeline,Figure 2 conditional mean: Biden and Obama plotted to have Seal Team 6 murdered control,30,0,TRUE
+fig2_mean_seal_team_misinformation,Figure 2,pipeline,Figure 2 conditional mean: Biden and Obama plotted to have Seal Team 6 murdered misinformation,37,0,TRUE
+fig2_mean_seal_team_factcheck,Figure 2,pipeline,Figure 2 conditional mean: Biden and Obama plotted to have Seal Team 6 murdered fact-check,28,0,TRUE
+fig2_mean_biden_400k_control,Figure 2,pipeline,Figure 2 conditional mean: Joe Biden has never made more than $400k control,39,0,TRUE
+fig2_mean_biden_400k_misinformation,Figure 2,pipeline,Figure 2 conditional mean: Joe Biden has never made more than $400k misinformation,50,0,TRUE
+fig2_mean_biden_400k_factcheck,Figure 2,pipeline,Figure 2 conditional mean: Joe Biden has never made more than $400k fact-check,33,0,TRUE
+fig2_mean_election_night_control,Figure 2,pipeline,Figure 2 conditional mean: Presidential winner must be announced election night control,44,0,TRUE
+fig2_mean_election_night_misinformation,Figure 2,pipeline,Figure 2 conditional mean: Presidential winner must be announced election night misinformation,42,0,TRUE
+fig2_mean_election_night_factcheck,Figure 2,pipeline,Figure 2 conditional mean: Presidential winner must be announced election night fact-check,35,0,TRUE
+fig2_mean_coons_control,Figure 2,pipeline,Figure 2 conditional mean: Sen Coons daughters photo on Hunter Bidens laptop control,48,0,TRUE
+fig2_mean_coons_misinformation,Figure 2,pipeline,Figure 2 conditional mean: Sen Coons daughters photo on Hunter Bidens laptop misinformation,39,0,TRUE
+fig2_mean_coons_factcheck,Figure 2,pipeline,Figure 2 conditional mean: Sen Coons daughters photo on Hunter Bidens laptop fact-check,39,0,TRUE
+fig2_mean_trump_good_control,Figure 2,pipeline,Figure 2 conditional mean: Trump said Good to childrens separation control,57,0,TRUE
+fig2_mean_trump_good_misinformation,Figure 2,pipeline,Figure 2 conditional mean: Trump said Good to childrens separation misinformation,53,0,TRUE
+fig2_mean_trump_good_factcheck,Figure 2,pipeline,Figure 2 conditional mean: Trump said Good to childrens separation fact-check,31,0,TRUE
+fig2_mean_wisconsin_control,Figure 2,pipeline,Figure 2 conditional mean: Wisconsin has more votes than registered voters control,42,0,TRUE
+fig2_mean_wisconsin_misinformation,Figure 2,pipeline,Figure 2 conditional mean: Wisconsin has more votes than registered voters misinformation,50,0,TRUE
+fig2_mean_wisconsin_factcheck,Figure 2,pipeline,Figure 2 conditional mean: Wisconsin has more votes than registered voters fact-check,38,0,TRUE
+fig2_mean_gop_pens_control,Figure 2,pipeline,Figure 2 conditional mean: GOP voters pens invisible to voting machines control,42,0,TRUE
+fig2_mean_gop_pens_misinformation,Figure 2,pipeline,Figure 2 conditional mean: GOP voters pens invisible to voting machines misinformation,55,0,TRUE
+fig2_mean_gop_pens_factcheck,Figure 2,pipeline,Figure 2 conditional mean: GOP voters pens invisible to voting machines fact-check,44,0,TRUE
+fig2_mean_usps_control,Figure 2,pipeline,Figure 2 conditional mean: USPS fails to deliver 27% of mail ballots in South FL control,46,0,TRUE
+fig2_mean_usps_misinformation,Figure 2,pipeline,Figure 2 conditional mean: USPS fails to deliver 27% of mail ballots in South FL misinformation,51,0,TRUE
+fig2_mean_usps_factcheck,Figure 2,pipeline,Figure 2 conditional mean: USPS fails to deliver 27% of mail ballots in South FL fact-check,36,0,TRUE
+fig3_cells,Figure 3,structural,Conditional effect estimates plotted in Figure 3,96,0,TRUE
+fig4_cells,Figure 4,structural,Meta-analytic estimates plotted in Figure 4,30,0,TRUE
+fig4_three_wave_flat,Figure 4,descriptive,"In the All Subjects panel for issues across three waves, the Wave 1 and Wave 2 estimates are identical",1,0,TRUE
+fig5_grp_openness_low_treatmentcontrol,Figure 5,pipeline,Figure 5 label: Openness low tercile misinformation effect,3.3,1,TRUE
+fig5_grp_openness_high_treatmentcontrol,Figure 5,pipeline,Figure 5 label: Openness high tercile misinformation effect,5.9,1,TRUE
+fig5_grp_openness_low_treatmentfactcheck,Figure 5,pipeline,Figure 5 label: Openness low tercile correction effect,-6.6,1,TRUE
+fig5_grp_openness_high_treatmentfactcheck,Figure 5,pipeline,Figure 5 label: Openness high tercile correction effect,-13.3,1,TRUE
+fig5_grp_conscientiousness_low_treatmentcontrol,Figure 5,pipeline,Figure 5 label: Conscientiousness low tercile misinformation effect,3,0,TRUE
+fig5_grp_conscientiousness_high_treatmentcontrol,Figure 5,pipeline,Figure 5 label: Conscientiousness high tercile misinformation effect,4.9,1,TRUE
+fig5_grp_conscientiousness_low_treatmentfactcheck,Figure 5,pipeline,Figure 5 label: Conscientiousness low tercile correction effect,-8,0,TRUE
+fig5_grp_conscientiousness_high_treatmentfactcheck,Figure 5,pipeline,Figure 5 label: Conscientiousness high tercile correction effect,-13,0,TRUE
+fig5_grp_agree_low_treatmentcontrol,Figure 5,pipeline,Figure 5 label: Agreeableness low tercile misinformation effect,4,0,TRUE
+fig5_grp_agree_high_treatmentcontrol,Figure 5,pipeline,Figure 5 label: Agreeableness high tercile misinformation effect,5.2,1,TRUE
+fig5_grp_agree_low_treatmentfactcheck,Figure 5,pipeline,Figure 5 label: Agreeableness low tercile correction effect,-8.1,1,TRUE
+fig5_grp_agree_high_treatmentfactcheck,Figure 5,pipeline,Figure 5 label: Agreeableness high tercile correction effect,-13.4,1,TRUE
+fig5_grp_extraversion_low_treatmentcontrol,Figure 5,pipeline,Figure 5 label: Extraversion low tercile misinformation effect,3.6,1,TRUE
+fig5_grp_extraversion_high_treatmentcontrol,Figure 5,pipeline,Figure 5 label: Extraversion high tercile misinformation effect,3.8,1,TRUE
+fig5_grp_extraversion_low_treatmentfactcheck,Figure 5,pipeline,Figure 5 label: Extraversion low tercile correction effect,-13.4,1,TRUE
+fig5_grp_extraversion_high_treatmentfactcheck,Figure 5,pipeline,Figure 5 label: Extraversion high tercile correction effect,-7.9,1,TRUE
+fig5_grp_emotstab_low_treatmentcontrol,Figure 5,pipeline,Figure 5 label: Emotional Stability low tercile misinformation effect,3.3,1,TRUE
+fig5_grp_emotstab_high_treatmentcontrol,Figure 5,pipeline,Figure 5 label: Emotional Stability high tercile misinformation effect,5.6,1,TRUE
+fig5_grp_emotstab_low_treatmentfactcheck,Figure 5,pipeline,Figure 5 label: Emotional Stability low tercile correction effect,-8.1,1,TRUE
+fig5_grp_emotstab_high_treatmentfactcheck,Figure 5,pipeline,Figure 5 label: Emotional Stability high tercile correction effect,-13.2,1,TRUE
+fig5_grp_nfc_low_treatmentcontrol,Figure 5,pipeline,Figure 5 label: Need for Cognition low tercile misinformation effect,4.5,1,TRUE
+fig5_grp_nfc_high_treatmentcontrol,Figure 5,pipeline,Figure 5 label: Need for Cognition high tercile misinformation effect,4.3,1,TRUE
+fig5_grp_nfc_low_treatmentfactcheck,Figure 5,pipeline,Figure 5 label: Need for Cognition low tercile correction effect,-9,0,TRUE
+fig5_grp_nfc_high_treatmentfactcheck,Figure 5,pipeline,Figure 5 label: Need for Cognition high tercile correction effect,-14.3,1,TRUE
+fig5_grp_crt_low_treatmentcontrol,Figure 5,pipeline,Figure 5 label: Cognitive Reflection Test low tercile misinformation effect,4.2,1,TRUE
+fig5_grp_crt_high_treatmentcontrol,Figure 5,pipeline,Figure 5 label: Cognitive Reflection Test high tercile misinformation effect,4.6,1,TRUE
+fig5_grp_crt_low_treatmentfactcheck,Figure 5,pipeline,Figure 5 label: Cognitive Reflection Test low tercile correction effect,-8.8,1,TRUE
+fig5_grp_crt_high_treatmentfactcheck,Figure 5,pipeline,Figure 5 label: Cognitive Reflection Test high tercile correction effect,-13.4,1,TRUE
+fig5_grp_pk_low_treatmentcontrol,Figure 5,pipeline,Figure 5 label: Political knowledge low tercile misinformation effect,4.1,1,TRUE
+fig5_grp_pk_high_treatmentcontrol,Figure 5,pipeline,Figure 5 label: Political knowledge high tercile misinformation effect,4.3,1,TRUE
+fig5_grp_pk_low_treatmentfactcheck,Figure 5,pipeline,Figure 5 label: Political knowledge low tercile correction effect,-8,0,TRUE
+fig5_grp_pk_high_treatmentfactcheck,Figure 5,pipeline,Figure 5 label: Political knowledge high tercile correction effect,-10.7,1,TRUE
+fig5_grp_polint_low_treatmentcontrol,Figure 5,pipeline,Figure 5 label: Political interest low tercile misinformation effect,4.5,1,TRUE
+fig5_grp_polint_high_treatmentcontrol,Figure 5,pipeline,Figure 5 label: Political interest high tercile misinformation effect,4.3,1,TRUE
+fig5_grp_polint_low_treatmentfactcheck,Figure 5,pipeline,Figure 5 label: Political interest low tercile correction effect,-12.3,1,TRUE
+fig5_grp_polint_high_treatmentfactcheck,Figure 5,pipeline,Figure 5 label: Political interest high tercile correction effect,-8.9,1,TRUE
+fig6_overall_treatmentcontrol,Figure 6,pipeline,Figure 6 label: Overall misinformation effect on the claim's target,-0.19,2,TRUE
+fig6_overall_treatmentfactcheck,Figure 6,pipeline,Figure 6 label: Overall correction effect on the claim's target,0.18,2,TRUE
+fig6_Republican_treatmentcontrol,Figure 6,pipeline,Figure 6 label: Republican misinformation effect on the claim's target,0.01,2,TRUE
+fig6_Republican_treatmentfactcheck,Figure 6,pipeline,Figure 6 label: Republican correction effect on the claim's target,0.15,2,TRUE
+fig6_Independent_treatmentcontrol,Figure 6,pipeline,Figure 6 label: Independent misinformation effect on the claim's target,-0.60,2,TRUE
+fig6_Independent_treatmentfactcheck,Figure 6,pipeline,Figure 6 label: Independent correction effect on the claim's target,-0.32,2,TRUE
+fig6_Democrat_treatmentcontrol,Figure 6,pipeline,Figure 6 label: Democrat misinformation effect on the claim's target,-0.26,2,TRUE
+fig6_Democrat_treatmentfactcheck,Figure 6,pipeline,Figure 6 label: Democrat correction effect on the claim's target,0.23,2,TRUE
+app_t1_n_panel_1_lucid,"Appendix Table 1, p. 3",pipeline,Appendix Table 1 respondents: Panel 1 (Lucid),2321,0,TRUE
+app_t1_n_panel_1_mturk,"Appendix Table 1, p. 3",pipeline,Appendix Table 1 respondents: Panel 1 (MTurk),2090,0,TRUE
+app_t1_n_panel_2_mturk,"Appendix Table 1, p. 3",pipeline,Appendix Table 1 respondents: Panel 2 (MTurk),2059,0,TRUE
+app_t1_n_panel_3_lucid,"Appendix Table 1, p. 3",pipeline,Appendix Table 1 respondents: Panel 3 (Lucid),2390,0,TRUE
+app_t1_n_panel_4_mturk,"Appendix Table 1, p. 3",pipeline,Appendix Table 1 respondents: Panel 4 (MTurk),2582,0,TRUE
+app_t1_n_panel_5_lucid,"Appendix Table 1, p. 3",pipeline,Appendix Table 1 respondents: Panel 5 (Lucid),2200,0,TRUE
+app_t1_n_panel_6_mturk,"Appendix Table 1, p. 3",pipeline,Appendix Table 1 respondents: Panel 6 (MTurk),1599,0,TRUE
+app_t1_n_panel_7_lucid,"Appendix Table 1, p. 3",pipeline,Appendix Table 1 respondents: Panel 7 (Lucid),2388,0,TRUE
+app_t1_percentage_cells,"Appendix Table 1, p. 3",pipeline,Percentage cells printed in Appendix Table 1,188,0,TRUE
+app_t1_date_cells,"Appendix Table 1, p. 3",structural,Fielding date cells printed in Appendix Table 1,16,0,TRUE
+app_fig1_rows,"Appendix Figure 1, p. 4",structural,Trait-by-tercile time estimates plotted in Appendix Figure 1,36,0,TRUE
+app_fig2_rows,"Appendix Figure 2, p. 5",structural,Trait-by-tercile-by-type time estimates plotted in Appendix Figure 2,72,0,TRUE
+app_fig3_series,"Appendix Figure 3, p. 7",structural,Fact check traffic series plotted in Appendix Figure 3,21,0,TRUE
+app_fig4_6_rows,"Appendix Figures 4 to 6, pp. 8 to 12",structural,Balance estimates plotted in Appendix Figures 4 to 6,816,0,TRUE
+app_fig7_rows,"Appendix Figure 7, p. 12",structural,Joint balance test p-values plotted in Appendix Figure 7,48,0,TRUE
+app_fig8_rows,"Appendix Figure 8, p. 14",structural,Attrition estimates plotted in Appendix Figure 8,108,0,TRUE
+app_fig9_targets,"Appendix Figure 9, p. 24: ""accounting for the 22 different political figures and groups for whom we observed attitudinal outcomes""",definitional,Political figures and groups with attitudinal outcomes,22,0,TRUE
+app_fig9_rows,"Appendix Figure 9, p. 24",structural,Meta-analytic attitude estimates plotted in Appendix Figure 9,12,0,TRUE
+app_reg_t1_cells,"Appendix Table 1 (regression tables), p. 15",pipeline,Cells in the Wave 1 average treatment effect table,100,0,TRUE
+app_reg_t2_cells,"Appendix Table 2, p. 16",pipeline,Cells in the Wave 1 conditional effects table for Democrats,100,0,TRUE
+app_reg_t3_cells,"Appendix Table 3, p. 17",pipeline,Cells in the Wave 1 conditional effects table for Republicans,100,0,TRUE
+app_reg_t4_cells,"Appendix Table 4, p. 18",pipeline,Cells in the unadjusted persistence to Time 2 table,75,0,TRUE
+app_reg_t5_cells,"Appendix Table 5, p. 19",pipeline,Cells in the adjusted persistence to Time 2 table,75,0,TRUE
+app_reg_t6_cells,"Appendix Table 6, p. 20",pipeline,Cells in the unadjusted persistence to Time 3 table,21,0,TRUE
+app_reg_t7_cells,"Appendix Table 7, p. 20",pipeline,Cells in the adjusted persistence to Time 3 table,21,0,TRUE
+app_reg_stars,"Appendix Tables 1 to 7, pp. 15 to 20",pipeline,Cells carrying a significance marker across the seven regression tables,205,0,TRUE
+app_reg_descending,"Appendix Tables 1 to 7, pp. 15 to 20",structural,Cells printing their confidence interval in descending order,144,0,TRUE
+app_t8_rows,"Appendix Table 8, p. 22",structural,Misinformation items in the traffic and engagement table,18,0,FALSE
+app_t9_partisanship,"Appendix Table 9, p. 23",pipeline,Mean adjusted r-squared for partisanship,0.104,3,TRUE
+app_t9_conscientiousness,"Appendix Table 9, p. 23",pipeline,Mean adjusted r-squared for conscientiousness,0.082,3,TRUE
+app_t9_political_knowledge,"Appendix Table 9, p. 23",pipeline,Mean adjusted r-squared for political knowledge,0.080,3,TRUE
+app_t9_agreeableness,"Appendix Table 9, p. 23",pipeline,Mean adjusted r-squared for agreeableness,0.076,3,TRUE
+app_t9_crt,"Appendix Table 9, p. 23",pipeline,Mean adjusted r-squared for the Cognitive Reflection Test,0.069,3,TRUE
+app_t9_openness,"Appendix Table 9, p. 23",pipeline,Mean adjusted r-squared for openness,0.052,3,TRUE
+app_t9_emotional_stability,"Appendix Table 9, p. 23",pipeline,Mean adjusted r-squared for emotional stability,0.040,3,TRUE
+app_t9_political_interest,"Appendix Table 9, p. 23",pipeline,Mean adjusted r-squared for political interest,0.039,3,TRUE
+app_t9_need_for_cognition,"Appendix Table 9, p. 23",pipeline,Mean adjusted r-squared for need for cognition,0.039,3,TRUE
+app_t9_extraversion,"Appendix Table 9, p. 23",pipeline,Mean adjusted r-squared for extraversion,0.035,3,TRUE
+app_t9_experiments,"Appendix p. 23: ""across our 21 experiments, we interacted each conditional indicator with each pre-treatment covariate in separate linear models""",definitional,Experiments in the further heterogeneity investigation,21,0,TRUE
+app_t9_models,"Appendix p. 23: ""resulting in 210 separate linear models""",pipeline,Linear models fitted in the further heterogeneity investigation,210,0,TRUE
+app_t9_covariates,"Appendix Table 9, p. 23",structural,Covariate types in the further heterogeneity investigation,10,0,FALSE
+app_duplicate_table_1,"Appendix, pp. 3 and 15",structural,Distinct floats captioned Table 1 in the appendix,2,0,FALSE

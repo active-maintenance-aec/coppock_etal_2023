@@ -1,0 +1,24 @@
+float,printed_numbers,numbers_covered,covered_fraction,plotted_quantities,counts_verified,rows,note
+Appendix Figure 1,0,0,NA,36,1,1,"Nine traits by two terciles by two treatments, none labelled."
+Appendix Figure 2,0,0,NA,72,1,1,"As Appendix Figure 1, split by misinformation type."
+Appendix Figure 3,0,0,NA,21,1,1,One traffic series per fact check.
+Appendix Figure 7,0,0,NA,48,1,1,"Raw and adjusted joint balance p-values, none labelled."
+Appendix Figure 8,0,0,NA,108,1,1,"Attrition estimates, none labelled."
+Appendix Figure 9,12,1,0.083,12,1,2,Meta-analytic attitude estimates labelled by congeniality and party.
+Appendix Figures 4 to 6,0,0,NA,816,1,1,"Balance estimates, none labelled."
+Appendix regression table 1,400,400,1,400,0,1,"One hundred cells, each printing an estimate, a standard error and two interval bounds."
+Appendix regression table 2,400,400,1,400,0,1,As appendix regression table 1.
+Appendix regression table 3,400,400,1,400,0,1,As appendix regression table 1.
+Appendix regression table 4,300,300,1,300,0,1,Seventy-five cells.
+Appendix regression table 5,300,300,1,300,0,1,Seventy-five cells.
+Appendix regression table 6,84,84,1,84,0,1,Twenty-one cells.
+Appendix regression table 7,84,28,0.333,84,0,1,Twenty-one cells.
+Appendix Table 1 (sample composition),206,9,0.044,206,1,10,"Eight panel sizes, one hundred and eighty-eight percentages and sixteen dates. The percentages and dates are covered as counts of non-empty cells rather than cell by cell."
+Appendix Table 8,72,0,0,72,0,1,"Hand-entered CrowdTangle counts of the underlying misinformation items. Neither the deposit nor the rewrite computes them, and no deposited file carries them."
+Appendix Table 9,10,1,0.1,10,0,13,"Mean adjusted r-squared by covariate. The deposit ships no code for this table, so the rewrite adds none."
+Figure 1,0,0,NA,72,2,2,"Twenty-four traffic bars and forty-eight control-group agreement points, none labelled."
+Figure 2,72,72,1,72,0,72,"Twenty-four topics by three conditions, each labelled with its conditional mean."
+Figure 3,68,0,0,104,1,1,"A label is drawn on every effect significantly different from zero and on each of the eight meta-analytic summaries. The labels were not transcribed and this is the largest coverage gap in the repository; the estimates behind every plotted point are the covariate-adjusted cells of appendix Tables 2 and 3, all of which reproduce."
+Figure 4,0,1,NA,30,1,2,"Thirty meta-analytic estimates, none labelled."
+Figure 5,36,36,1,36,0,36,"Nine traits by two terciles by two contrasts, each labelled."
+Figure 6,8,8,1,8,0,8,"Four partisan groups by two contrasts, each labelled inside its diamond."

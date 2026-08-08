@@ -1,0 +1,50 @@
+claim,value
+Total respondents across the eight panels,17629
+Distinct respondent identifiers,17629
+Number of panels,8
+Experiments (panel by topic),24
+Distinct fact checks tested,21
+Mean days from misinformation posting to fielding,13.428571428571429
+"Mean fact-check page views, Republican-congenial claims",138970.9166666667
+"Mean fact-check page views, Democratic-congenial claims",45122.77777777778
+"Meta-analytic misinformation effect, covariate adjusted",4.30305062861729
+"Meta-analytic misinformation effect standard error, covariate adjusted",1.0689507746273725
+"Meta-analytic correction effect, covariate adjusted",-10.518621251909812
+"Meta-analytic correction effect standard error, covariate adjusted",1.1406301583577771
+"Meta-analytic misinformation effect, unadjusted",4.121794325271258
+"Meta-analytic correction effect, unadjusted",-10.514251768328224
+Fact checks where misinformation significantly reduced accuracy,13
+Fact checks with a significant negative correction effect,20
+Fact checks where the correction increased false belief,0
+"Wave 2 correction effect as a percentage of Wave 1, covariate adjusted",46.868084098817945
+"Wave 2 correction effect as a percentage of Wave 1, unadjusted",47.93369744019784
+"Wave 3 correction effect as a percentage of Wave 1, covariate adjusted",39.718183270102735
+"Wave 3 correction effect as a percentage of Wave 1, unadjusted",44.87737102927865
+"Pooled Wave 2 to Wave 1 ratio, covariate adjusted",48.94452329309759
+"Pooled Wave 2 to Wave 1 ratio, unadjusted",54.357587223363794
+"Pooled Wave 3 to Wave 1 ratio, covariate adjusted",34.300925480475755
+"Pooled Wave 3 to Wave 1 ratio, unadjusted",38.859681171168376
+Largest absolute meta-analytic thermometer effect on the claim's target,0.7971782184117906
+Ratio of the pooled correction effect to the pooled misinformation effect,2.4444567725873556
+Belief certainty scale minimum,0
+Belief certainty scale maximum,100
+Feeling thermometer maximum,100
+Distinct thermometer targets,14
+Experimental conditions,3
+Experiments per panel,3
+Panels fielded on Mechanical Turk,4
+Panels fielded on Lucid,4
+Panels with a third wave,2
+Panels with only two waves,6
+Experiments in the three-wave panels,6
+Tercile groups per index,3
+Maximum weeks of page views observed for a fact check,13
+Confidence level implied by the plotted intervals,95.01374015643624
+"Respondents, panel_1_lucid",2321
+"Respondents, panel_1_mturk",2090
+"Respondents, panel_2_mturk",2059
+"Respondents, panel_3_lucid",2390
+"Respondents, panel_4_mturk",2582
+"Respondents, panel_5_lucid",2200
+"Respondents, panel_6_mturk",1599
+"Respondents, panel_7_lucid",2388

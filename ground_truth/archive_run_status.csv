@@ -1,0 +1,42 @@
+pass,script,exit_status,outcome,stopped_at
+as_shipped,figure_1.R,0,clean,NA
+as_shipped,figure_2.R,0,clean,NA
+as_shipped,figure_3.R,0,clean,NA
+as_shipped,figure_4.R,0,clean,NA
+as_shipped,figure_5.R,0,clean,NA
+as_shipped,figure_6.R,0,clean,NA
+as_shipped,appendix_figures_1_and_2.R,0,clean,NA
+as_shipped,appendix_figure_3.R,1,error,"Error in grid.Call.graphics(C_text, as.graphicsAnnot(x$label), x$x, x$y, :"
+as_shipped,appendix_figure_4_5_6_and_7.R,0,clean,NA
+as_shipped,appendix_figure_8.R,0,clean,NA
+as_shipped,appendix_figure_9.R,1,error,"Error in gzfile(file, ""rb"") : cannot open the connection"
+as_shipped,appendix_table_1.R,0,clean,NA
+as_shipped,appendix_tables_2_3_4_5_6_and_7.R,0,clean,NA
+as_shipped,fit_all_models.R,0,clean,NA
+stripped,figure_1.R,0,clean,NA
+stripped,figure_2.R,0,clean,NA
+stripped,figure_3.R,1,error,"Error in readRDS(con, refhook = refhook) : cannot open the connection"
+stripped,figure_4.R,1,error,"Error in readRDS(con, refhook = refhook) : cannot open the connection"
+stripped,figure_5.R,1,error,"Error in readRDS(con, refhook = refhook) : cannot open the connection"
+stripped,figure_6.R,1,error,"Error in readRDS(con, refhook = refhook) : cannot open the connection"
+stripped,appendix_figures_1_and_2.R,0,clean,NA
+stripped,appendix_figure_3.R,1,error,"Error in grid.Call.graphics(C_text, as.graphicsAnnot(x$label), x$x, x$y, :"
+stripped,appendix_figure_4_5_6_and_7.R,0,clean,NA
+stripped,appendix_figure_8.R,0,clean,NA
+stripped,appendix_figure_9.R,1,error,"Error in gzfile(file, ""rb"") : cannot open the connection"
+stripped,appendix_table_1.R,0,clean,NA
+stripped,appendix_tables_2_3_4_5_6_and_7.R,1,error,"Error in readRDS(con, refhook = refhook) : cannot open the connection"
+stripped,fit_all_models.R,0,clean,NA
+stripped_after_fit,figure_1.R,0,clean,NA
+stripped_after_fit,figure_2.R,0,clean,NA
+stripped_after_fit,figure_3.R,0,clean,NA
+stripped_after_fit,figure_4.R,0,clean,NA
+stripped_after_fit,figure_5.R,1,error,"Error in readRDS(con, refhook = refhook) : cannot open the connection"
+stripped_after_fit,figure_6.R,0,clean,NA
+stripped_after_fit,appendix_figures_1_and_2.R,0,clean,NA
+stripped_after_fit,appendix_figure_3.R,1,error,"Error in grid.Call.graphics(C_text, as.graphicsAnnot(x$label), x$x, x$y, :"
+stripped_after_fit,appendix_figure_4_5_6_and_7.R,0,clean,NA
+stripped_after_fit,appendix_figure_8.R,0,clean,NA
+stripped_after_fit,appendix_figure_9.R,1,error,"Error in gzfile(file, ""rb"") : cannot open the connection"
+stripped_after_fit,appendix_table_1.R,0,clean,NA
+stripped_after_fit,appendix_tables_2_3_4_5_6_and_7.R,0,clean,NA
