@@ -30,6 +30,8 @@ run_status <- read_csv(here::here("ground_truth", "archive_run_status.csv"), sho
 overwrites <- read_csv(here::here("ground_truth", "archive_overwrites.csv"), show_col_types = FALSE)
 fit_check <- read_csv(here::here("maintained", "output", "text_archive_fit_check.csv"),
                       show_col_types = FALSE)
+main_claims <- read_csv(here::here("maintained", "output", "text_main_claims.csv"),
+                        show_col_types = FALSE)
 manifest <- read_csv(here::here("original_manifest.csv"), show_col_types = FALSE)
 published_cells <- read_csv(here::here("ground_truth", "published_appendix_values.csv"),
                             show_col_types = FALSE)
@@ -48,6 +50,21 @@ value <- function(id, column = "value_rewrite") {
 }
 
 pass <- function(name) run_status |> filter(pass == name)
+
+main <- function(label) {
+  row <- main_claims[main_claims$claim == label, ]
+  stopifnot(nrow(row) == 1)
+  sprintf("%.1f", row$value)
+}
+
+persistence_estimates <- main_claims$value[main_claims$claim %in% c(
+  "Pooled Wave 2 to Wave 1 ratio, covariate adjusted",
+  "Pooled Wave 2 to Wave 1 ratio, unadjusted",
+  "Pooled Wave 3 to Wave 1 ratio, covariate adjusted",
+  "Pooled Wave 3 to Wave 1 ratio, unadjusted",
+  "Wave 2 correction effect as a percentage of Wave 1, covariate adjusted",
+  "Wave 3 correction effect as a percentage of Wave 1, covariate adjusted"
+)]
 
 show_table <- function(x, caption = NULL) {
   if (latex_out) {
@@ -145,8 +162,13 @@ Stripping the copy to data plus code is what the second pass adds, and it change
 `r nrow(pass("stripped"))` scripts fail without the deposited model objects, against
 `r nrow(pass("as_shipped") |> filter(outcome != "clean"))` as shipped. Every one of the
 additional failures is a `readRDS` of an object `fit_all_models.R` builds. Running
-`fit_all_models.R` first and then the analysis scripts recovers all but the two that fail
-regardless, which is the third pass in the table above.
+`fit_all_models.R` first and then the analysis scripts, which is the third pass in the table
+above, leaves `r nrow(pass("stripped_after_fit") |> filter(outcome != "clean"))` failures. Two are
+the pair that fail regardless. The third is `figure_5.R`, and it is a finding of its own: it reads
+`fitted_models/meta_trait_dic_w1_all_adj`, a deposited file with no extension, while the deposit's
+own code writes that object as `meta_trait_dic_w1_all_adj.rds`, which the archive does not
+contain. The object survives only as a deposited artifact; nothing in the deposit can regenerate
+it under the name the figure reads.
 
 **The deposit writes nothing except model objects.** Grepping the fourteen scripts for
 uncommented calls that touch a file returns thirty-four `write_rds()` lines, all in
@@ -206,7 +228,7 @@ are estimable, so the pooling drops a different study.
 ## Errata
 
 Three sentences in the published article are wrong, and they are corrected in
-[`coppock_etal_2023_errata.pdf`](report/coppock_etal_2023_errata.pdf), whose values are computed
+[`coppock_etal_2023_errata.pdf`](coppock_etal_2023_errata.pdf), whose values are computed
 at render time from this repository's output. None of them changes a conclusion. In summary: the
 reported total sample size is `r "17,681"` where the article's own appendix table sums to
 `r format(as.numeric(value("art_intro_total_n")), big.mark = ",")`; the count of experiments in
@@ -287,13 +309,18 @@ The quantity the pre-analysis plan defines, and the one the appendix's own persi
 print in their `ratio` rows, is the per-experiment ratio of the later-wave coefficient to the
 Wave 1 coefficient, pooled by random-effects meta-analysis. That gives
 `r value("res_persist_w2_precise")` per cent at Wave 2 and `r value("res_persist_w3_precise")`
-per cent at Wave 3 with covariates, and 54.4 and 38.9 per cent without them. The ratio of the
-pooled Wave 2 effect to the pooled Wave 1 effect gives 46.9 per cent, and the corresponding Wave
-3 figure is 39.7 per cent. No combination of adjustment, estimator and sample returns 66.4.
+per cent at Wave 3 with covariates, and `r main("Pooled Wave 2 to Wave 1 ratio, unadjusted")` and
+`r main("Pooled Wave 3 to Wave 1 ratio, unadjusted")` per cent without them. The ratio of the
+pooled Wave 2 effect to the pooled Wave 1 effect gives
+`r main("Wave 2 correction effect as a percentage of Wave 1, covariate adjusted")` per cent, and
+the corresponding Wave 3 figure is
+`r main("Wave 3 correction effect as a percentage of Wave 1, covariate adjusted")` per cent. No
+combination of adjustment, estimator and sample returns 66.4.
 
-Since the sentence names a quantity that four reasonable estimators put between 39 and 55 per
-cent, there is no single token that can replace 66.4, and the finding is recorded here rather
-than in the errata.
+Since the sentence names a quantity that four reasonable estimators put between
+`r floor(min(persistence_estimates))` and `r ceiling(max(persistence_estimates))` per cent, there
+is no single token that can replace 66.4, and the finding is recorded here rather than in the
+errata.
 
 ### Two further quantities with no counterpart
 
@@ -377,9 +404,10 @@ published PDF into `ground_truth/published_appendix_values.csv` and compared cel
 `ground_truth/published_claims.csv` is the extraction: `r nrow(extraction)` rows, one per numeric
 claim in the article and its appendix, each classified by hand as `pipeline`, `descriptive`,
 `definitional`, `structural` or `transcribed`, and each carrying the string the page prints and
-the precision it prints it at. Spelled-out numbers were swept for separately from digits; nine of
-the article's claims ("eight panel experiments", "twelve out of the twenty-four opportunities",
-"thirteen days") appear nowhere in a token scan.
+the precision it prints it at. Spelled-out numbers were swept for separately from digits, since
+no token scan sees "eight panel experiments", "twelve out of the twenty-four opportunities" or
+"thirteen days"; `r sum(str_detect(extraction$location, "\\bone\\b|\\btwo\\b|\\bthree\\b|\\bfour\\b|\\bsix\\b|\\beight\\b|twelve|thirteen|fourteen|twenty|hundred"))`
+of the extraction's quoted sentences state their number in words.
 
 Two instruments read the same pipeline output by separate paths.
 `ground_truth/build_ground_truth.R` builds the comparison table.

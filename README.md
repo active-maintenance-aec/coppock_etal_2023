@@ -105,9 +105,14 @@ Stripping the copy to data plus code is what the second pass adds, and
 it changes the answer: 7 of 14 scripts fail without the deposited model
 objects, against 2 as shipped. Every one of the additional failures is a
 `readRDS` of an object `fit_all_models.R` builds. Running
-`fit_all_models.R` first and then the analysis scripts recovers all but
-the two that fail regardless, which is the third pass in the table
-above.
+`fit_all_models.R` first and then the analysis scripts, which is the
+third pass in the table above, leaves 3 failures. Two are the pair that
+fail regardless. The third is `figure_5.R`, and it is a finding of its
+own: it reads `fitted_models/meta_trait_dic_w1_all_adj`, a deposited
+file with no extension, while the deposit’s own code writes that object
+as `meta_trait_dic_w1_all_adj.rds`, which the archive does not contain.
+The object survives only as a deposited artifact; nothing in the deposit
+can regenerate it under the name the figure reads.
 
 **The deposit writes nothing except model objects.** Grepping the
 fourteen scripts for uncommented calls that touch a file returns
@@ -171,11 +176,11 @@ estimable, so the pooling drops a different study.
 
 Three sentences in the published article are wrong, and they are
 corrected in
-[`coppock_etal_2023_errata.pdf`](report/coppock_etal_2023_errata.pdf),
-whose values are computed at render time from this repository’s output.
-None of them changes a conclusion. In summary: the reported total sample
-size is 17,681 where the article’s own appendix table sums to 17,629;
-the count of experiments in which misinformation significantly reduced
+[`coppock_etal_2023_errata.pdf`](coppock_etal_2023_errata.pdf), whose
+values are computed at render time from this repository’s output. None
+of them changes a conclusion. In summary: the reported total sample size
+is 17,681 where the article’s own appendix table sums to 17,629; the
+count of experiments in which misinformation significantly reduced
 accuracy is given as twelve where the deposited estimates give 13; and
 two different appendix floats are both captioned Table 1.
 
@@ -268,7 +273,7 @@ figure is 39.7 per cent. No combination of adjustment, estimator and
 sample returns 66.4.
 
 Since the sentence names a quantity that four reasonable estimators put
-between 39 and 55 per cent, there is no single token that can replace
+between 34 and 55 per cent, there is no single token that can replace
 66.4, and the finding is recorded here rather than in the errata.
 
 ### Two further quantities with no counterpart
@@ -377,9 +382,9 @@ numeric claim in the article and its appendix, each classified by hand
 as `pipeline`, `descriptive`, `definitional`, `structural` or
 `transcribed`, and each carrying the string the page prints and the
 precision it prints it at. Spelled-out numbers were swept for separately
-from digits; nine of the article’s claims (“eight panel experiments”,
-“twelve out of the twenty-four opportunities”, “thirteen days”) appear
-nowhere in a token scan.
+from digits, since no token scan sees “eight panel experiments”, “twelve
+out of the twenty-four opportunities” or “thirteen days”; 20 of the
+extraction’s quoted sentences state their number in words.
 
 Two instruments read the same pipeline output by separate paths.
 `ground_truth/build_ground_truth.R` builds the comparison table.
