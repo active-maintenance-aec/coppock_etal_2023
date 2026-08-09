@@ -107,24 +107,27 @@ The regression tables that follow are numbered 1 through 7 and the two tables of
 7 are numbered 8 and 9, so the appendix's table numbering runs 1, 1, 2, 3, 4, 5, 6, 7, 8, 9. A
 reader citing "appendix Table 1" cannot be understood.
 
-## 4. The persistence percentages are pooled one way in the main text and another in the appendix
+## 4. The persistence percentages in the main text were not recomputed when the analysis was revised
 
 The share of the Wave 1 correction effect that survives to a later wave is the quantity the
 pre-analysis plan defines and the appendix prints in the `ratio` row of each persistence table:
 the per-experiment ratio of the later-wave coefficient to the Wave 1 coefficient, pooled across
 the experiments by meta-analysis. The article reports that quantity in four sentences of the main
 text and again in the appendix, and the two disagree. Appendix Tables 5 and 7 print
-`r appendix_ratio_w2` and `r appendix_ratio_w3`, which are random-effects pools. The main text's
-66.4 is of the order the same Wave 2 ratios give when they are pooled with fixed effects, which
-is `r main("Pooled Wave 2 to Wave 1 ratio, covariate adjusted, fixed effects")` per cent with
-covariates and `r main("Pooled Wave 2 to Wave 1 ratio, unadjusted, fixed effects")` per cent
-without them, though neither of the published percentages is returned exactly by any pooling,
-adjustment or sample the deposited archive supports. A reader of the introduction therefore takes
-away a materially different number from a reader of the appendix.
+`r appendix_ratio_w2` and `r appendix_ratio_w3`. The main text's 66.4 and 50 are not returned by
+any pooling, adjustment or sample the deposited archive supports.
 
-Random effects should have been used throughout. The four sentences are corrected below to the
-random-effects pool of the covariate-adjusted ratios, which is the estimator the appendix's own
-meta-analysis rows use and the specification Figure 4 plots.
+Both figures appear verbatim in versions of this manuscript that predate the analysis the article
+reports, which pooled 23 experiments rather than 24 and whose every cell differs from the
+published ones. They are the earlier analysis's numbers, carried forward and never recomputed
+when the models were revised, rather than the product of a different estimator applied to the
+final data. A reader of the introduction therefore takes away a materially different number from
+a reader of the appendix.
+
+The four sentences are corrected below to the random-effects pool of the covariate-adjusted
+ratios computed from the analysis the article actually reports, which is the estimator the
+appendix's own meta-analysis rows use and the specification Figure 4 plots. Random effects
+should have been used throughout.
 
 > We show that **66 per cent** of the initial effect of fact-checks on factual beliefs is still
 > detectable one week after initial exposure, with **50 percent** detectable after more than two
