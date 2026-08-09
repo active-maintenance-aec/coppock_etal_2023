@@ -52,10 +52,12 @@ pick_meta <- function(meta, contrast_name, column) {
 ates_noadj <- deposited("ates_w1_all_noadj")
 
 # The pre-analysis plan's persistence quantity, which the appendix prints in the
-# "ratio" row of each persistence table.
-ratio_meta <- function(name) {
+# "ratio" row of each persistence table. The pooling method is named rather than
+# left to the default, because which family the pool belongs to is the question
+# these rows exist to answer.
+ratio_meta <- function(name, method) {
   d <- deposited(name)
-  100 * as.numeric(coef(rma.uni(yi = d$estimate, sei = d$std.error)))
+  100 * as.numeric(coef(rma.uni(yi = d$estimate, sei = d$std.error, method = method)))
 }
 
 prose <- tribble(
@@ -85,12 +87,12 @@ prose <- tribble(
                                  ates_noadj$p.value < 0.05 & ates_noadj$estimate > 0),
   "res_fc_sig_count", sum(ates_noadj$term == "treatmentfactcheck" &
                             ates_noadj$p.value < 0.05 & ates_noadj$estimate < 0),
-  "art_intro_persist_w2", ratio_meta("iv_p2_adj"),
-  "res_persist_w2_precise", ratio_meta("iv_p2_adj"),
-  "disc_persist_w2", ratio_meta("iv_p2_adj"),
-  "art_intro_persist_w3", ratio_meta("iv_p3_adj"),
-  "res_persist_w3_precise", ratio_meta("iv_p3_adj"),
-  "disc_persist_w3", ratio_meta("iv_p3_adj")
+  "art_intro_persist_w2", ratio_meta("iv_p2_adj", "REML"),
+  "res_persist_w2_precise", ratio_meta("iv_p2_adj", "REML"),
+  "disc_persist_w2", ratio_meta("iv_p2_adj", "REML"),
+  "art_intro_persist_w3", ratio_meta("iv_p3_adj", "REML"),
+  "res_persist_w3_precise", ratio_meta("iv_p3_adj", "REML"),
+  "disc_persist_w3", ratio_meta("iv_p3_adj", "REML")
 )
 
 # Panel sizes ----

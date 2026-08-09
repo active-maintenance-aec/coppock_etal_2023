@@ -11,8 +11,9 @@
 - [Errata](#errata)
   - [Corrections the rewrite makes to the deposited
     code](#corrections-the-rewrite-makes-to-the-deposited-code)
-  - [The persistence percentages reproduce under no
-    expression](#the-persistence-percentages-reproduce-under-no-expression)
+  - [The persistence percentages are pooled one way in the main text and
+    another in the
+    appendix](#the-persistence-percentages-are-pooled-one-way-in-the-main-text-and-another-in-the-appendix)
   - [Two further quantities with no
     counterpart](#two-further-quantities-with-no-counterpart)
 - [The ground truth](#the-ground-truth)
@@ -174,15 +175,18 @@ estimable, so the pooling drops a different study.
 
 ## Errata
 
-Three sentences in the published article are wrong, and they are
-corrected in
-[`coppock_etal_2023_errata.pdf`](coppock_etal_2023_errata.pdf), whose
+Six sentences in the published article are wrong, and they are corrected
+in [`coppock_etal_2023_errata.pdf`](coppock_etal_2023_errata.pdf), whose
 values are computed at render time from this repository’s output. None
 of them changes a conclusion. In summary: the reported total sample size
 is 17,681 where the article’s own appendix table sums to 17,629; the
 count of experiments in which misinformation significantly reduced
-accuracy is given as twelve where the deposited estimates give 13; and
-two different appendix floats are both captioned Table 1.
+accuracy is given as twelve where the deposited estimates give 13; two
+different appendix floats are both captioned Table 1; and the four
+sentences reporting how much of the correction effect survives to a
+later wave report a figure of the order a fixed-effect pool gives where
+the appendix gives a random-effects pool of the same ratios, 48.9 per
+cent at Wave 2 and 34.3 per cent at Wave 3.
 
 ### Corrections the rewrite makes to the deposited code
 
@@ -263,26 +267,35 @@ deterministic, it is visible on the page once you know to look for it,
 and it is a property of the presentation rather than of any estimate, so
 it stays a finding here rather than an erratum.
 
-### The persistence percentages reproduce under no expression
+### The persistence percentages are pooled one way in the main text and another in the appendix
 
 The article states three times that fact-check effects persist “at 66
 per cent” of their original magnitude after one week, once at the
 sharper “66.4 per cent”, and “at 50 per cent” after more than two weeks.
-Neither number is produced by anything in the deposit or in the rewrite.
+The appendix reports the same quantity and gives different numbers.
 
 The quantity the pre-analysis plan defines, and the one the appendix’s
 own persistence tables print in their `ratio` rows, is the
 per-experiment ratio of the later-wave coefficient to the Wave 1
-coefficient, pooled by random-effects meta-analysis. That gives 48.9 per
-cent at Wave 2 and 34 per cent at Wave 3 with covariates, and 54.4 and
-38.9 per cent without them. The ratio of the pooled Wave 2 effect to the
-pooled Wave 1 effect gives 46.9 per cent, and the corresponding Wave 3
-figure is 39.7 per cent. No combination of adjustment, estimator and
-sample returns 66.4.
+coefficient, pooled across experiments by meta-analysis. Pooled with
+random effects, which is what `metafor` does by default and what the
+appendix’s meta-analysis rows carry, it is 48.9 per cent at Wave 2 and
+34.3 per cent at Wave 3 with covariates, and 54.4 and 38.9 per cent
+without them. Pooled with fixed effects, the same ratios give 64.9 and
+70.8 per cent at Wave 2 and 52.2 and 63.3 per cent at Wave 3. The ratio
+of the pooled Wave 2 effect to the pooled Wave 1 effect, a different
+derivation of the same idea, gives 46.9 per cent, and the corresponding
+Wave 3 figure is 39.7 per cent.
 
-Since the sentence names a quantity that four reasonable estimators put
-between 34 and 55 per cent, there is no single token that can replace
-66.4, and the finding is recorded here rather than in the errata.
+The published percentages are of the order the fixed-effect pool gives
+and not of the order the appendix’s own rows give, so a reader of the
+introduction takes away a materially different number from a reader of
+the appendix. No combination of adjustment, estimator and sample returns
+66.4 or 50 exactly. The article should have used random effects
+throughout, and the four sentences carrying these figures are corrected
+on that basis in `errata.qmd`. The Wave 3 correction is larger than the
+pooling alone would make it, because the ratio behind appendix Table 7
+also instruments the wrong outcome; see the three-wave finding above.
 
 ### Two further quantities with no counterpart
 
@@ -318,8 +331,8 @@ Published claims by type and verdict.
 |:---------------|-----:|
 | archive        |   26 |
 | environment    |    3 |
-| paper_internal |    2 |
-| unresolved     |    8 |
+| paper_internal |    8 |
+| unresolved     |    2 |
 
 Where the fault lies, on every row that is not a clean match.
 

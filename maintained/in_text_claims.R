@@ -99,7 +99,9 @@ claim("art_intro_correction_effect",
 #
 # The quantity the pre-analysis plan defines, and the one the appendix's own
 # persistence tables print in their "ratio" rows, is the per-experiment ratio of
-# the later-wave coefficient to the Wave 1 coefficient, pooled.
+# the later-wave coefficient to the Wave 1 coefficient, pooled with random
+# effects, which is the pool the appendix's own meta-analysis rows carry. The
+# main text's percentages sit in the fixed-effect family instead.
 claim("art_intro_persist_w2", quantity("Pooled Wave 2 to Wave 1 ratio, covariate adjusted"))
 claim("art_intro_persist_w3", quantity("Pooled Wave 3 to Wave 1 ratio, covariate adjusted"))
 

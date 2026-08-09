@@ -24,6 +24,10 @@ Fact checks where the correction increased false belief,0
 "Pooled Wave 2 to Wave 1 ratio, unadjusted",54.357587223363794
 "Pooled Wave 3 to Wave 1 ratio, covariate adjusted",34.300925480475755
 "Pooled Wave 3 to Wave 1 ratio, unadjusted",38.859681171168376
+"Pooled Wave 2 to Wave 1 ratio, covariate adjusted, fixed effects",64.8732000237257
+"Pooled Wave 2 to Wave 1 ratio, unadjusted, fixed effects",70.75818857255416
+"Pooled Wave 3 to Wave 1 ratio, covariate adjusted, fixed effects",52.16282383908278
+"Pooled Wave 3 to Wave 1 ratio, unadjusted, fixed effects",63.28020339214772
 Largest absolute meta-analytic thermometer effect on the claim's target,0.7971782184117906
 Ratio of the pooled correction effect to the pooled misinformation effect,2.4444567725873556
 Belief certainty scale minimum,0

@@ -57,15 +57,6 @@ main <- function(label) {
   sprintf("%.1f", row$value)
 }
 
-persistence_estimates <- main_claims$value[main_claims$claim %in% c(
-  "Pooled Wave 2 to Wave 1 ratio, covariate adjusted",
-  "Pooled Wave 2 to Wave 1 ratio, unadjusted",
-  "Pooled Wave 3 to Wave 1 ratio, covariate adjusted",
-  "Pooled Wave 3 to Wave 1 ratio, unadjusted",
-  "Wave 2 correction effect as a percentage of Wave 1, covariate adjusted",
-  "Wave 3 correction effect as a percentage of Wave 1, covariate adjusted"
-)]
-
 show_table <- function(x, caption = NULL) {
   if (latex_out) {
     knitr::kable(x, caption = caption, booktabs = TRUE, linesep = "") |>
@@ -227,14 +218,18 @@ are estimable, so the pooling drops a different study.
 
 ## Errata
 
-Three sentences in the published article are wrong, and they are corrected in
+Six sentences in the published article are wrong, and they are corrected in
 [`coppock_etal_2023_errata.pdf`](coppock_etal_2023_errata.pdf), whose values are computed
 at render time from this repository's output. None of them changes a conclusion. In summary: the
 reported total sample size is `r "17,681"` where the article's own appendix table sums to
 `r format(as.numeric(value("art_intro_total_n")), big.mark = ",")`; the count of experiments in
 which misinformation significantly reduced accuracy is given as twelve where the deposited
-estimates give `r value("res_misinfo_sig_count")`; and two different appendix floats are both
-captioned Table 1.
+estimates give `r value("res_misinfo_sig_count")`; two different appendix floats are both
+captioned Table 1; and the four sentences reporting how much of the correction effect survives to
+a later wave report a figure of the order a fixed-effect pool gives where the appendix gives a
+random-effects pool of the same ratios,
+`r main("Pooled Wave 2 to Wave 1 ratio, covariate adjusted")` per cent at Wave 2 and
+`r main("Pooled Wave 3 to Wave 1 ratio, covariate adjusted")` per cent at Wave 3.
 
 ### Corrections the rewrite makes to the deposited code
 
@@ -308,28 +303,38 @@ tables carry `r value("app_reg_stars", "value_paper")` stars where
 once you know to look for it, and it is a property of the presentation rather than of any
 estimate, so it stays a finding here rather than an erratum.
 
-### The persistence percentages reproduce under no expression
+### The persistence percentages are pooled one way in the main text and another in the appendix
 
 The article states three times that fact-check effects persist "at 66 per cent" of their original
 magnitude after one week, once at the sharper "66.4 per cent", and "at 50 per cent" after more
-than two weeks. Neither number is produced by anything in the deposit or in the rewrite.
+than two weeks. The appendix reports the same quantity and gives different numbers.
 
 The quantity the pre-analysis plan defines, and the one the appendix's own persistence tables
 print in their `ratio` rows, is the per-experiment ratio of the later-wave coefficient to the
-Wave 1 coefficient, pooled by random-effects meta-analysis. That gives
-`r value("res_persist_w2_precise")` per cent at Wave 2 and `r value("res_persist_w3_precise")`
+Wave 1 coefficient, pooled across experiments by meta-analysis. Pooled with random effects, which
+is what `metafor` does by default and what the appendix's meta-analysis rows carry, it is
+`r main("Pooled Wave 2 to Wave 1 ratio, covariate adjusted")` per cent at Wave 2 and
+`r main("Pooled Wave 3 to Wave 1 ratio, covariate adjusted")`
 per cent at Wave 3 with covariates, and `r main("Pooled Wave 2 to Wave 1 ratio, unadjusted")` and
-`r main("Pooled Wave 3 to Wave 1 ratio, unadjusted")` per cent without them. The ratio of the
-pooled Wave 2 effect to the pooled Wave 1 effect gives
+`r main("Pooled Wave 3 to Wave 1 ratio, unadjusted")` per cent without them. Pooled with fixed
+effects, the same ratios give
+`r main("Pooled Wave 2 to Wave 1 ratio, covariate adjusted, fixed effects")` and
+`r main("Pooled Wave 2 to Wave 1 ratio, unadjusted, fixed effects")` per cent at Wave 2 and
+`r main("Pooled Wave 3 to Wave 1 ratio, covariate adjusted, fixed effects")` and
+`r main("Pooled Wave 3 to Wave 1 ratio, unadjusted, fixed effects")` per cent at Wave 3. The
+ratio of the pooled Wave 2 effect to the pooled Wave 1 effect, a different derivation of the same
+idea, gives
 `r main("Wave 2 correction effect as a percentage of Wave 1, covariate adjusted")` per cent, and
 the corresponding Wave 3 figure is
-`r main("Wave 3 correction effect as a percentage of Wave 1, covariate adjusted")` per cent. No
-combination of adjustment, estimator and sample returns 66.4.
+`r main("Wave 3 correction effect as a percentage of Wave 1, covariate adjusted")` per cent.
 
-Since the sentence names a quantity that four reasonable estimators put between
-`r floor(min(persistence_estimates))` and `r ceiling(max(persistence_estimates))` per cent, there
-is no single token that can replace 66.4, and the finding is recorded here rather than in the
-errata.
+The published percentages are of the order the fixed-effect pool gives and not of the order the
+appendix's own rows give, so a reader of the introduction takes away a materially different
+number from a reader of the appendix. No combination of adjustment, estimator and sample returns
+66.4 or 50 exactly. The article should have used random effects throughout, and the four sentences
+carrying these figures are corrected on that basis in `errata.qmd`. The Wave 3 correction is
+larger than the pooling alone would make it, because the ratio behind appendix Table 7 also
+instruments the wrong outcome; see the three-wave finding above.
 
 ### Two further quantities with no counterpart
 

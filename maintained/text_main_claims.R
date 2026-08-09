@@ -72,9 +72,14 @@ survival <- function(later, first) {
 # Wave 1 outcome, instrumented by assignment, returns. The appendix prints its
 # pooled value in the "ratio" row of each persistence table. Both derivations are
 # reported here because the main text's persistence percentages match neither.
-ratio_meta <- function(name) {
+#
+# The pooling method is an argument rather than a default, because it is the
+# whole question here: the appendix's ratio rows are random-effects pools and the
+# main text's percentages sit in the fixed-effect family, and both are computed
+# below so the two can be compared.
+ratio_meta <- function(name, method) {
   d <- read_fit(name)
-  100 * as.numeric(coef(rma.uni(yi = d$estimate, sei = d$std.error)))
+  100 * as.numeric(coef(rma.uni(yi = d$estimate, sei = d$std.error, method = method)))
 }
 
 ates_w1_all_adj <- read_fit("ates_w1_all_adj")
@@ -140,10 +145,18 @@ claims <- tribble(
     survival("ates_w3_p3_adj", "ates_w1_p3_adj"),
   "Wave 3 correction effect as a percentage of Wave 1, unadjusted",
     survival("ates_w3_p3_noadj", "ates_w1_p3_noadj"),
-  "Pooled Wave 2 to Wave 1 ratio, covariate adjusted", ratio_meta("iv_p2_adj"),
-  "Pooled Wave 2 to Wave 1 ratio, unadjusted", ratio_meta("iv_p2_noadj"),
-  "Pooled Wave 3 to Wave 1 ratio, covariate adjusted", ratio_meta("iv_p3_adj"),
-  "Pooled Wave 3 to Wave 1 ratio, unadjusted", ratio_meta("iv_p3_noadj"),
+  "Pooled Wave 2 to Wave 1 ratio, covariate adjusted", ratio_meta("iv_p2_adj", "REML"),
+  "Pooled Wave 2 to Wave 1 ratio, unadjusted", ratio_meta("iv_p2_noadj", "REML"),
+  "Pooled Wave 3 to Wave 1 ratio, covariate adjusted", ratio_meta("iv_p3_adj", "REML"),
+  "Pooled Wave 3 to Wave 1 ratio, unadjusted", ratio_meta("iv_p3_noadj", "REML"),
+  "Pooled Wave 2 to Wave 1 ratio, covariate adjusted, fixed effects",
+    ratio_meta("iv_p2_adj", "FE"),
+  "Pooled Wave 2 to Wave 1 ratio, unadjusted, fixed effects",
+    ratio_meta("iv_p2_noadj", "FE"),
+  "Pooled Wave 3 to Wave 1 ratio, covariate adjusted, fixed effects",
+    ratio_meta("iv_p3_adj", "FE"),
+  "Pooled Wave 3 to Wave 1 ratio, unadjusted, fixed effects",
+    ratio_meta("iv_p3_noadj", "FE"),
   "Largest absolute meta-analytic thermometer effect on the claim's target",
     max(abs(ft_targets_meta$estimate)),
   "Ratio of the pooled correction effect to the pooled misinformation effect",

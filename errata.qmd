@@ -35,12 +35,42 @@ number_word <- function(x) {
 
 respondents <- format(as.numeric(value("art_intro_total_n")), big.mark = ",")
 significant_misinformation <- number_word(value("res_misinfo_sig_count"))
+
+main_claims <- read_csv(here::here("maintained", "output", "text_main_claims.csv"),
+                        show_col_types = FALSE)
+
+main <- function(label) {
+  row <- main_claims[main_claims$claim == label, ]
+  stopifnot(nrow(row) == 1)
+  sprintf("%.1f", row$value)
+}
+
+persist_w2 <- main("Pooled Wave 2 to Wave 1 ratio, covariate adjusted")
+persist_w3 <- main("Pooled Wave 3 to Wave 1 ratio, covariate adjusted")
+
+# The appendix's own printed ratio rows, read out of the transcription of the
+# published appendix rather than reconstructed from the reproduction.
+published_cells <- read_csv(here::here("ground_truth", "published_appendix_values.csv"),
+                            show_col_types = FALSE)
+
+published_ratio <- function(table_number) {
+  row <- published_cells |>
+    filter(appendix_table == table_number, row_label == "Meta-analysis Meta-analysis ratio yes")
+  stopifnot(nrow(row) == 1)
+  sprintf("%.2f", row$estimate)
+}
+
+appendix_ratio_w2 <- published_ratio(5)
+appendix_ratio_w3 <- published_ratio(7)
 ```
 
-Three corrections to *British Journal of Political Science* article `r "10.1017/S0007123422000631"`.
-None of them changes a conclusion of the article. Every corrected value below is computed at
-render time from a full reproduction of the published analysis, held in the repository
-`active-maintenance-aec/coppock_etal_2023`.
+Four corrections to *British Journal of Political Science* article `r "10.1017/S0007123422000631"`.
+None of them changes a conclusion of the article, though the fourth moves four published
+percentages by a material amount. Every corrected value below is computed at render time from a
+full reproduction of the published analysis, held in the repository
+`active-maintenance-aec/coppock_etal_2023`. Percentages are given to one decimal place
+throughout, including in sentences where the article gave a whole number, so that every quantity
+in a corrected sentence is one the reproduction has verified. Bold marks the values that changed.
 
 ## 1. The reported total sample size
 
@@ -76,3 +106,62 @@ effect table on appendix page 15 are two different floats, and both are captione
 The regression tables that follow are numbered 1 through 7 and the two tables of appendix section
 7 are numbered 8 and 9, so the appendix's table numbering runs 1, 1, 2, 3, 4, 5, 6, 7, 8, 9. A
 reader citing "appendix Table 1" cannot be understood.
+
+## 4. The persistence percentages are pooled one way in the main text and another in the appendix
+
+The share of the Wave 1 correction effect that survives to a later wave is the quantity the
+pre-analysis plan defines and the appendix prints in the `ratio` row of each persistence table:
+the per-experiment ratio of the later-wave coefficient to the Wave 1 coefficient, pooled across
+the experiments by meta-analysis. The article reports that quantity in four sentences of the main
+text and again in the appendix, and the two disagree. Appendix Tables 5 and 7 print
+`r appendix_ratio_w2` and `r appendix_ratio_w3`, which are random-effects pools. The main text's
+66.4 is of the order the same Wave 2 ratios give when they are pooled with fixed effects, which
+is `r main("Pooled Wave 2 to Wave 1 ratio, covariate adjusted, fixed effects")` per cent with
+covariates and `r main("Pooled Wave 2 to Wave 1 ratio, unadjusted, fixed effects")` per cent
+without them, though neither of the published percentages is returned exactly by any pooling,
+adjustment or sample the deposited archive supports. A reader of the introduction therefore takes
+away a materially different number from a reader of the appendix.
+
+Random effects should have been used throughout. The four sentences are corrected below to the
+random-effects pool of the covariate-adjusted ratios, which is the estimator the appendix's own
+meta-analysis rows use and the specification Figure 4 plots.
+
+> We show that **66 per cent** of the initial effect of fact-checks on factual beliefs is still
+> detectable one week after initial exposure, with **50 percent** detectable after more than two
+> weeks.
+
+**Corrected:** We show that **`r persist_w2` per cent** of the initial effect of fact-checks on
+factual beliefs is still detectable one week after initial exposure, with
+**`r persist_w3` percent** detectable after more than two weeks.
+
+> The effects of fact-checks observed immediately after treatment dissipate somewhat from Wave 1
+> to Wave 2, on average, at **66.4 per cent** of the initial magnitude.
+
+**Corrected:** The effects of fact-checks observed immediately after treatment dissipate somewhat
+from Wave 1 to Wave 2, on average, at **`r persist_w2` per cent** of the initial magnitude.
+
+> On average, the effect in Wave 3 is **50 per cent** the magnitude of the original effect, though
+> the smaller number of issues and subjects increases our uncertainty.
+
+**Corrected:** On average, the effect in Wave 3 is **`r persist_w3` per cent** the magnitude of
+the original effect, though the smaller number of issues and subjects increases our uncertainty.
+
+> The effects of fact-checks persisted at **66 per cent** the original magnitude after one week
+> and at **50 per cent** after more than two weeks.
+
+**Corrected:** The effects of fact-checks persisted at **`r persist_w2` per cent** the original
+magnitude after one week and at **`r persist_w3` per cent** after more than two weeks.
+
+The Wave 3 correction is larger than the change of pooling alone would make it. The deposited
+three-wave models fitted with covariates regress the wrong outcomes, so the ratio behind appendix
+Table 7's `r appendix_ratio_w3` instruments the Wave 2 outcome rather than the Wave 3 outcome.
+Refitted on Wave 3, the random-effects pool is `r persist_w3` per cent with covariates and
+`r main("Pooled Wave 3 to Wave 1 ratio, unadjusted")` per cent without them.
+
+One caveat the correction does not remove. A random-effects pool is still a precision-weighted
+average: it weights each fact-check by how precisely that fact-check's ratio was measured, not by
+how much of the population of fact-checks it stands for. The corrected percentages are therefore
+still not quite the quantity the sentences describe, which is how much of a typical fact-check's
+effect survives a week. They are the figures the article should have reported, and they are the
+ones a reader can check against the appendix; treating them as an estimate of the population
+average asks more of them than a precision-weighted average can give.
