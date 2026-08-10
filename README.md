@@ -175,15 +175,16 @@ estimable, so the pooling drops a different study.
 
 ## Errata
 
-Six sentences in the published article are wrong, and they are corrected
-in [`coppock_etal_2023_errata.pdf`](coppock_etal_2023_errata.pdf), whose
+Four errors in the published article are corrected in
+[`coppock_etal_2023_errata.pdf`](coppock_etal_2023_errata.pdf), whose
 values are computed at render time from this repository’s output. None
-of them changes a conclusion. In summary: the reported total sample size
-is 17,681 where the article’s own appendix table sums to 17,629; the
-count of experiments in which misinformation significantly reduced
-accuracy is given as twelve where the deposited estimates give 13; two
-different appendix floats are both captioned Table 1; and the four
-sentences reporting how much of the correction effect survives to a
+of them changes a conclusion. In summary, and numbered as the note
+numbers them: **1.** the reported total sample size is 17,681 where the
+article’s own appendix table sums to 17,629; **2.** the count of
+experiments in which misinformation significantly reduced accuracy is
+given as twelve where the deposited estimates give 13; **3.** two
+different appendix floats are both captioned Table 1; and **4.** the
+four sentences reporting how much of the correction effect survives to a
 later wave report a figure of the order a fixed-effect pool gives where
 the appendix gives a random-effects pool of the same ratios, 48.9 per
 cent at Wave 2 and 34.3 per cent at Wave 3.

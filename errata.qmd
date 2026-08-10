@@ -11,6 +11,7 @@ format:
 ```{r}
 #| label: setup
 #| include: false
+knitr::opts_chunk$set(echo = FALSE, warning = FALSE, message = FALSE)
 library(tidyverse)
 library(here)
 here::i_am("errata.qmd")
@@ -64,7 +65,114 @@ appendix_ratio_w2 <- published_ratio(5)
 appendix_ratio_w3 <- published_ratio(7)
 ```
 
-Four corrections to *British Journal of Political Science* article `r "10.1017/S0007123422000631"`.
+```{r entries}
+# THE ERRATA SPINE. Every entry is defined once, here, and rendered from here: into this
+# document, and into whatever else needs it, which reads the errata_entries.csv written at
+# the bottom of this file rather than keeping a second hand-typed copy.
+#
+# [[...]] marks the span that changes. Each renderer supplies its own markup for it: bold
+# here, \was{} in an edition. Nothing else in a field is markup, so the same string can be
+# set by either. Entries 3 and 4 correct several passages at once, so published and
+# corrected carry one block per passage, separated by a blank line.
+#
+# Numbering is the published note's and is APPEND-ONLY: an entry can already have been
+# cited, so a later finding is added at the end and never interleaved.
+entries <- tribble(
+  ~entry, ~class, ~source, ~form, ~title, ~location, ~published, ~corrected, ~note,
+
+  1, "quantity", "pipeline", "full",
+  "The reported total sample size",
+  "published, introduction",
+  "To study fact-checking during the 2020 election season, we conducted eight preregistered panel experiments (total [[N = 17,681]]).",
+  str_glue("To study fact-checking during the 2020 election season, we conducted eight preregistered panel experiments (total [[N = {respondents}]])."),
+  str_glue(
+    "The article's own appendix Table 1 reports the eight panel sizes as 2,321, 2,090, ",
+    "2,059, 2,390, 2,582, 2,200, 1,599 and 2,388, which sum to {respondents}, and the ",
+    "deposited respondent data hold exactly that many."),
+
+  2, "quantity", "pipeline", "full",
+  "The count of experiments in which misinformation reduced accuracy",
+  "published, results",
+  "Overall, exposure to the misinformation significantly decreased accuracy in [[twelve]] out of the twenty-four opportunities.",
+  str_glue("Overall, exposure to the misinformation significantly decreased accuracy in [[{significant_misinformation}]] out of the twenty-four opportunities."),
+  str_glue(
+    "Appendix Table 1 prints all {significant_misinformation} in its unadjusted rows, and ",
+    "the deposited estimates and the reproduction agree on every one of them."),
+
+  3, "float", "pipeline", "full",
+  "Two appendix floats carry the same number",
+  "published, appendix",
+  str_c("[[Table 1:]] Sample composition by panel.",
+        "\n\n",
+        "[[Table 1:]] Average treatment effects at Wave 1 among all subjects."),
+  "the sample composition table on appendix page 3 and the Wave 1 average treatment effect table on appendix page 15 are two different floats, and both are captioned [[Table 1]]. The regression tables that follow are numbered 1 through 7 and the two tables of appendix section 7 are numbered 8 and 9, so the appendix's table numbering runs 1, 1, 2, 3, 4, 5, 6, 7, 8, 9. A reader citing \"appendix Table 1\" cannot be understood.",
+  "",
+
+  4, "quantity", "pipeline", "full",
+  "The persistence percentages in the main text were not recomputed when the analysis was revised",
+  "published, main text, four sentences",
+  str_c(
+    "We show that [[66 per cent]] of the initial effect of fact-checks on factual beliefs is still detectable one week after initial exposure, with [[50 percent]] detectable after more than two weeks.",
+    "\n\n",
+    "The effects of fact-checks observed immediately after treatment dissipate somewhat from Wave 1 to Wave 2, on average, at [[66.4 per cent]] of the initial magnitude.",
+    "\n\n",
+    "On average, the effect in Wave 3 is [[50 per cent]] the magnitude of the original effect, though the smaller number of issues and subjects increases our uncertainty.",
+    "\n\n",
+    "The effects of fact-checks persisted at [[66 per cent]] the original magnitude after one week and at [[50 per cent]] after more than two weeks."),
+  str_c(
+    str_glue("We show that [[{persist_w2} per cent]] of the initial effect of fact-checks on factual beliefs is still detectable one week after initial exposure, with [[{persist_w3} percent]] detectable after more than two weeks."),
+    "\n\n",
+    str_glue("The effects of fact-checks observed immediately after treatment dissipate somewhat from Wave 1 to Wave 2, on average, at [[{persist_w2} per cent]] of the initial magnitude."),
+    "\n\n",
+    str_glue("On average, the effect in Wave 3 is [[{persist_w3} per cent]] the magnitude of the original effect, though the smaller number of issues and subjects increases our uncertainty."),
+    "\n\n",
+    str_glue("The effects of fact-checks persisted at [[{persist_w2} per cent]] the original magnitude after one week and at [[{persist_w3} per cent]] after more than two weeks.")),
+  str_glue(
+    "The Wave 3 correction is larger than the change of pooling alone would make it. The ",
+    "deposited three-wave models fitted with covariates regress the wrong outcomes, so the ",
+    "ratio behind appendix Table 7's {appendix_ratio_w3} instruments the Wave 2 outcome ",
+    "rather than the Wave 3 outcome. Refitted on Wave 3, the random-effects pool is ",
+    "{persist_w3} per cent with covariates and ",
+    "{main('Pooled Wave 3 to Wave 1 ratio, unadjusted')} per cent without them.",
+    "\n\n",
+    "One caveat the correction does not remove. A random-effects pool is still a ",
+    "precision-weighted average: it weights each fact-check by how precisely that ",
+    "fact-check's ratio was measured, not by how much of the population of fact-checks it ",
+    "stands for. The corrected percentages are therefore still not quite the quantity the ",
+    "sentences describe, which is how much of a typical fact-check's effect survives a week. ",
+    "They are the figures the article should have reported, and they are the ones a reader ",
+    "can check against the appendix; treating them as an estimate of the population average ",
+    "asks more of them than a precision-weighted average can give.")
+) |>
+  mutate(across(c(title, published, corrected, note), as.character))
+
+stopifnot(nrow(entries) == max(entries$entry), !anyDuplicated(entries$entry))
+
+# The spine's markup, resolved for this document. Another renderer resolves it differently.
+bold <- function(x) str_replace_all(x, "\\[\\[(.*?)\\]\\]", "**\\1**")
+blocks <- function(x) str_split_1(x, "\n\n")
+
+# A heading is only a heading when a blank line precedes it, which is why every emitted
+# entry opens with one. Where an entry corrects several passages the blocks pair off in
+# order; entry 3's correction is one explanation of two captions, so the counts differ
+# there and the published blocks are set together ahead of it.
+emit <- function(n, lead = "") {
+  e <- entries |> filter(entry == n)
+  cat("\n\n## ", e$entry, ". ", e$title, "\n\n", sep = "")
+  if (lead != "") cat(lead, "\n\n", sep = "")
+  was <- blocks(e$published)
+  now <- blocks(e$corrected)
+  if (length(was) == length(now)) {
+    walk2(was, now, \(w, n) cat("> ", bold(w), "\n\n**Corrected:** ", bold(n), "\n\n", sep = ""))
+  } else {
+    walk(was, \(w) cat("> ", bold(w), "\n\n", sep = ""))
+    walk(now, \(n) cat("**Corrected:** ", bold(n), "\n\n", sep = ""))
+  }
+  if (e$note != "") cat(e$note, "\n", sep = "")
+}
+```
+
+`r str_glue("{str_to_sentence(number_word(nrow(entries)))} corrections to *British Journal of Political Science* article 10.1017/S0007123422000631.")`
 None of them changes a conclusion of the article, though the fourth moves four published
 percentages by a material amount. Every corrected value below is computed at render time from a
 full reproduction of the published analysis, held in the repository
@@ -72,99 +180,37 @@ full reproduction of the published analysis, held in the repository
 throughout, including in sentences where the article gave a whole number, so that every quantity
 in a corrected sentence is one the reproduction has verified. Bold marks the values that changed.
 
-## 1. The reported total sample size
+```{r entries-1-3, results="asis"}
+walk(1:3, emit)
+```
 
-> To study fact-checking during the 2020 election season, we conducted eight preregistered panel
-> experiments (total **N = 17,681**).
+```{r entry-4, results="asis"}
+emit(4, lead = str_glue(
+  "The share of the Wave 1 correction effect that survives to a later wave is the quantity ",
+  "the pre-analysis plan defines and the appendix prints in the `ratio` row of each ",
+  "persistence table: the per-experiment ratio of the later-wave coefficient to the Wave 1 ",
+  "coefficient, pooled across the experiments by meta-analysis. The article reports that ",
+  "quantity in four sentences of the main text and again in the appendix, and the two ",
+  "disagree. Appendix Tables 5 and 7 print {appendix_ratio_w2} and {appendix_ratio_w3}. The ",
+  "main text's 66.4 and 50 are not returned by any pooling, adjustment or sample the ",
+  "deposited archive supports.",
+  "\n\n",
+  "Both figures appear verbatim in versions of this manuscript that predate the analysis ",
+  "the article reports, which pooled 23 experiments rather than 24 and whose every cell ",
+  "differs from the published ones. They are the earlier analysis's numbers, carried ",
+  "forward and never recomputed when the models were revised, rather than the product of a ",
+  "different estimator applied to the final data. A reader of the introduction therefore ",
+  "takes away a materially different number from a reader of the appendix.",
+  "\n\n",
+  "The four sentences are corrected below to the random-effects pool of the ",
+  "covariate-adjusted ratios computed from the analysis the article actually reports, which ",
+  "is the estimator the appendix's own meta-analysis rows use and the specification Figure ",
+  "4 plots. Random effects should have been used throughout."))
+```
 
-**Corrected:** To study fact-checking during the 2020 election season, we conducted eight
-preregistered panel experiments (total **N = `r str_c("17,629")`**).
-
-The article's own appendix Table 1 reports the eight panel sizes as 2,321, 2,090, 2,059, 2,390,
-2,582, 2,200, 1,599 and 2,388, which sum to `r respondents`, and the deposited respondent data
-hold exactly that many.
-
-## 2. The count of experiments in which misinformation reduced accuracy
-
-> Overall, exposure to the misinformation significantly decreased accuracy in **twelve** out of
-> the twenty-four opportunities.
-
-**Corrected:** Overall, exposure to the misinformation significantly decreased accuracy in
-**`r significant_misinformation`** out of the twenty-four opportunities.
-
-Appendix Table 1 prints all `r significant_misinformation` in its unadjusted rows, and the
-deposited estimates and the reproduction agree on every one of them.
-
-## 3. Two appendix floats carry the same number
-
-> **Table 1:** Sample composition by panel.
-
-> **Table 1:** Average treatment effects at Wave 1 among all subjects.
-
-**Corrected:** the sample composition table on appendix page 3 and the Wave 1 average treatment
-effect table on appendix page 15 are two different floats, and both are captioned **Table 1**.
-The regression tables that follow are numbered 1 through 7 and the two tables of appendix section
-7 are numbered 8 and 9, so the appendix's table numbering runs 1, 1, 2, 3, 4, 5, 6, 7, 8, 9. A
-reader citing "appendix Table 1" cannot be understood.
-
-## 4. The persistence percentages in the main text were not recomputed when the analysis was revised
-
-The share of the Wave 1 correction effect that survives to a later wave is the quantity the
-pre-analysis plan defines and the appendix prints in the `ratio` row of each persistence table:
-the per-experiment ratio of the later-wave coefficient to the Wave 1 coefficient, pooled across
-the experiments by meta-analysis. The article reports that quantity in four sentences of the main
-text and again in the appendix, and the two disagree. Appendix Tables 5 and 7 print
-`r appendix_ratio_w2` and `r appendix_ratio_w3`. The main text's 66.4 and 50 are not returned by
-any pooling, adjustment or sample the deposited archive supports.
-
-Both figures appear verbatim in versions of this manuscript that predate the analysis the article
-reports, which pooled 23 experiments rather than 24 and whose every cell differs from the
-published ones. They are the earlier analysis's numbers, carried forward and never recomputed
-when the models were revised, rather than the product of a different estimator applied to the
-final data. A reader of the introduction therefore takes away a materially different number from
-a reader of the appendix.
-
-The four sentences are corrected below to the random-effects pool of the covariate-adjusted
-ratios computed from the analysis the article actually reports, which is the estimator the
-appendix's own meta-analysis rows use and the specification Figure 4 plots. Random effects
-should have been used throughout.
-
-> We show that **66 per cent** of the initial effect of fact-checks on factual beliefs is still
-> detectable one week after initial exposure, with **50 percent** detectable after more than two
-> weeks.
-
-**Corrected:** We show that **`r persist_w2` per cent** of the initial effect of fact-checks on
-factual beliefs is still detectable one week after initial exposure, with
-**`r persist_w3` percent** detectable after more than two weeks.
-
-> The effects of fact-checks observed immediately after treatment dissipate somewhat from Wave 1
-> to Wave 2, on average, at **66.4 per cent** of the initial magnitude.
-
-**Corrected:** The effects of fact-checks observed immediately after treatment dissipate somewhat
-from Wave 1 to Wave 2, on average, at **`r persist_w2` per cent** of the initial magnitude.
-
-> On average, the effect in Wave 3 is **50 per cent** the magnitude of the original effect, though
-> the smaller number of issues and subjects increases our uncertainty.
-
-**Corrected:** On average, the effect in Wave 3 is **`r persist_w3` per cent** the magnitude of
-the original effect, though the smaller number of issues and subjects increases our uncertainty.
-
-> The effects of fact-checks persisted at **66 per cent** the original magnitude after one week
-> and at **50 per cent** after more than two weeks.
-
-**Corrected:** The effects of fact-checks persisted at **`r persist_w2` per cent** the original
-magnitude after one week and at **`r persist_w3` per cent** after more than two weeks.
-
-The Wave 3 correction is larger than the change of pooling alone would make it. The deposited
-three-wave models fitted with covariates regress the wrong outcomes, so the ratio behind appendix
-Table 7's `r appendix_ratio_w3` instruments the Wave 2 outcome rather than the Wave 3 outcome.
-Refitted on Wave 3, the random-effects pool is `r persist_w3` per cent with covariates and
-`r main("Pooled Wave 3 to Wave 1 ratio, unadjusted")` per cent without them.
-
-One caveat the correction does not remove. A random-effects pool is still a precision-weighted
-average: it weights each fact-check by how precisely that fact-check's ratio was measured, not by
-how much of the population of fact-checks it stands for. The corrected percentages are therefore
-still not quite the quantity the sentences describe, which is how much of a typical fact-check's
-effect survives a week. They are the figures the article should have reported, and they are the
-ones a reader can check against the appendix; treating them as an estimate of the population
-average asks more of them than a precision-weighted average can give.
+```{r emit-spine}
+# The machine-readable spine, written wherever this document is rendered. Anything else
+# that needs these entries reads it rather than keeping its own copy, so the two cannot
+# drift.
+write_csv(entries, here("errata_entries.csv"))
+```

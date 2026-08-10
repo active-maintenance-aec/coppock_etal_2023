@@ -1,0 +1,21 @@
+entry,class,source,form,title,location,published,corrected,note
+1,quantity,pipeline,full,The reported total sample size,"published, introduction","To study fact-checking during the 2020 election season, we conducted eight preregistered panel experiments (total [[N = 17,681]]).","To study fact-checking during the 2020 election season, we conducted eight preregistered panel experiments (total [[N = 17,629]]).","The article's own appendix Table 1 reports the eight panel sizes as 2,321, 2,090, 2,059, 2,390, 2,582, 2,200, 1,599 and 2,388, which sum to 17,629, and the deposited respondent data hold exactly that many."
+2,quantity,pipeline,full,The count of experiments in which misinformation reduced accuracy,"published, results","Overall, exposure to the misinformation significantly decreased accuracy in [[twelve]] out of the twenty-four opportunities.","Overall, exposure to the misinformation significantly decreased accuracy in [[thirteen]] out of the twenty-four opportunities.","Appendix Table 1 prints all thirteen in its unadjusted rows, and the deposited estimates and the reproduction agree on every one of them."
+3,float,pipeline,full,Two appendix floats carry the same number,"published, appendix","[[Table 1:]] Sample composition by panel.
+
+[[Table 1:]] Average treatment effects at Wave 1 among all subjects.","the sample composition table on appendix page 3 and the Wave 1 average treatment effect table on appendix page 15 are two different floats, and both are captioned [[Table 1]]. The regression tables that follow are numbered 1 through 7 and the two tables of appendix section 7 are numbered 8 and 9, so the appendix's table numbering runs 1, 1, 2, 3, 4, 5, 6, 7, 8, 9. A reader citing ""appendix Table 1"" cannot be understood.",
+4,quantity,pipeline,full,The persistence percentages in the main text were not recomputed when the analysis was revised,"published, main text, four sentences","We show that [[66 per cent]] of the initial effect of fact-checks on factual beliefs is still detectable one week after initial exposure, with [[50 percent]] detectable after more than two weeks.
+
+The effects of fact-checks observed immediately after treatment dissipate somewhat from Wave 1 to Wave 2, on average, at [[66.4 per cent]] of the initial magnitude.
+
+On average, the effect in Wave 3 is [[50 per cent]] the magnitude of the original effect, though the smaller number of issues and subjects increases our uncertainty.
+
+The effects of fact-checks persisted at [[66 per cent]] the original magnitude after one week and at [[50 per cent]] after more than two weeks.","We show that [[48.9 per cent]] of the initial effect of fact-checks on factual beliefs is still detectable one week after initial exposure, with [[34.3 percent]] detectable after more than two weeks.
+
+The effects of fact-checks observed immediately after treatment dissipate somewhat from Wave 1 to Wave 2, on average, at [[48.9 per cent]] of the initial magnitude.
+
+On average, the effect in Wave 3 is [[34.3 per cent]] the magnitude of the original effect, though the smaller number of issues and subjects increases our uncertainty.
+
+The effects of fact-checks persisted at [[48.9 per cent]] the original magnitude after one week and at [[34.3 per cent]] after more than two weeks.","The Wave 3 correction is larger than the change of pooling alone would make it. The deposited three-wave models fitted with covariates regress the wrong outcomes, so the ratio behind appendix Table 7's 0.43 instruments the Wave 2 outcome rather than the Wave 3 outcome. Refitted on Wave 3, the random-effects pool is 34.3 per cent with covariates and 38.9 per cent without them.
+
+One caveat the correction does not remove. A random-effects pool is still a precision-weighted average: it weights each fact-check by how precisely that fact-check's ratio was measured, not by how much of the population of fact-checks it stands for. The corrected percentages are therefore still not quite the quantity the sentences describe, which is how much of a typical fact-check's effect survives a week. They are the figures the article should have reported, and they are the ones a reader can check against the appendix; treating them as an estimate of the population average asks more of them than a precision-weighted average can give."

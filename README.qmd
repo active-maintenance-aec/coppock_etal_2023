@@ -18,6 +18,14 @@ library(here)
 library(knitr)
 here::i_am("README.qmd")
 
+# The errata are defined once, in errata.qmd, which writes errata_entries.csv when it
+# renders. This report reads that file rather than keeping a second copy of the count or the
+# numbering, because a second copy is how the two would come to disagree.
+spine <- read_csv(here::here("errata_entries.csv"), show_col_types = FALSE)
+n_errata_entries <- nrow(spine)
+spell_errata <- function(n) c("one", "two", "three", "four", "five", "six", "seven",
+                              "eight", "nine", "ten")[n]
+
 latex_out <- knitr::is_latex_output()
 options(width = 200)
 
@@ -218,14 +226,15 @@ are estimable, so the pooling drops a different study.
 
 ## Errata
 
-Six sentences in the published article are wrong, and they are corrected in
+`r str_to_sentence(spell_errata(n_errata_entries))` errors in the published article are corrected in
 [`coppock_etal_2023_errata.pdf`](coppock_etal_2023_errata.pdf), whose values are computed
-at render time from this repository's output. None of them changes a conclusion. In summary: the
-reported total sample size is `r "17,681"` where the article's own appendix table sums to
-`r format(as.numeric(value("art_intro_total_n")), big.mark = ",")`; the count of experiments in
+at render time from this repository's output. None of them changes a conclusion. In summary, and
+numbered as the note numbers them: **1.** the reported total sample size is `r "17,681"` where the
+article's own appendix table sums to
+`r format(as.numeric(value("art_intro_total_n")), big.mark = ",")`; **2.** the count of experiments in
 which misinformation significantly reduced accuracy is given as twelve where the deposited
-estimates give `r value("res_misinfo_sig_count")`; two different appendix floats are both
-captioned Table 1; and the four sentences reporting how much of the correction effect survives to
+estimates give `r value("res_misinfo_sig_count")`; **3.** two different appendix floats are both
+captioned Table 1; and **4.** the four sentences reporting how much of the correction effect survives to
 a later wave report a figure of the order a fixed-effect pool gives where the appendix gives a
 random-effects pool of the same ratios,
 `r main("Pooled Wave 2 to Wave 1 ratio, covariate adjusted")` per cent at Wave 2 and
