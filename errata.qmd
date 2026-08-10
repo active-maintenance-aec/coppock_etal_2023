@@ -142,7 +142,17 @@ entries <- tribble(
     "sentences describe, which is how much of a typical fact-check's effect survives a week. ",
     "They are the figures the article should have reported, and they are the ones a reader ",
     "can check against the appendix; treating them as an estimate of the population average ",
-    "asks more of them than a precision-weighted average can give.")
+    "asks more of them than a precision-weighted average can give."),
+
+  5, "bibliographic", "reference_audit", "brief",
+  "Rathje et al. (2022) is printed with one author",
+  "published p. 1341",
+  "[[Rathje S]] (2022) Letter to the Editors of Psychological Science: Meta-analysis Reveals that Accuracy Nudges Have Little to No Effect for U.S. Conservatives: Regarding Pennycook et al.",
+  "Rathje S et al. (2022) Letter to the Editors of Psychological Science: Meta-analysis Reveals that Accuracy Nudges Have Little to No Effect for U.S. Conservatives: Regarding Pennycook et al.",
+  paste("Crossref, doi 10.31234/osf.io/945na: Rathje, Roozenbeek, Traberg, Van Bavel and",
+        "van der Linden. Four coauthors are missing from the entry, which the reference",
+        "list's own style would give as \"Rathje S et al.\" The in-text citation on p. 1330",
+        "reads \"Rathje et al. 2022\", so the body of the article has it right.")
 ) |>
   mutate(across(c(title, published, corrected, note), as.character))
 
@@ -174,7 +184,8 @@ emit <- function(n, lead = "") {
 
 `r str_glue("{str_to_sentence(number_word(nrow(entries)))} corrections to *British Journal of Political Science* article 10.1017/S0007123422000631.")`
 None of them changes a conclusion of the article, though the fourth moves four published
-percentages by a material amount. Every corrected value below is computed at render time from a
+percentages by a material amount and the fifth is in the reference list. Every corrected value
+below is computed at render time from a
 full reproduction of the published analysis, held in the repository
 `active-maintenance-aec/coppock_etal_2023`. Percentages are given to one decimal place
 throughout, including in sentences where the article gave a whole number, so that every quantity
@@ -206,6 +217,19 @@ emit(4, lead = str_glue(
   "covariate-adjusted ratios computed from the analysis the article actually reports, which ",
   "is the estimator the appendix's own meta-analysis rows use and the specification Figure ",
   "4 plots. Random effects should have been used throughout."))
+```
+
+# The reference list
+
+The entry below corrects the article's reference list. It was found by an audit that sends every printed entry whole to Crossref and checks the authoritative record back into it, and it is verified against the record named in the note. No cited work is missing and no citation in the text points at the wrong work.
+
+```{r reference-entries, results="asis"}
+walk(entries$entry[entries$source == "reference_audit"], function(n) {
+  e <- entries |> filter(entry == n)
+  cat("\n\n## ", e$entry, ". ", e$title, "\n\nPublished, ",
+      str_remove(e$location, "^published "), ":\n\n> ", bold(e$published),
+      "\n\nCorrected:\n\n> ", e$corrected, "\n\n", e$note, "\n", sep = "")
+})
 ```
 
 ```{r emit-spine}

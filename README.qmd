@@ -238,7 +238,14 @@ captioned Table 1; and **4.** the four sentences reporting how much of the corre
 a later wave report a figure of the order a fixed-effect pool gives where the appendix gives a
 random-effects pool of the same ratios,
 `r main("Pooled Wave 2 to Wave 1 ratio, covariate adjusted")` per cent at Wave 2 and
-`r main("Pooled Wave 3 to Wave 1 ratio, covariate adjusted")` per cent at Wave 3.
+`r main("Pooled Wave 3 to Wave 1 ratio, covariate adjusted")` per cent at Wave 3; and **5.** the
+reference list gives Rathje et al. (2022) a single author where the letter has five.
+
+Entry 5 is the only one no ground truth row reaches. It comes from an audit that sends every printed
+reference entry whole to Crossref and checks the authoritative record back into it, which flagged
+three entries here. The other two are false positives: the Axios news item under Fischer (2020) and
+the Pew report under Walker and Gottfried (2019) were each matched to an unrelated journal article,
+and both entries are correct as printed.
 
 ### Corrections the rewrite makes to the deposited code
 

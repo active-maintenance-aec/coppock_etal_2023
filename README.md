@@ -175,7 +175,7 @@ estimable, so the pooling drops a different study.
 
 ## Errata
 
-Four errors in the published article are corrected in
+Five errors in the published article are corrected in
 [`coppock_etal_2023_errata.pdf`](coppock_etal_2023_errata.pdf), whose
 values are computed at render time from this repository’s output. None
 of them changes a conclusion. In summary, and numbered as the note
@@ -187,7 +187,17 @@ different appendix floats are both captioned Table 1; and **4.** the
 four sentences reporting how much of the correction effect survives to a
 later wave report a figure of the order a fixed-effect pool gives where
 the appendix gives a random-effects pool of the same ratios, 48.9 per
-cent at Wave 2 and 34.3 per cent at Wave 3.
+cent at Wave 2 and 34.3 per cent at Wave 3; and **5.** the reference
+list gives Rathje et al. (2022) a single author where the letter has
+five.
+
+Entry 5 is the only one no ground truth row reaches. It comes from an
+audit that sends every printed reference entry whole to Crossref and
+checks the authoritative record back into it, which flagged three
+entries here. The other two are false positives: the Axios news item
+under Fischer (2020) and the Pew report under Walker and Gottfried
+(2019) were each matched to an unrelated journal article, and both
+entries are correct as printed.
 
 ### Corrections the rewrite makes to the deposited code
 
