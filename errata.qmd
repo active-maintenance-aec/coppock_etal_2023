@@ -101,8 +101,15 @@ n_stars_should <- as.integer(value("app_reg_stars"))
 #
 # Numbering is the published note's and is APPEND-ONLY: an entry can already have been
 # cited, so a later finding is added at the end and never interleaved.
+#
+# claim_ids is the semicolon-separated list of ground-truth claim_id values the entry
+# corrects, and it is what makes "is this finding published?" a query rather than a reading
+# of every note. It is empty where an entry has no ground-truth row, which is normal for a
+# bibliographic or typographical entry. An entry correcting a sentence that restates a float
+# cell is keyed to the row for the sentence. ground_truth/build_ground_truth.R refuses to
+# build if any id here is absent from the ground truth.
 entries <- tribble(
-  ~entry, ~class, ~source, ~form, ~title, ~location, ~published, ~corrected, ~note,
+  ~entry, ~class, ~source, ~form, ~title, ~location, ~published, ~corrected, ~note, ~claim_ids,
 
   1, "quantity", "pipeline", "full",
   "The reported total sample size",
@@ -113,6 +120,7 @@ entries <- tribble(
     "The article's own appendix Table 1 reports the eight panel sizes as 2,321, 2,090, ",
     "2,059, 2,390, 2,582, 2,200, 1,599 and 2,388, which sum to {respondents}, and the ",
     "deposited respondent data hold exactly that many."),
+  "art_intro_total_n",
 
   2, "quantity", "pipeline", "full",
   "The count of experiments in which misinformation reduced accuracy",
@@ -122,6 +130,7 @@ entries <- tribble(
   str_glue(
     "Appendix Table 1 prints all {significant_misinformation} in its unadjusted rows, and ",
     "the deposited estimates and the reproduction agree on every one of them."),
+  "res_misinfo_sig_count",
 
   3, "float", "pipeline", "full",
   "Two appendix floats carry the same number",
@@ -131,6 +140,7 @@ entries <- tribble(
         "[[Table 1:]] Average treatment effects at Wave 1 among all subjects."),
   "the sample composition table on appendix page 3 and the Wave 1 average treatment effect table on appendix page 15 are two different floats, and both are captioned [[Table 1]]. The regression tables that follow are numbered 1 through 7 and the two tables of appendix section 7 are numbered 8 and 9, so the appendix's table numbering runs 1, 1, 2, 3, 4, 5, 6, 7, 8, 9. A reader citing \"appendix Table 1\" cannot be understood.",
   "",
+  "app_duplicate_table_1",
 
   4, "quantity", "pipeline", "full",
   "The persistence percentages in the main text were not recomputed when the analysis was revised",
@@ -167,6 +177,7 @@ entries <- tribble(
     "They are the figures the article should have reported, and they are the ones a reader ",
     "can check against the appendix; treating them as an estimate of the population average ",
     "asks more of them than a precision-weighted average can give."),
+  "art_intro_persist_w2;art_intro_persist_w3;res_persist_w2_precise;res_persist_w3_precise;disc_persist_w2;disc_persist_w3",
 
   5, "bibliographic", "reference_audit", "brief",
   "Rathje et al. (2022) is printed with one author",
@@ -177,6 +188,7 @@ entries <- tribble(
         "van der Linden. Four coauthors are missing from the entry, which the reference",
         "list's own style would give as \"Rathje S et al.\" The in-text citation on p. 1330",
         "reads \"Rathje et al. 2022\", so the body of the article has it right."),
+  "",
 
   6, "bibliographic", "reference_audit", "brief",
   "Pennycook and Rand (2019) is printed with the wrong initial",
@@ -188,6 +200,7 @@ entries <- tribble(
         "lines below, and footnote 2 of the article cites \"Pennycook and Rand 2019\", so",
         "only the initial in this entry is wrong. It appears to have been copied from",
         "Rand's."),
+  "",
 
   7, "bibliographic", "reference_audit", "full",
   "Do Facts Matter? is cited with its authors in the wrong order",
@@ -207,6 +220,7 @@ entries <- tribble(
         "keeps the place the published list gave it, under E, because moving an entry is a",
         "re-presentation of the list rather than a correction to it; a reader looking for",
         "it will find it where the article filed it."),
+  "",
 
   8, "bibliographic", "reference_audit", "full",
   "Swire-Thompson is cited under her earlier surname in a 2020 entry",
@@ -224,6 +238,7 @@ entries <- tribble(
         "Society Open Science entry above it is correct as \"Swire B\": the name changed",
         "between the two papers. As with entry 7, the entry keeps its published place in",
         "the list."),
+  "",
 
   9, "bibliographic", "reference_audit", "brief",
   "Porter and Wood (2022) is given the title of its preprint",
@@ -235,6 +250,7 @@ entries <- tribble(
         "1812-1817. The volume and the page range are the version of record's; the title is",
         "the OSF preprint's, which the entry also links. The two are different documents and",
         "the entry mixes them."),
+  "",
 
   10, "bibliographic", "reference_audit", "brief",
   "Nyhan (2020) is given a month where its issue number belongs",
@@ -244,6 +260,7 @@ entries <- tribble(
   paste("Crossref, doi 10.1257/jep.34.3.220: Journal of Economic Perspectives 34(3),",
         "220-236. The doi the entry itself prints encodes the issue as 3. Every other entry",
         "in the list that gives an issue gives a numeral."),
+  "",
 
   11, "bibliographic", "reference_audit", "full",
   "Dillard is dated a year before the article it cites appeared",
@@ -260,6 +277,7 @@ entries <- tribble(
         "in its path, and it reports the aftermath of the 6 January 2021 attack on the",
         "Capitol. Its author is Jarrell Dillard, so the initial is right. Dated 2020 the",
         "entry describes a report published before the event it reports."),
+  "",
 
   12, "bibliographic", "reference_audit", "brief",
   "Shin and Thorson (2017) carries a capital left over from its title case",
@@ -270,6 +288,7 @@ entries <- tribble(
         "Fact-Checking Messages on Social Media\" (doi 10.1111/jcom.12284). The reference",
         "list sets titles in sentence case, and the M of Media is the only capital left",
         "standing from the original."),
+  "",
 
   13, "typographical", "remaster", "brief",
   "A sentence break in the appendix has lost its space",
@@ -278,6 +297,7 @@ entries <- tribble(
   "Figures 4, 5, 6 display the coefficient estimates. These regressions return p-values below 0.05",
   paste("Found by reading the appendix against its own PDF while preparing the remastered",
         "edition. The two sentences are run together with no space after the full stop."),
+  "",
 
   14, "float", "remaster", "full",
   "Confidence intervals in the appendix regression tables are printed low bound last",
@@ -296,6 +316,7 @@ entries <- tribble(
         "the pipeline's own version of these tables orders and labels its rows differently",
         "as well, and re-presenting them would be a larger change than the one this entry",
         "describes."),
+  "app_reg_descending",
 
   15, "float", "remaster", "full",
   "Significance markers in the appendix regression tables were set by comparing strings",
@@ -312,6 +333,7 @@ entries <- tribble(
         "deposit's own script prints the published tables verbatim, star pattern included.",
         "As with entry 14, the tables in the remastered edition are reproduced as published",
         "rather than reset."),
+  "app_reg_stars",
 
   16, "quantity", "pipeline", "full",
   "The attitude effects are attenuated by a filter that does not filter",
@@ -348,11 +370,24 @@ entries <- tribble(
     "The article's qualitative claim survives and its magnitude does not. Facts still move ",
     "beliefs far more than they move attitudes, by a factor of roughly thirteen rather than ",
     "the fifty-five the published figures imply. This is the only entry in this note that ",
-    "changes a reported effect rather than a misprint.")
+    "changes a reported effect rather than a misprint."),
+  "art_intro_attitudes_quarter;res_attitudes_half"
 ) |>
   mutate(across(c(title, published, corrected, note), as.character))
 
 stopifnot(nrow(entries) == max(entries$entry), !anyDuplicated(entries$entry))
+
+# Every id an entry claims to correct must be a real ground-truth claim. The build gate in
+# ground_truth/build_ground_truth.R checks the same property from the other side; checking it
+# here too means a dangling id cannot survive a render.
+gt_ids <- read_csv(here::here("ground_truth", "coppock_etal_2023_ground_truth.csv"),
+                   show_col_types = FALSE)$claim_id
+cited_ids <- entries$claim_ids |>
+  str_split(";") |>
+  unlist() |>
+  str_trim() |>
+  discard(\(x) is.na(x) | x == "")
+stopifnot(all(cited_ids %in% gt_ids))
 
 # The spine's markup, resolved for this document. Another renderer resolves it differently.
 bold <- function(x) str_replace_all(x, "\\[\\[(.*?)\\]\\]", "**\\1**")
