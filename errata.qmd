@@ -37,6 +37,21 @@ number_word <- function(x) {
 respondents <- format(as.numeric(value("art_intro_total_n")), big.mark = ",")
 significant_misinformation <- number_word(value("res_misinfo_sig_count"))
 
+# Entry 16. The pooled thermometer effects, from the rewrite's own fits, which apply the
+# subset the deposit's loop intends. Read here so the corrected sentence and its note carry
+# computed values rather than typed ones.
+ft <- read_csv(here::here("maintained", "output", "figure_6_ft_targets_meta.csv"),
+               show_col_types = FALSE) |>
+  filter(lucid_pid_3 == "Overall")
+ft_val <- function(which, col) {
+  row <- ft[ft$term2 == which, ]
+  stopifnot(nrow(row) == 1)
+  row[[col]]
+}
+fc_est <- ft_val("treatmentfactcheck", "estimate")
+mi_est <- ft_val("treatmentcontrol", "estimate")
+f2 <- function(x) sprintf("%.2f", x)
+
 main_claims <- read_csv(here::here("maintained", "output", "text_main_claims.csv"),
                         show_col_types = FALSE)
 
@@ -296,7 +311,44 @@ entries <- tribble(
         "rather than of two numbers. It is deterministic and reproducible: running the",
         "deposit's own script prints the published tables verbatim, star pattern included.",
         "As with entry 14, the tables in the remastered edition are reproduced as published",
-        "rather than reset.")
+        "rather than reset."),
+
+  16, "quantity", "pipeline", "full",
+  "The attitude effects are attenuated by a filter that does not filter",
+  "published pp. 2 and 11",
+  paste(
+    "the effects of fact-checks and misinformation on subsequent attitudes are [[smaller",
+    "than one-quarter of a point]]",
+    "\n\n",
+    "each [[smaller than half a point]]"),
+  str_glue(
+    "the effects of fact-checks and misinformation on subsequent attitudes are ",
+    "[[{f2(fc_est)} of a point and {f2(abs(mi_est))} of a point respectively]]",
+    "\n\n",
+    "[[{f2(fc_est)} and {f2(mi_est)} points]]"),
+  str_glue(
+    "Both sentences describe the pooled effects on the feeling thermometers of the people ",
+    "and institutions the claims are about. The deposit's loop over those targets subsets ",
+    "with filter(all_panels_long, fc == fc, topic_short_2 == topic_short_2), where each ",
+    "bare name resolves to the column rather than to the loop variable that shadows it, so ",
+    "both conditions compare a column with itself and neither subsets anything. Every ",
+    "target model is therefore fitted on all eight panels pooled, including respondents ",
+    "never shown the claim, which dilutes each estimate toward zero and understates its ",
+    "standard error. The loop extracts those two values one row at a time in order to ",
+    "subset, so the intent is not in doubt.",
+    "\n\n",
+    "Fitting the models on the sample the loop intends gives a correction effect of ",
+    "{f2(fc_est)} points (SE {f2(ft_val('treatmentfactcheck','std.error'))}) and a ",
+    "misinformation effect of {f2(mi_est)} points (SE ",
+    "{f2(ft_val('treatmentcontrol','std.error'))}), both significant at the 5 per cent ",
+    "level, against published estimates near 0.2. An independent audit prepared for Ethan ",
+    "Porter in June 2026 recomputed these from the deposited data and reached the same two ",
+    "figures to three decimal places.",
+    "\n\n",
+    "The article's qualitative claim survives and its magnitude does not. Facts still move ",
+    "beliefs far more than they move attitudes, by a factor of roughly thirteen rather than ",
+    "the fifty-five the published figures imply. This is the only entry in this note that ",
+    "changes a reported effect rather than a misprint.")
 ) |>
   mutate(across(c(title, published, corrected, note), as.character))
 
@@ -385,6 +437,24 @@ regression tables that the reproduction measures rather than values in a single 
 
 ```{r remaster-entries, results="asis"}
 walk(entries$entry[entries$source == "remaster"], emit)
+```
+
+# The attitude estimates
+
+The entry below is the only one in this note that changes a reported effect rather than
+correcting a misprint, and it is the last because the numbering of this note is
+append-only: an entry that has been published can already have been cited, so a later
+finding is added at the end and no earlier entry moves.
+
+```{r entry-16, results="asis"}
+emit(16, lead = str_glue(
+  "This note's other entries correct what the article prints. This one corrects what the ",
+  "article concludes from a quantity its own code miscomputed, so it is set out at more ",
+  "length. The finding is not new to this reproduction: the repository has recorded the ",
+  "defect since the rewrite was built, in the reproducibility report rather than here, on ",
+  "the reasoning that the fault lay in the deposited code rather than in the article. That ",
+  "reasoning was wrong. Where a defect in the code reaches the printed page, a reader is ",
+  "misled by the page, and whose mistake it was does not change what the reader takes away."))
 ```
 
 ```{r emit-spine}
