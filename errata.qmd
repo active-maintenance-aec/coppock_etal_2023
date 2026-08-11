@@ -63,6 +63,15 @@ published_ratio <- function(table_number) {
 
 appendix_ratio_w2 <- published_ratio(5)
 appendix_ratio_w3 <- published_ratio(7)
+
+# Entries 14 and 15 describe two properties of the appendix's regression tables rather than
+# a value in one cell, so they are counted from the transcription of the published tables
+# and from the reproduction, never typed.
+n_cells <- nrow(published_cells)
+n_descending <- sum(published_cells$interval_printed_descending)
+n_stars_printed <- sum(published_cells$significance_marker != "" &
+                         !is.na(published_cells$significance_marker))
+n_stars_should <- as.integer(value("app_reg_stars"))
 ```
 
 ```{r entries}
@@ -152,7 +161,142 @@ entries <- tribble(
   paste("Crossref, doi 10.31234/osf.io/945na: Rathje, Roozenbeek, Traberg, Van Bavel and",
         "van der Linden. Four coauthors are missing from the entry, which the reference",
         "list's own style would give as \"Rathje S et al.\" The in-text citation on p. 1330",
-        "reads \"Rathje et al. 2022\", so the body of the article has it right.")
+        "reads \"Rathje et al. 2022\", so the body of the article has it right."),
+
+  6, "bibliographic", "reference_audit", "brief",
+  "Pennycook and Rand (2019) is printed with the wrong initial",
+  "published p. 1340",
+  "[[Pennycook D]] and Rand DG (2019) Lazy, not biased",
+  "Pennycook G and Rand DG (2019) Lazy, not biased",
+  paste("Crossref, doi 10.1016/j.cognition.2018.06.011: Gordon Pennycook and David G. Rand.",
+        "The same author is given correctly as \"Pennycook G\" in the 2021 Nature entry two",
+        "lines below, and footnote 2 of the article cites \"Pennycook and Rand 2019\", so",
+        "only the initial in this entry is wrong. It appears to have been copied from",
+        "Rand's."),
+
+  7, "bibliographic", "reference_audit", "full",
+  "Do Facts Matter? is cited with its authors in the wrong order",
+  "published pp. 1328 and 1340",
+  str_c(
+    "Belief in falsehoods may shape political attitudes and behavior in ways that damage democratic accountability ([[Einstein and Hochschild]] 2015; Nyhan 2020)",
+    "\n\n",
+    "[[Einstein KL and Hochschild J]] (2015) Do Facts Matter? Information and Misinformation in American Politics. Norman, OK: University of Oklahoma Press."),
+  str_c(
+    "Belief in falsehoods may shape political attitudes and behavior in ways that damage democratic accountability ([[Hochschild and Einstein]] 2015; Nyhan 2020)",
+    "\n\n",
+    "[[Hochschild JL and Einstein KL]] (2015) Do Facts Matter? Information and Misinformation in American Politics. Norman, OK: University of Oklahoma Press."),
+  paste("Library of Congress, LCCN 2014027612: \"Do facts matter? : information and",
+        "misinformation in American politics / Jennifer L. Hochschild and Katherine Levine",
+        "Einstein\", Norman: University of Oklahoma Press, 2015. Hochschild is the book's",
+        "first author. The publisher and the city are as the entry gives them. The entry",
+        "keeps the place the published list gave it, under E, because moving an entry is a",
+        "re-presentation of the list rather than a correction to it; a reader looking for",
+        "it will find it where the article filed it."),
+
+  8, "bibliographic", "reference_audit", "full",
+  "Swire-Thompson is cited under her earlier surname in a 2020 entry",
+  "published pp. 1331 and 1341",
+  str_c(
+    "The use of multiple outcome measures helps mitigate concerns about measurement error ([[Swire, DeGutis, and Lazer]] 2020)",
+    "\n\n",
+    "[[Swire B, DeGutis J and Lazer D]] (2020) Searching for the Backfire Effect"),
+  str_c(
+    "The use of multiple outcome measures helps mitigate concerns about measurement error ([[Swire-Thompson, DeGutis, and Lazer]] 2020)",
+    "\n\n",
+    "[[Swire-Thompson B, DeGutis J and Lazer D]] (2020) Searching for the Backfire Effect"),
+  paste("Crossref, doi 10.31234/osf.io/ba2kc, and the published version at",
+        "doi 10.1016/j.jarmac.2020.06.006, both give Briony Swire-Thompson. The 2017 Royal",
+        "Society Open Science entry above it is correct as \"Swire B\": the name changed",
+        "between the two papers. As with entry 7, the entry keeps its published place in",
+        "the list."),
+
+  9, "bibliographic", "reference_audit", "brief",
+  "Porter and Wood (2022) is given the title of its preprint",
+  "published p. 1341",
+  "Porter E and Wood TJ (2022) [[Misinformation on the Facebook news feed: experimental evidence]]. Journal of Politics 84, 1812-1817.",
+  "Porter E and Wood TJ (2022) Political misinformation and factual corrections on the Facebook news feed: experimental evidence. Journal of Politics 84, 1812-1817.",
+  paste("Crossref, doi 10.1086/719271: \"Political Misinformation and Factual Corrections on",
+        "the Facebook News Feed: Experimental Evidence\", The Journal of Politics 84(3),",
+        "1812-1817. The volume and the page range are the version of record's; the title is",
+        "the OSF preprint's, which the entry also links. The two are different documents and",
+        "the entry mixes them."),
+
+  10, "bibliographic", "reference_audit", "brief",
+  "Nyhan (2020) is given a month where its issue number belongs",
+  "published p. 1340",
+  "Nyhan B (2020) Facts and myths about misperceptions. Journal of Economic Perspectives [[34(August)]], 220-236.",
+  "Nyhan B (2020) Facts and myths about misperceptions. Journal of Economic Perspectives 34(3), 220-236.",
+  paste("Crossref, doi 10.1257/jep.34.3.220: Journal of Economic Perspectives 34(3),",
+        "220-236. The doi the entry itself prints encodes the issue as 3. Every other entry",
+        "in the list that gives an issue gives a numeral."),
+
+  11, "bibliographic", "reference_audit", "full",
+  "Dillard is dated a year before the article it cites appeared",
+  "published pp. 1328 and 1339",
+  str_c(
+    "culminated in an insurrection that policymakers have attributed to misinformation about the \"big lie\" of election fraud (Dillard [[2020]]; US House Committee on Energy and Commerce Staff, 2021)",
+    "\n\n",
+    "Dillard J ([[2020]]) Ocasio-Cortez Reveals Past Sexual Assault, Faults GOP over Riot. Bloomberg."),
+  str_c(
+    "culminated in an insurrection that policymakers have attributed to misinformation about the \"big lie\" of election fraud (Dillard [[2021]]; US House Committee on Energy and Commerce Staff, 2021)",
+    "\n\n",
+    "Dillard J ([[2021]]) Ocasio-Cortez Reveals Past Sexual Assault, Faults GOP over Riot. Bloomberg."),
+  paste("The Bloomberg article is dated 2 February 2021, which the entry's own URL records",
+        "in its path, and it reports the aftermath of the 6 January 2021 attack on the",
+        "Capitol. Its author is Jarrell Dillard, so the initial is right. Dated 2020 the",
+        "entry describes a report published before the event it reports."),
+
+  12, "bibliographic", "reference_audit", "brief",
+  "Shin and Thorson (2017) carries a capital left over from its title case",
+  "published p. 1341",
+  "Shin J and Thorson K (2017) Partisan selective sharing: the biased diffusion of fact-checking messages on [[social Media]]. Journal of Communication 67(2), 233-255.",
+  "Shin J and Thorson K (2017) Partisan selective sharing: the biased diffusion of fact-checking messages on social media. Journal of Communication 67(2), 233-255.",
+  paste("The published title is \"Partisan Selective Sharing: The Biased Diffusion of",
+        "Fact-Checking Messages on Social Media\" (doi 10.1111/jcom.12284). The reference",
+        "list sets titles in sentence case, and the M of Media is the only capital left",
+        "standing from the original."),
+
+  13, "typographical", "remaster", "brief",
+  "A sentence break in the appendix has lost its space",
+  "published, appendix p. 8",
+  "Figures 4, 5, 6 display the coefficient [[estimates.These]] regressions return p-values below 0.05",
+  "Figures 4, 5, 6 display the coefficient estimates. These regressions return p-values below 0.05",
+  paste("Found by reading the appendix against its own PDF while preparing the remastered",
+        "edition. The two sentences are run together with no space after the full stop."),
+
+  14, "float", "remaster", "full",
+  "Confidence intervals in the appendix regression tables are printed low bound last",
+  "published, appendix pp. 15 to 20",
+  str_c("12.97 (2.01) [[[16.91, 9.03]]]"),
+  str_glue(
+    "the seven regression tables print [[{n_descending} of their {n_cells} intervals with the ",
+    "bounds transposed]], so that the interval reads from its upper limit to its lower one. ",
+    "The cell quoted above, the first in appendix table 1, should read [9.03, 16.91]. Every ",
+    "interval whose estimate is negated by the table code is affected and no other is."),
+  paste("The deposited script negates an estimate and both of its interval bounds without",
+        "reversing them, so a two-sided interval comes out backwards whenever the sign is",
+        "flipped. The bounds themselves are right and the reproduction returns the same two",
+        "numbers for every affected cell; only their order on the page is wrong. The tables",
+        "in the remastered edition are reproduced as published rather than reset, because",
+        "the pipeline's own version of these tables orders and labels its rows differently",
+        "as well, and re-presenting them would be a larger change than the one this entry",
+        "describes."),
+
+  15, "float", "remaster", "full",
+  "Significance markers in the appendix regression tables were set by comparing strings",
+  "published, appendix pp. 15 to 20",
+  str_glue("[[{n_stars_printed}]] of the {n_cells} cells in the seven regression tables carry a significance marker."),
+  str_glue(
+    "[[{n_stars_should}]] of them have a p-value below 0.05. The marker is on the wrong cells: ",
+    "\"0.0144\" sorts before \"0.05\" and earns a star, while \"1.28e-10\" sorts after it and does ",
+    "not, so the most significant estimates in these tables are among the unstarred ones."),
+  paste("The deposited table script reshapes each fit with a function whose identifier",
+        "columns omit a character column, which coerces every value in the reshaped frame to",
+        "a string; the surviving comparison with 0.05 is then a comparison of two strings",
+        "rather than of two numbers. It is deterministic and reproducible: running the",
+        "deposit's own script prints the published tables verbatim, star pattern included.",
+        "As with entry 14, the tables in the remastered edition are reproduced as published",
+        "rather than reset.")
 ) |>
   mutate(across(c(title, published, corrected, note), as.character))
 
@@ -230,6 +374,17 @@ walk(entries$entry[entries$source == "reference_audit"], function(n) {
       str_remove(e$location, "^published "), ":\n\n> ", bold(e$published),
       "\n\nCorrected:\n\n> ", e$corrected, "\n\n", e$note, "\n", sep = "")
 })
+```
+
+# Found while preparing the remastered edition
+
+The entries below were found by reading every word of the article and its appendix against
+the published PDF while a corrected re-typesetting was being prepared, which is a finer sieve
+than any pass this repository had run. The last two describe properties of the appendix's
+regression tables that the reproduction measures rather than values in a single cell.
+
+```{r remaster-entries, results="asis"}
+walk(entries$entry[entries$source == "remaster"], emit)
 ```
 
 ```{r emit-spine}

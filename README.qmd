@@ -24,7 +24,9 @@ here::i_am("README.qmd")
 spine <- read_csv(here::here("errata_entries.csv"), show_col_types = FALSE)
 n_errata_entries <- nrow(spine)
 spell_errata <- function(n) c("one", "two", "three", "four", "five", "six", "seven",
-                              "eight", "nine", "ten")[n]
+                              "eight", "nine", "ten", "eleven", "twelve",
+                              "thirteen", "fourteen", "fifteen", "sixteen",
+                              "seventeen", "eighteen", "nineteen", "twenty")[n]
 
 latex_out <- knitr::is_latex_output()
 options(width = 200)

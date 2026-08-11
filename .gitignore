@@ -18,3 +18,7 @@ report/maintained/
 
 # Rendered errata; the PDF is built from errata.qmd
 /errata_files/
+
+# The remastered edition is not public. Alex, 2026-08-10: "not ready for the
+# remasters to be public." See claude_control/protocols/remaster.md.
+remaster/
