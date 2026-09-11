@@ -175,21 +175,25 @@ estimable, so the pooling drops a different study.
 
 ## Errata
 
-Five errors in the published article are corrected in
+Eighteen errors in the published article are corrected in
 [`coppock_etal_2023_errata.pdf`](coppock_etal_2023_errata.pdf), whose
-values are computed at render time from this repository’s output. None
-of them changes a conclusion. In summary, and numbered as the note
-numbers them: **1.** the reported total sample size is 17,681 where the
-article’s own appendix table sums to 17,629; **2.** the count of
-experiments in which misinformation significantly reduced accuracy is
-given as twelve where the deposited estimates give 13; **3.** two
-different appendix floats are both captioned Table 1; and **4.** the
-four sentences reporting how much of the correction effect survives to a
-later wave report a figure of the order a fixed-effect pool gives where
-the appendix gives a random-effects pool of the same ratios, 48.9 per
-cent at Wave 2 and 34.3 per cent at Wave 3; and **5.** the reference
-list gives Rathje et al. (2022) a single author where the letter has
-five.
+values are computed at render time from this repository’s output. **One
+of them changes a conclusion**: entry 4 withdraws the claim that the
+effects of fact-checks remain detectable more than two weeks after
+exposure, for the reason entry 18 gives. Everything else the article
+concludes stands. In summary, and numbered as the note numbers them:
+**1.** the reported total sample size is 17,681 where the article’s own
+appendix table sums to 17,629; **2.** the count of experiments in which
+misinformation significantly reduced accuracy is given as twelve where
+the deposited estimates give 13; **3.** two different appendix floats
+are both captioned Table 1; and **4.** the four sentences reporting how
+much of the correction effect survives to a later wave report a figure
+of the order a fixed-effect pool gives where the appendix gives a
+random-effects pool of the same ratios, 48.9 per cent at Wave 2 and 34.3
+per cent at Wave 3, and report the Wave 3 effect as detectable when
+neither it nor its ratio is distinguishable from zero; and **5.** the
+reference list gives Rathje et al. (2022) a single author where the
+letter has five.
 
 Entry 5 is the only one no ground truth row reaches. It comes from an
 audit that sends every printed reference entry whole to Crossref and
@@ -254,9 +258,14 @@ conditional-effect block below, so this is a copy-and-paste slip. Two
 published artifacts show it. Appendix Table 7’s `w1` row holds the wave
 3 estimate and its unlabelled row holds the wave 2 estimate, which is
 why 7 of its 21 cells reproduce where the other six regression tables
-reproduce completely. And Figure 4’s bottom-left panel draws its Wave 1
-and Wave 2 points at the same height, because they are the same
-estimate.
+reproduce completely. That count asks whether a published value appears
+anywhere in the corrected table; asked row by row, which is the question
+a reader of the page asks, every one of the table’s cells is wrong where
+it stands. And Figure 4’s bottom-left panel draws its Wave 1 and Wave 2
+points at the same height, because they are the same estimate. This is
+erratum 18, and the blank Wave column that hides it on the page, which
+the same block produces by declaring the wave factor with the two-wave
+tables’ levels, is erratum 17.
 
 **Every negated confidence interval prints backwards.** The deposit’s
 `filter_and_flip()` negates the estimate and both interval bounds for
@@ -273,10 +282,13 @@ outside `id.vars` every melted value becomes a string. The surviving
 `"0.0144"` sorts before `"0.05"` and earns a star while `"1.28e-10"`
 sorts after it and does not. The effect is that the most significant
 estimates in the table are the ones printed without a marker: the
-published tables carry 205 stars where 256 cells have p \< 0.05. This is
-deterministic, it is visible on the page once you know to look for it,
-and it is a property of the presentation rather than of any estimate, so
-it stays a finding here rather than an erratum.
+published tables carry 205 stars where 256 cells have p \< 0.05. It is
+deterministic and visible on the page once you know to look for it. It
+was recorded here rather than in the errata while it was read as a
+property of the presentation rather than of an estimate; that reading
+did not survive the remastered edition, which had to set these tables
+and could not set a marker it knew to be on the wrong cell. It is
+erratum 15, as the transposed intervals above are erratum 14.
 
 ### The persistence percentages are pooled one way in the main text and another in the appendix
 

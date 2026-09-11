@@ -64,20 +64,49 @@ main <- function(label) {
 persist_w2 <- main("Pooled Wave 2 to Wave 1 ratio, covariate adjusted")
 persist_w3 <- main("Pooled Wave 3 to Wave 1 ratio, covariate adjusted")
 
+# Entry 4's Wave 3 claim, which is a claim about detection and not only about magnitude. The
+# six three-wave experiments are read out of the reproduction's own formatted cells, so how
+# many of them survive to Wave 3 is counted rather than asserted.
+three_wave <- read_csv(here::here("maintained", "output",
+                                  "table_a8_persistence_p3_adj.csv"),
+                       show_col_types = FALSE) |>
+  rename(cell = `Average Effect of Correction versus Control`) |>
+  mutate(starred = str_detect(cell, fixed("*")))
+
+w3_issues <- three_wave |> filter(wave == "w3", topic_short != "Meta-analysis")
+w3_n <- nrow(w3_issues)
+w3_sig <- sum(w3_issues$starred)
+w3_survivor <- w3_issues$topic_short[w3_issues$starred]
+w1_sig <- sum(three_wave$starred[three_wave$wave == "w1" &
+                                   three_wave$topic_short != "Meta-analysis"])
+
+pooled_cell <- function(w) {
+  cell <- three_wave$cell[three_wave$wave == w &
+                            three_wave$topic_short == "Meta-analysis"]
+  stopifnot(length(cell) == 1)
+  cell
+}
+w3_pooled <- pooled_cell("w3")
+w3_ratio_pooled <- pooled_cell("ratio")
+stopifnot(w3_sig == 1, !str_detect(w3_pooled, fixed("*")),
+          !str_detect(w3_ratio_pooled, fixed("*")))
+
 # The appendix's own printed ratio rows, read out of the transcription of the
 # published appendix rather than reconstructed from the reproduction.
 published_cells <- read_csv(here::here("ground_truth", "published_appendix_values.csv"),
                             show_col_types = FALSE)
 
-published_ratio <- function(table_number) {
+published_ratio <- function(table_number, covariates = "yes") {
   row <- published_cells |>
-    filter(appendix_table == table_number, row_label == "Meta-analysis Meta-analysis ratio yes")
+    filter(appendix_table == table_number,
+           row_label == str_c("Meta-analysis Meta-analysis ratio ", covariates))
   stopifnot(nrow(row) == 1)
   sprintf("%.2f", row$estimate)
 }
 
 appendix_ratio_w2 <- published_ratio(5)
 appendix_ratio_w3 <- published_ratio(7)
+appendix_ratio_w3_unadj <- published_ratio(6, "no")
 
 # Entries 14 and 15 describe two properties of the appendix's regression tables rather than
 # a value in one cell, so they are counted from the transcription of the published tables
@@ -87,6 +116,39 @@ n_descending <- sum(published_cells$interval_printed_descending)
 n_stars_printed <- sum(published_cells$significance_marker != "" &
                          !is.na(published_cells$significance_marker))
 n_stars_should <- as.integer(value("app_reg_stars"))
+
+# Entries 17 and 18, the two three-wave tables. Both are counted from the transcription of
+# the published pages and from the reproduction, the same way as 14 and 15. A wave token is
+# missing from a row_label exactly where the published page leaves the Wave cell empty, so
+# the count of blank cells is a property of the transcription rather than a reading of it.
+three_wave_cells <- published_cells |> filter(appendix_table %in% c(6, 7))
+n_three_wave_rows <- nrow(three_wave_cells)
+n_blank_wave <- sum(!str_detect(three_wave_cells$row_label, "\\b(w1|w3|ratio)\\b"))
+
+# Every cell of appendix Table 7 is wrong where it stands. The ground truth's count of it
+# asks a different question, whether a published value appears ANYWHERE in the corrected
+# table, and seven do, on rows other than their own: those are the Wave 1 rows, which hold
+# the Wave 3 estimate. The remainder hold estimates of an outcome the table does not report.
+t7_cells <- as.integer(value("app_reg_t7_cells", "value_paper"))
+t7_misplaced <- as.integer(value("app_reg_t7_cells"))
+t7_absent <- t7_cells - t7_misplaced
+
+# The one cell entry 18 quotes, from each side. The published side is the transcription; the
+# corrected side is the reproduction's own formatted output, which is what the edition sets.
+t7_w1_row <- "Presidential winner must be announced election night Panel 6 (MTurk) w1 yes"
+t7_published <- three_wave_cells |> filter(appendix_table == 7, row_label == t7_w1_row)
+stopifnot(nrow(t7_published) == 1)
+t7_published_cell <- sprintf("%.2f (%.2f) [%.2f, %.2f]", t7_published$estimate,
+                             t7_published$std_error, t7_published$interval_first,
+                             t7_published$interval_second)
+
+t7_corrected_cell <- read_csv(
+  here::here("maintained", "output", "table_a8_persistence_p3_adj.csv"),
+  show_col_types = FALSE) |>
+  filter(topic_short == "Presidential winner must be announced election night",
+         wave == "w1") |>
+  pull(`Average Effect of Correction versus Control`)
+stopifnot(length(t7_corrected_cell) == 1)
 ```
 
 ```{r entries}
@@ -143,40 +205,53 @@ entries <- tribble(
   "app_duplicate_table_1",
 
   4, "quantity", "pipeline", "full",
-  "The persistence percentages in the main text were not recomputed when the analysis was revised",
-  "published, main text, four sentences",
+  "The claim that fact-check effects remain detectable after more than two weeks",
+  "published, main text, four passages",
   str_c(
-    "We show that [[66 per cent]] of the initial effect of fact-checks on factual beliefs is still detectable one week after initial exposure, with [[50 percent]] detectable after more than two weeks.",
+    # The mark runs from the comma, not from "with": the corrected text ends
+    # the sentence there, so the published comma becomes a full stop and an
+    # unmarked change would go onto the remastered page with no colour, rule
+    # or flag against it.
+    "We show that [[66 per cent]] of the initial effect of fact-checks on factual beliefs is still detectable one week after initial [[exposure, with 50 percent detectable after more than two weeks]].",
     "\n\n",
     "The effects of fact-checks observed immediately after treatment dissipate somewhat from Wave 1 to Wave 2, on average, at [[66.4 per cent]] of the initial magnitude.",
     "\n\n",
     "On average, the effect in Wave 3 is [[50 per cent]] the magnitude of the original effect, though the smaller number of issues and subjects increases our uncertainty.",
     "\n\n",
-    "The effects of fact-checks persisted at [[66 per cent]] the original magnitude after one week and at [[50 per cent]] after more than two weeks."),
+    "Over time, the effects [[attenuate, but they remain detectable. The effects of fact-checks persisted at 66 per cent the original magnitude after one week and at 50 per cent after more than two weeks]]."),
   str_c(
-    str_glue("We show that [[{persist_w2} per cent]] of the initial effect of fact-checks on factual beliefs is still detectable one week after initial exposure, with [[{persist_w3} percent]] detectable after more than two weeks."),
+    str_glue("We show that [[{persist_w2} per cent]] of the initial effect of fact-checks on factual beliefs is still detectable one week after initial [[exposure. More than two weeks after exposure the estimate is {persist_w3} per cent, which this study cannot distinguish from zero]]."),
     "\n\n",
     str_glue("The effects of fact-checks observed immediately after treatment dissipate somewhat from Wave 1 to Wave 2, on average, at [[{persist_w2} per cent]] of the initial magnitude."),
     "\n\n",
-    str_glue("On average, the effect in Wave 3 is [[{persist_w3} per cent]] the magnitude of the original effect, though the smaller number of issues and subjects increases our uncertainty."),
+    str_glue("On average, the effect in Wave 3 is [[{persist_w3} per cent the magnitude of the original effect, though neither that share nor the pooled Wave 3 effect itself is distinguishable from zero, and only {number_word(w3_sig)} of the {number_word(w3_n)} issues has a Wave 3 effect that is]]."),
     "\n\n",
-    str_glue("The effects of fact-checks persisted at [[{persist_w2} per cent]] the original magnitude after one week and at [[{persist_w3} per cent]] after more than two weeks.")),
+    str_glue("Over time, the effects [[attenuate. They remain detectable one week after exposure, at {persist_w2} per cent of the original magnitude. The Wave 3 estimate, more than two weeks after exposure, is {persist_w3} per cent of the original magnitude and is not distinguishable from zero]].")),
   str_glue(
-    "The Wave 3 correction is larger than the change of pooling alone would make it. The ",
+    "THIS ENTRY CHANGES A CONCLUSION OF THE ARTICLE, and it is the only one that does. The ",
+    "article reports that the effects of fact-checks remain detectable more than two weeks ",
+    "after exposure. They do not, in these data. The pooled Wave 3 effect is {w3_pooled} and ",
+    "the share of the Wave 1 effect it represents is {w3_ratio_pooled}; neither is ",
+    "distinguishable from zero. The one-week claim is unaffected and stands.",
+    "\n\n",
+    "The magnitude and the detection claim have the same cause, which is entry 18. The ",
     "deposited three-wave models fitted with covariates regress the wrong outcomes, so the ",
     "ratio behind appendix Table 7's {appendix_ratio_w3} instruments the Wave 2 outcome ",
-    "rather than the Wave 3 outcome. Refitted on Wave 3, the random-effects pool is ",
-    "{persist_w3} per cent with covariates and ",
-    "{main('Pooled Wave 3 to Wave 1 ratio, unadjusted')} per cent without them.",
+    "rather than the Wave 3 outcome. That cell carried a significance marker and its interval ",
+    "excluded zero, and it was the only statistical support anywhere in the article for the ",
+    "two-week claim; the unadjusted table beside it already reported {appendix_ratio_w3_unadj} ",
+    "with an interval spanning zero, and the two published tables therefore disagreed with ",
+    "each other. Refitted on Wave 3, the random-effects pool is {persist_w3} per cent with ",
+    "covariates and {main('Pooled Wave 3 to Wave 1 ratio, unadjusted')} per cent without them, ",
+    "and neither is significant.",
     "\n\n",
-    "One caveat the correction does not remove. A random-effects pool is still a ",
-    "precision-weighted average: it weights each fact-check by how precisely that ",
-    "fact-check's ratio was measured, not by how much of the population of fact-checks it ",
-    "stands for. The corrected percentages are therefore still not quite the quantity the ",
-    "sentences describe, which is how much of a typical fact-check's effect survives a week. ",
-    "They are the figures the article should have reported, and they are the ones a reader ",
-    "can check against the appendix; treating them as an estimate of the population average ",
-    "asks more of them than a precision-weighted average can give."),
+    "The per-issue pattern is what makes the corrected sentence unsupportable rather than ",
+    "merely imprecise. Of the {number_word(w3_n)} issues fielded across three waves, ",
+    "{number_word(w1_sig)} had a Wave 1 effect distinguishable from zero and ",
+    "{number_word(w3_sig)} still has one at Wave 3: \"{w3_survivor}\", whose effect barely ",
+    "decays at all. The pooled {persist_w3} per cent is an average over that one issue and ",
+    "{number_word(w3_n - w3_sig)} nulls, two of which are wrong-signed. What these data ",
+    "support is that one correction survived more than two weeks intact and the rest did not."),
   "art_intro_persist_w2;art_intro_persist_w3;res_persist_w2_precise;res_persist_w3_precise;disc_persist_w2;disc_persist_w3",
 
   5, "bibliographic", "reference_audit", "brief",
@@ -311,11 +386,9 @@ entries <- tribble(
   paste("The deposited script negates an estimate and both of its interval bounds without",
         "reversing them, so a two-sided interval comes out backwards whenever the sign is",
         "flipped. The bounds themselves are right and the reproduction returns the same two",
-        "numbers for every affected cell; only their order on the page is wrong. The tables",
-        "in the remastered edition are reproduced as published rather than reset, because",
-        "the pipeline's own version of these tables orders and labels its rows differently",
-        "as well, and re-presenting them would be a larger change than the one this entry",
-        "describes."),
+        "numbers for every affected cell; only their order on the page is wrong. The",
+        "remastered edition sets all seven tables from the reproduction, so every interval",
+        "in it reads from its lower limit to its upper one."),
   "app_reg_descending",
 
   15, "float", "remaster", "full",
@@ -331,16 +404,19 @@ entries <- tribble(
         "a string; the surviving comparison with 0.05 is then a comparison of two strings",
         "rather than of two numbers. It is deterministic and reproducible: running the",
         "deposit's own script prints the published tables verbatim, star pattern included.",
-        "As with entry 14, the tables in the remastered edition are reproduced as published",
-        "rather than reset."),
+        "As with entry 14, the remastered edition sets the tables from the reproduction, so",
+        "its marker follows the p-value."),
   "app_reg_stars",
 
   16, "quantity", "pipeline", "full",
   "The attitude effects are attenuated by a filter that does not filter",
   "published pp. 2 and 11",
-  paste(
-    "the effects of fact-checks and misinformation on subsequent attitudes are [[smaller",
-    "than one-quarter of a point]]",
+  # str_c, not paste: paste's separator puts a space on either side of the block
+  # break, and a block that begins or ends with one does not match the published
+  # page. See the whitespace check below the tribble.
+  str_c(
+    "the effects of fact-checks and misinformation on subsequent attitudes are ",
+    "[[smaller than one-quarter of a point]]",
     "\n\n",
     "each [[smaller than half a point]]"),
   str_glue(
@@ -371,11 +447,68 @@ entries <- tribble(
     "beliefs far more than they move attitudes, by a factor of roughly thirteen rather than ",
     "the fifty-five the published figures imply. This is the only entry in this note that ",
     "changes a reported effect rather than a misprint."),
-  "art_intro_attitudes_quarter;res_attitudes_half"
+  "art_intro_attitudes_quarter;res_attitudes_half",
+
+  17, "float", "remaster", "full",
+  "The Wave column is empty on every Wave 3 row of the three-wave tables",
+  "published, appendix p. 20",
+  str_glue("[[{n_blank_wave}]] of the {n_three_wave_rows} rows of appendix Tables 6 and 7 print nothing in the Wave column."),
+  str_glue(
+    "every one of them is a [[Wave 3]] row. The edition sets w3 in those cells and returns ",
+    "each group of rows to the order w1, w3, ratio."),
+  paste("The deposited table script builds the three-wave tables with the two-wave tables'",
+        "factor levels, c(\"w1\", \"w2\", \"ratio\"), so every w3 value becomes NA. xtable prints",
+        "NA as an empty cell, and the sort on that factor puts the rows carrying it last,",
+        "which is also why each group reads w1, then ratio, then an unlabelled row. The same",
+        "line is right where it appears earlier in the same file for the two-wave tables,",
+        "whose waves those levels are. Table 6's",
+        "numbers are unaffected and every one of its cells reproduces. Table 7's are not, for",
+        "the reason entry 18 gives."),
+  "",
+
+  18, "float", "pipeline", "full",
+  "The adjusted three-wave table reports models of the wrong outcomes",
+  "published, appendix p. 20",
+  str_glue("[[{t7_published_cell}]]"),
+  str_glue(
+    "the Wave 1 row of appendix Table 7 should read [[{t7_corrected_cell}]]. The cell quoted ",
+    "above is that experiment's Wave 3 estimate, printed on its Wave 1 line. ",
+    "[[All {t7_cells} cells of the table]] are wrong where they stand: {t7_misplaced} hold an ",
+    "estimate that belongs to another row of the same table, and {t7_absent} hold estimates ",
+    "of an outcome the table does not report."),
+  paste("The deposit's adjusted three-wave block regresses outcome_w3 for both its Wave 1 and",
+        "its Wave 2 models and outcome_w2 for its Wave 3 model, and instruments outcome_w2",
+        "rather than outcome_w3 in the ratio. The unadjusted block immediately above it pairs",
+        "each wave with its own outcome, and so does the covariate-adjusted block for the",
+        "conditional effects below it, so this is a copy-and-paste slip rather than a",
+        "modelling decision. The two models it leaves untouched say so outright: the Wave 3",
+        "model and the ratio carry the two-wave block's outcome and, in the ratio, its whole",
+        "covariate string, so the three-wave block is the two-wave block pasted and only",
+        "half re-edited. Its other trace on the page is Figure 4, whose bottom-left panel",
+        "draws the Wave 1 and the Wave 2 point at the same height because they are the same",
+        "estimate. The unadjusted table beside it, Table 6, is unaffected and reproduces in",
+        "every cell. **This entry is the reason entry 4 changes a conclusion.** The ratio row",
+        "of the published Table 7 carried a significance marker and an interval excluding",
+        "zero, and it was the article's only statistical support for the claim that fact-check",
+        "effects remain detectable more than two weeks after exposure. Instrumented on the",
+        "outcome the table names, the estimate is smaller and its interval spans zero."),
+  "app_reg_t7_cells"
 ) |>
   mutate(across(c(title, published, corrected, note), as.character))
 
 stopifnot(nrow(entries) == max(entries$entry), !anyDuplicated(entries$entry))
+
+# NO BLOCK MAY BEGIN OR END WITH WHITESPACE. A stray space is invisible in this note and
+# does real damage in an edition, where the published block is the string matched against
+# the published page: a trailing space demands whitespace where the page has a full stop, so
+# the match fails and the correction is silently never made, and a leading space is consumed
+# by the replacement, welding the corrected text to the word before it. Entry 16 did both on
+# 2026-08-12, from a paste() whose separator fell either side of the block break, and the
+# edition printed one sentence uncorrected while this note published it as corrected.
+whitespace_at_a_block_edge <- function(x) {
+  str_detect(x, "(^|\n\n)[ \t]") | str_detect(x, "[ \t](\n\n|$)")
+}
+stopifnot(!any(whitespace_at_a_block_edge(c(entries$published, entries$corrected))))
 
 # Every id an entry claims to correct must be a real ground-truth claim. The build gate in
 # ground_truth/build_ground_truth.R checks the same property from the other side; checking it
@@ -397,8 +530,15 @@ blocks <- function(x) str_split_1(x, "\n\n")
 # entry opens with one. Where an entry corrects several passages the blocks pair off in
 # order; entry 3's correction is one explanation of two captions, so the counts differ
 # there and the published blocks are set together ahead of it.
+# Which entries this document has set, so that the check at the foot of the file can refuse
+# a spine entry that no section emits. The sections are explicit lists rather than a walk
+# over the whole spine, because the order of the note is not the order of the numbering:
+# entry 16 is set last of the first sixteen, and 17 and 18 follow it.
+emitted <- integer(0)
+
 emit <- function(n, lead = "") {
   e <- entries |> filter(entry == n)
+  emitted <<- c(emitted, n)
   cat("\n\n## ", e$entry, ". ", e$title, "\n\n", sep = "")
   if (lead != "") cat(lead, "\n\n", sep = "")
   was <- blocks(e$published)
@@ -414,8 +554,13 @@ emit <- function(n, lead = "") {
 ```
 
 `r str_glue("{str_to_sentence(number_word(nrow(entries)))} corrections to *British Journal of Political Science* article 10.1017/S0007123422000631.")`
-None of them changes a conclusion of the article, though the fourth moves four published
-percentages by a material amount and the fifth is in the reference list. Every corrected value
+**One of them changes a conclusion of the article.** Entry 4 withdraws the claim that the effects
+of fact-checks remain detectable more than two weeks after exposure. The pooled Wave 3 effect is
+not distinguishable from zero, nor is the share of the Wave 1 effect it represents, and the only
+statistical support the article had for the claim was a cell produced by a model of the wrong
+outcome, which entry 18 corrects. The one-week finding is unaffected and stands, as does
+everything else the article concludes. Of the remaining entries, eight are in the reference list
+and the rest correct misprints and appendix floats. Every corrected value
 below is computed at render time from a
 full reproduction of the published analysis, held in the repository
 `active-maintenance-aec/coppock_etal_2023`. Percentages are given to one decimal place
@@ -457,6 +602,7 @@ The entry below corrects the article's reference list. It was found by an audit 
 ```{r reference-entries, results="asis"}
 walk(entries$entry[entries$source == "reference_audit"], function(n) {
   e <- entries |> filter(entry == n)
+  emitted <<- c(emitted, n)
   cat("\n\n## ", e$entry, ". ", e$title, "\n\nPublished, ",
       str_remove(e$location, "^published "), ":\n\n> ", bold(e$published),
       "\n\nCorrected:\n\n> ", e$corrected, "\n\n", e$note, "\n", sep = "")
@@ -471,15 +617,15 @@ than any pass this repository had run. The last two describe properties of the a
 regression tables that the reproduction measures rather than values in a single cell.
 
 ```{r remaster-entries, results="asis"}
-walk(entries$entry[entries$source == "remaster"], emit)
+walk(c(13, 14, 15), emit)
 ```
 
 # The attitude estimates
 
-The entry below is the only one in this note that changes a reported effect rather than
-correcting a misprint, and it is the last because the numbering of this note is
-append-only: an entry that has been published can already have been cited, so a later
-finding is added at the end and no earlier entry moves.
+The entry below changes a reported effect rather than correcting a misprint, and it is set
+out here rather than earlier because the numbering of this note is append-only: an entry
+that has been published can already have been cited, so a later finding is added at the end
+and no earlier entry moves.
 
 ```{r entry-16, results="asis"}
 emit(16, lead = str_glue(
@@ -492,7 +638,20 @@ emit(16, lead = str_glue(
   "misled by the page, and whose mistake it was does not change what the reader takes away."))
 ```
 
+# The three-wave persistence tables
+
+The two entries below correct appendix Tables 6 and 7, which report the persistence of the correction effect to Wave 3. Both were found by setting those tables from the reproduction rather than reproducing the published pages as images, which is what the remastered edition now does with all seven regression tables: a table that has to be rebuilt cell by cell is read far more closely than a table that is photographed. The first corrects a column of labels the deposit's own script emptied. The second corrects the numbers.
+
+```{r three-wave-entries, results="asis"}
+walk(c(17, 18), emit)
+```
+
 ```{r emit-spine}
+# Every entry in the spine is set once by exactly one section above. Without this an entry
+# could be added to the spine, counted in the note's own opening sentence, written into the
+# csv the edition reads, and never printed here.
+stopifnot(setequal(emitted, entries$entry), !anyDuplicated(emitted))
+
 # The machine-readable spine, written wherever this document is rendered. Anything else
 # that needs these entries reads it rather than keeping its own copy, so the two cannot
 # drift.
