@@ -149,6 +149,36 @@ t7_corrected_cell <- read_csv(
          wave == "w1") |>
   pull(`Average Effect of Correction versus Control`)
 stopifnot(length(t7_corrected_cell) == 1)
+
+# Entry 19. Figure 5's five moved values, from each side: the published labels are the
+# transcription of the figure and the corrected ones are the reproduction's own, rendered at
+# the precision the figure prints. The five are named here rather than discovered, so that an
+# entry which names five values cannot quietly become an entry which names four.
+fig5_ids <- gt$claim_id[str_starts(gt$claim_id, "fig5_")]
+fig5_moved <- c("fig5_grp_emotstab_high_treatmentcontrol",
+                "fig5_grp_emotstab_high_treatmentfactcheck",
+                "fig5_grp_pk_low_treatmentcontrol",
+                "fig5_grp_pk_high_treatmentcontrol",
+                "fig5_grp_pk_high_treatmentfactcheck")
+fig5_differs <- keep(fig5_ids,
+                     \(id) abs(as.numeric(value(id, "value_paper")) - value(id)) > 1e-9)
+stopifnot(setequal(fig5_differs, fig5_moved))
+
+pub5 <- function(id) value(id, "value_paper")
+new5 <- function(id) sprintf("%.1f", value(id))
+
+# The corrected text claims that no within-trait comparison in the figure changes direction.
+# Checked here, across all nine traits rather than the two whose values move.
+fig5_traits <- unique(str_match(fig5_ids, "^fig5_(.+)_(?:high|low)_")[, 2])
+fig5_direction_holds <- function(trait, term) {
+  gap <- function(column) {
+    as.numeric(value(str_c("fig5_", trait, "_high_", term), column)) -
+      as.numeric(value(str_c("fig5_", trait, "_low_", term), column))
+  }
+  sign(gap("value_paper")) == sign(gap("value_rewrite"))
+}
+stopifnot(all(map_lgl(fig5_traits, fig5_direction_holds, term = "treatmentcontrol")),
+          all(map_lgl(fig5_traits, fig5_direction_holds, term = "treatmentfactcheck")))
 ```
 
 ```{r entries}
@@ -492,7 +522,50 @@ entries <- tribble(
         "zero, and it was the article's only statistical support for the claim that fact-check",
         "effects remain detectable more than two weeks after exposure. Instrumented on the",
         "outcome the table names, the estimate is smaller and its interval spans zero."),
-  "app_reg_t7_cells"
+  "app_reg_t7_cells",
+
+  19, "float", "pipeline", "full",
+  "Five of the effects in Figure 5 are pooled over one experiment fewer than the figure reports",
+  "published p. 8",
+  str_glue(
+    "Figure 5 gives the high Emotional Stability tercile a misinformation effect of ",
+    "[[{pub5('fig5_grp_emotstab_high_treatmentcontrol')}]] and a correction effect of ",
+    "[[{pub5('fig5_grp_emotstab_high_treatmentfactcheck')}]], and it gives Political knowledge ",
+    "misinformation effects of [[{pub5('fig5_grp_pk_low_treatmentcontrol')}]] in the low ",
+    "tercile and [[{pub5('fig5_grp_pk_high_treatmentcontrol')}]] in the high tercile, with a ",
+    "high-tercile correction effect of [[{pub5('fig5_grp_pk_high_treatmentfactcheck')}]]."),
+  str_glue(
+    "those five effects are [[{new5('fig5_grp_emotstab_high_treatmentcontrol')}]] and ",
+    "[[{new5('fig5_grp_emotstab_high_treatmentfactcheck')}]] for Emotional Stability, and ",
+    "[[{new5('fig5_grp_pk_low_treatmentcontrol')}]], ",
+    "[[{new5('fig5_grp_pk_high_treatmentcontrol')}]] and ",
+    "[[{new5('fig5_grp_pk_high_treatmentfactcheck')}]] for Political knowledge. The figure's ",
+    "other {length(fig5_ids) - length(fig5_moved)} effects are unchanged, and no within-trait ",
+    "comparison in it changes direction."),
+  str_c(
+    "Each value in Figure 5 is a random-effects pool over the twenty-four experiments, one ",
+    "for each fact check in each panel. One of the twenty-four cells of the high Emotional ",
+    "Stability tercile is Panel 6 (MTurk) at the second fact check, and in it the race ",
+    "variable's Other level has a single respondent, so the dummy for that level is nonzero ",
+    "in one row. That row is fitted exactly, its hat value is 1, and the HC2 standard ",
+    "error divides by one minus the hat value, so the version of the estimation package the ",
+    "deposit was built against returns a missing standard error, and not for that coefficient ",
+    "alone: every standard error in the fit comes back missing. The R package sandwich does ",
+    "the same today, warning that the quantity is undefined where the hat value is exactly 1. ",
+    "The pooling step then omits, silently, any experiment whose standard error is missing, ",
+    "so the five values above are pooled over twenty-three experiments while the figure reads ",
+    "twenty-four.",
+    "\n\n",
+    "The deposited code cannot disagree with the published figure. Its figure script reads ",
+    "the saved model objects and never refits, and the saved object carries the missing ",
+    "standard error in that same cell, so a deposit that replays a saved fit reproduces its ",
+    "own published number by construction. The three Political knowledge values were already ",
+    "known to differ from this reproduction, and were attributed to a difference between ",
+    "versions of the estimation package; the two Emotional Stability values appeared to match ",
+    "until the reproduction was re-run against a version that estimates the cell rather than ",
+    "discarding it. The difference is not a matter of which version one prefers. Where a ",
+    "standard error cannot be computed, the experiment leaves the pool without saying so."),
+  str_c(fig5_moved, collapse = ";")
 ) |>
   mutate(across(c(title, published, corrected, note), as.character))
 
@@ -515,11 +588,14 @@ stopifnot(!any(whitespace_at_a_block_edge(c(entries$published, entries$corrected
 # here too means a dangling id cannot survive a render.
 gt_ids <- read_csv(here::here("ground_truth", "coppock_etal_2023_ground_truth.csv"),
                    show_col_types = FALSE)$claim_id
+# purrr::discard is qualified for the same reason it is in build_ground_truth.R: any
+# document that attaches scales after tidyverse gets scales::discard, whose second
+# argument is range, not a predicate.
 cited_ids <- entries$claim_ids |>
   str_split(";") |>
   unlist() |>
   str_trim() |>
-  discard(\(x) is.na(x) | x == "")
+  purrr::discard(\(x) is.na(x) | x == "")
 stopifnot(all(cited_ids %in% gt_ids))
 
 # The spine's markup, resolved for this document. Another renderer resolves it differently.
@@ -559,8 +635,8 @@ of fact-checks remain detectable more than two weeks after exposure. The pooled 
 not distinguishable from zero, nor is the share of the Wave 1 effect it represents, and the only
 statistical support the article had for the claim was a cell produced by a model of the wrong
 outcome, which entry 18 corrects. The one-week finding is unaffected and stands, as does
-everything else the article concludes. Of the remaining entries, eight are in the reference list
-and the rest correct misprints and appendix floats. Every corrected value
+everything else the article concludes. Of the remaining entries, eight are in the reference list,
+two correct estimates the article reports, and the rest correct misprints and appendix floats. Every corrected value
 below is computed at render time from a
 full reproduction of the published analysis, held in the repository
 `active-maintenance-aec/coppock_etal_2023`. Percentages are given to one decimal place
@@ -644,6 +720,14 @@ The two entries below correct appendix Tables 6 and 7, which report the persiste
 
 ```{r three-wave-entries, results="asis"}
 walk(c(17, 18), emit)
+```
+
+# Figure 5
+
+The entry below corrects five of the `r length(fig5_ids)` conditional effects plotted in Figure 5. It is the only entry in this note found by re-running the reproduction against a later version of the package that fits its models, which computes standard errors the earlier version could not and so pools an experiment the published figure left out of five of its values.
+
+```{r entry-19, results="asis"}
+emit(19)
 ```
 
 ```{r emit-spine}

@@ -419,11 +419,13 @@ locus <- tribble(
     "The deposit's table script reshapes each fit with reshape2::melt, whose id.vars omit a character column, so every value becomes a string and the surviving significance test compares strings. Every p-value R prints in scientific notation loses its star.",
   "app_reg_descending", "archive",
     "The deposit negates the misinformation contrast without reversing its interval, so those cells print their bounds high then low.",
-  "fig5_grp_pk_low_treatmentcontrol", "environment",
-    "The two estimatr versions disagree about which HC2 standard errors are estimable for the political knowledge terciles, which changes which studies the pooling drops.",
-  "fig5_grp_pk_high_treatmentcontrol", "environment", "As fig5_grp_pk_low_treatmentcontrol.",
-  "fig5_grp_pk_low_treatmentfactcheck", "environment", "As fig5_grp_pk_low_treatmentcontrol.",
-  "fig5_grp_pk_high_treatmentfactcheck", "environment", "As fig5_grp_pk_low_treatmentcontrol.",
+  "fig5_grp_emotstab_high_treatmentcontrol", "archive",
+    "Each value in Figure 5 is a random-effects pool over the twenty-four fact check by panel experiments. Where a lucid_race level has a single respondent in a cell, that level's dummy is nonzero in one row, the row is fitted exactly and its hat value is 1; HC2 divides by 1 - h, so the estimatr version the deposit was built against returns a missing standard error for every one of the nineteen coefficients in that fit, as sandwich::vcovHC() still does. The pooling step is rma.uni(yi = estimate, sei = std.error), which silently omits a study whose standard error is missing, so the published value pools twenty-three experiments where the figure reads twenty-four. The estimatr the rewrite runs against estimates those cells and pools all twenty-four. Published in the errata note as entry 19.",
+  "fig5_grp_emotstab_high_treatmentfactcheck", "archive", "As fig5_grp_emotstab_high_treatmentcontrol.",
+  "fig5_grp_pk_low_treatmentcontrol", "archive", "As fig5_grp_emotstab_high_treatmentcontrol.",
+  "fig5_grp_pk_high_treatmentcontrol", "archive", "As fig5_grp_emotstab_high_treatmentcontrol.",
+  "fig5_grp_pk_low_treatmentfactcheck", "archive", "As fig5_grp_emotstab_high_treatmentcontrol.",
+  "fig5_grp_pk_high_treatmentfactcheck", "archive", "As fig5_grp_emotstab_high_treatmentcontrol.",
   "fig6_overall_treatmentcontrol", "archive",
     "The deposit's thermometer loop filters with filter(data, fc == fc, topic_short_2 == topic_short_2), where each condition compares a column with itself and subsets nothing, so every target model is fitted on all eight panels pooled. The rewrite applies the subset the loop was written to apply.",
   "fig6_overall_treatmentfactcheck", "archive", "As fig6_overall_treatmentcontrol.",
@@ -655,11 +657,13 @@ write_csv(ground_truth, here::here("ground_truth", "coppock_etal_2023_ground_tru
 # the record is worse than a failed build.
 errata_spine <- here::here("errata_entries.csv")
 if (file.exists(errata_spine)) {
+  # purrr::discard is qualified because helpers.R attaches scales after tidyverse, and
+  # scales::discard(x, range) takes the lambda as its range and dies on range[1].
   cited_ids <- read_csv(errata_spine, show_col_types = FALSE)$claim_ids |>
     str_split(";") |>
     unlist() |>
     str_trim() |>
-    discard(\(x) is.na(x) | x == "")
+    purrr::discard(\(x) is.na(x) | x == "")
   dangling <- setdiff(cited_ids, ground_truth$claim_id)
   if (length(dangling) > 0) print(dangling)
   stopifnot(length(dangling) == 0)

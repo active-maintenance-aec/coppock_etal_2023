@@ -505,7 +505,7 @@ figure("figure_2_raw_outcomes_by_treatment")
 ```{r}
 #| label: figure-5
 #| echo: false
-#| fig-cap: "Figure 5 as the rewrite draws it. Thirty-four of thirty-six labels reproduce; the two political knowledge correction labels move, which is environment drift rather than a defect in either analysis."
+#| fig-cap: "Figure 5 as the rewrite draws it. Thirty-one of the thirty-six labels reproduce the published ones; the five that move are errata entry 19, where the deposit's pooling dropped an experiment whose standard errors it could not compute."
 figure("figure_5_heterogeneity_by_trait")
 ```
 

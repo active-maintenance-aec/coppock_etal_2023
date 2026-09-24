@@ -136,7 +136,7 @@ compared against the saved object.
 
 | objects | estimates agree to 1e-9 | estimates disagree | cells missing on one side |
 |---:|---:|---:|---:|
-| 34 | 23 | 11 | 200 |
+| 34 | 23 | 11 | 225 |
 
 Deposited model objects against a refit from the deposited data.
 
@@ -148,11 +148,11 @@ Deposited model objects against a refit from the deposited data.
 | ates_w3_p3_adj | 6 | 6 | 7.0610233 | 0 |
 | ft_targets_ates_w1_all_adj | 46 | 44 | 4.6340926 | 0 |
 | ft_targets_meta_w1_PID_adj | 6 | 6 | 2.9569308 | NA |
-| meta_trait_cates_w2_p2_adj | 18 | 18 | 2.0977864 | NA |
+| meta_trait_cates_w2_p2_adj | 18 | 18 | 1.7930355 | NA |
 | iv_p3_adj | 6 | 6 | 1.4617805 | 0 |
 | ft_targets_meta_w1_all_adj | 2 | 2 | 0.6069452 | NA |
-| meta_trait_cates_w1_all_adj | 36 | 36 | 0.4848515 | NA |
-| meta_trait_dic_w1_all_adj | 18 | 18 | 0.2771084 | NA |
+| meta_trait_cates_w1_all_adj | 36 | 36 | 0.5175079 | NA |
+| meta_trait_dic_w1_all_adj | 18 | 18 | 0.2600495 | NA |
 
 The objects where the refit and the deposit disagree, and what the
 deposit’s own specification gives.
@@ -175,7 +175,7 @@ estimable, so the pooling drops a different study.
 
 ## Errata
 
-Eighteen errors in the published article are corrected in
+Nineteen errors in the published article are corrected in
 [`coppock_etal_2023_errata.pdf`](coppock_etal_2023_errata.pdf), whose
 values are computed at render time from this repository’s output. **One
 of them changes a conclusion**: entry 4 withdraws the claim that the
@@ -344,7 +344,7 @@ gives the same digits.
 |:-------------|-------------------:|-----------:|-----------:|--------------:|------:|
 | definitional |                  3 |          9 |         21 |             0 |     0 |
 | descriptive  |                  0 |          2 |          0 |             3 |    15 |
-| pipeline     |                 21 |         11 |        130 |             0 |     0 |
+| pipeline     |                 23 |         11 |        128 |             0 |     0 |
 | structural   |                  1 |         12 |         12 |             0 |     0 |
 | transcribed  |                  0 |         14 |          0 |             0 |     0 |
 
@@ -352,8 +352,7 @@ Published claims by type and verdict.
 
 | defect_locus   | rows |
 |:---------------|-----:|
-| archive        |   26 |
-| environment    |    3 |
+| archive        |   31 |
 | paper_internal |    8 |
 | unresolved     |    2 |
 
@@ -486,10 +485,11 @@ plot, which makes them published tables in disguise.
 reproduce the published labels
 exactly.](maintained/output/figure_2_raw_outcomes_by_treatment.png)
 
-![Figure 5 as the rewrite draws it. Thirty-four of thirty-six labels
-reproduce; the two political knowledge correction labels move, which is
-environment drift rather than a defect in either
-analysis.](maintained/output/figure_5_heterogeneity_by_trait.png)
+![Figure 5 as the rewrite draws it. Thirty-one of the thirty-six labels
+reproduce the published ones; the five that move are errata entry 19,
+where the deposit’s pooling dropped an experiment whose standard errors
+it could not
+compute.](maintained/output/figure_5_heterogeneity_by_trait.png)
 
 ![Figure 6 as the rewrite draws it, with the thermometer models fitted
 on the panel that carried each claim. All eight labels differ from the
@@ -519,14 +519,14 @@ changes on every run.
 
 ## R environment
 
-| component | version |
-|:----------|:--------|
-| R         | 4.6.0   |
-| tidyverse | 2.0.0   |
-| estimatr  | 1.0.6   |
-| metafor   | 5.0.1   |
-| ggplot2   | 4.0.3   |
-| broom     | 1.0.13  |
+| component | version    |
+|:----------|:-----------|
+| R         | 4.6.0      |
+| tidyverse | 2.0.0      |
+| estimatr  | 2.0.0.9000 |
+| metafor   | 5.0.1      |
+| ggplot2   | 4.0.3      |
+| broom     | 1.0.13     |
 
 The rewrite keeps the current sampler and the current packages
 throughout. Nothing in this analysis draws at random: no script calls
