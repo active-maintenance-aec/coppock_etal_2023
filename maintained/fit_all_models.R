@@ -21,10 +21,33 @@ persistence_p3_df <- all_panels_long |>
   filter(!is.na(outcome_w1), !is.na(outcome_w3), treatment != "misinformation")
 
 # One model per fact check, in a named group ----
-fit_by_group <- function(data, formula_text, groups) {
+# prune_constant drops a covariate that takes one value inside a group before the
+# fit, and is named at the call sites that subset on a covariate they also adjust
+# for. It is not a default: a covariate that varies is always adjusted for, and a
+# covariate that does not is not estimable, so pruning it moves no estimate and no
+# standard error. It only stops the fit asking for a coefficient that cannot exist.
+fit_by_group <- function(data, formula_text, groups, prune_constant = FALSE) {
+  fit_one <- function(d) {
+    fml <- if (prune_constant) drop_constant_covariates(formula_text, d) else formula_text
+    tidy(lm_robust(formula(fml), data = d))
+  }
   data |>
     group_by(across(all_of(groups))) |>
-    reframe(tidy(lm_robust(formula(formula_text), data = pick(everything()))))
+    reframe(fit_one(pick(everything())))
+}
+
+# Removes each right-hand-side term that is a column of d with one value ----
+# Only additive covariate lists are handled, and the assertion says so rather than
+# leaving it to be discovered: splitting an interacted or parenthesised right-hand
+# side on "+" would hand back a fragment, and a fragment that happened to match a
+# column name would silently leave the specification changed.
+drop_constant_covariates <- function(formula_text, d) {
+  sides <- str_split_1(formula_text, fixed("~"))
+  terms <- str_trim(str_split_1(sides[2], fixed("+")))
+  stopifnot(all(str_detect(terms, "^[A-Za-z.][A-Za-z0-9._]*$")))
+  constant <- terms %in% names(d) &
+    map_lgl(terms, \(term) n_distinct(d[[term]], na.rm = TRUE) < 2)
+  paste(str_trim(sides[1]), "~", paste(terms[!constant], collapse = " + "))
 }
 
 fit_iv_by_group <- function(data, formula_text, groups) {
@@ -97,7 +120,8 @@ by_trait <- function(data) {
 trait_cates_w1_all_adj <- all_panels_long |>
   by_trait() |>
   fit_by_group(paste("outcome_w1 ~ treatment +", rhs(covariates_full)),
-               c("name", "value", "fc", "panel", "panel_factor")) |>
+               c("name", "value", "fc", "panel", "panel_factor"),
+               prune_constant = TRUE) |>
   filter_and_flip() |>
   mutate(type2 = term)
 
@@ -113,7 +137,8 @@ meta_trait_dic_w1_all_adj <- trait_cates_w1_all_adj |>
 trait_cates_w2_p2_adj <- persistence_p2_df |>
   by_trait() |>
   fit_by_group(paste("outcome_w2 ~ treatment +", rhs(covariates_full)),
-               c("name", "value", "fc", "panel", "panel_factor")) |>
+               c("name", "value", "fc", "panel", "panel_factor"),
+               prune_constant = TRUE) |>
   filter_and_flip() |>
   mutate(type2 = term)
 
