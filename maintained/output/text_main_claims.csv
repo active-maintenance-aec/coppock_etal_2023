@@ -7,29 +7,29 @@ Distinct fact checks tested,21
 Mean days from misinformation posting to fielding,13.428571428571429
 "Mean fact-check page views, Republican-congenial claims",138970.9166666667
 "Mean fact-check page views, Democratic-congenial claims",45122.77777777778
-"Meta-analytic misinformation effect, covariate adjusted",4.303050628617299
-"Meta-analytic misinformation effect standard error, covariate adjusted",1.068950774627373
-"Meta-analytic correction effect, covariate adjusted",-10.518621251909826
-"Meta-analytic correction effect standard error, covariate adjusted",1.1406301583577785
-"Meta-analytic misinformation effect, unadjusted",4.121794325271294
-"Meta-analytic correction effect, unadjusted",-10.514251768328252
+"Meta-analytic misinformation effect, covariate adjusted",4.303050628617306
+"Meta-analytic misinformation effect standard error, covariate adjusted",1.0689507746273723
+"Meta-analytic correction effect, covariate adjusted",-10.518621251909824
+"Meta-analytic correction effect standard error, covariate adjusted",1.1406301583577796
+"Meta-analytic misinformation effect, unadjusted",4.121794325271279
+"Meta-analytic correction effect, unadjusted",-10.514251768328243
 Fact checks where misinformation significantly reduced accuracy,13
 Fact checks with a significant negative correction effect,20
 Fact checks where the correction increased false belief,0
 "Wave 2 correction effect as a percentage of Wave 1, covariate adjusted",46.86808409881802
-"Wave 2 correction effect as a percentage of Wave 1, unadjusted",47.93369744019785
-"Wave 3 correction effect as a percentage of Wave 1, covariate adjusted",39.718183270102976
-"Wave 3 correction effect as a percentage of Wave 1, unadjusted",44.87737102927864
-"Pooled Wave 2 to Wave 1 ratio, covariate adjusted",48.94452329308393
-"Pooled Wave 2 to Wave 1 ratio, unadjusted",54.35758722336354
-"Pooled Wave 3 to Wave 1 ratio, covariate adjusted",34.3009254804669
-"Pooled Wave 3 to Wave 1 ratio, unadjusted",38.85968117116973
-"Pooled Wave 2 to Wave 1 ratio, covariate adjusted, fixed effects",64.87320002371877
-"Pooled Wave 2 to Wave 1 ratio, unadjusted, fixed effects",70.75818857255436
-"Pooled Wave 3 to Wave 1 ratio, covariate adjusted, fixed effects",52.16282383908197
-"Pooled Wave 3 to Wave 1 ratio, unadjusted, fixed effects",63.280203392147605
-Largest absolute meta-analytic thermometer effect on the claim's target,0.7971782184117759
-Ratio of the pooled correction effect to the pooled misinformation effect,2.4444567725873534
+"Wave 2 correction effect as a percentage of Wave 1, unadjusted",47.93369744019791
+"Wave 3 correction effect as a percentage of Wave 1, covariate adjusted",39.718183270102735
+"Wave 3 correction effect as a percentage of Wave 1, unadjusted",44.87737102927868
+"Pooled Wave 2 to Wave 1 ratio, covariate adjusted",48.94452329309005
+"Pooled Wave 2 to Wave 1 ratio, unadjusted",54.357587223365186
+"Pooled Wave 3 to Wave 1 ratio, covariate adjusted",34.300925480463206
+"Pooled Wave 3 to Wave 1 ratio, unadjusted",38.85968117116747
+"Pooled Wave 2 to Wave 1 ratio, covariate adjusted, fixed effects",64.87320002372186
+"Pooled Wave 2 to Wave 1 ratio, unadjusted, fixed effects",70.7581885725546
+"Pooled Wave 3 to Wave 1 ratio, covariate adjusted, fixed effects",52.16282383908196
+"Pooled Wave 3 to Wave 1 ratio, unadjusted, fixed effects",63.280203392147385
+Largest absolute meta-analytic thermometer effect on the claim's target,0.7971782184117991
+Ratio of the pooled correction effect to the pooled misinformation effect,2.4444567725873494
 Belief certainty scale minimum,0
 Belief certainty scale maximum,100
 Feeling thermometer maximum,100
@@ -43,7 +43,7 @@ Panels with only two waves,6
 Experiments in the three-wave panels,6
 Tercile groups per index,3
 Maximum weeks of page views observed for a fact check,13
-Confidence level implied by the plotted intervals,95.01374015643624
+Confidence level implied by the plotted intervals,95.01374015643627
 "Respondents, panel_1_lucid",2321
 "Respondents, panel_1_mturk",2090
 "Respondents, panel_2_mturk",2059
