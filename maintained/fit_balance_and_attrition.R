@@ -67,7 +67,7 @@ attrition_regs <- all_panels_long |>
     cbind(responded_w1, responded_w2, responded_w3) ~ treatment,
     data = pick(everything())
   ))) |>
-  filter(term != "(Intercept)", !is.nan(p.value)) |>
+  filter(term != "(Intercept)", !is.na(p.value)) |>
   mutate(
     term = str_remove(term, "treatment"),
     outcome = case_match(
