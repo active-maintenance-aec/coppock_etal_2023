@@ -453,7 +453,7 @@ entries <- tribble(
     "the effects of fact-checks and misinformation on subsequent attitudes are ",
     "[[{f2(fc_est)} of a point and {f2(abs(mi_est))} of a point respectively]]",
     "\n\n",
-    "[[{f2(fc_est)} and {f2(mi_est)} points]]"),
+    "[[{f2(mi_est)} and {f2(fc_est)} points]]"),
   str_glue(
     "Both sentences describe the pooled effects on the feeling thermometers of the people ",
     "and institutions the claims are about. The deposit's loop over those targets subsets ",
