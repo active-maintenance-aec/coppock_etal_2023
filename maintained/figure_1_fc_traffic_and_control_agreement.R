@@ -50,6 +50,8 @@ gg_df$ts2 <- factor(
     pull(ts2)
 )
 
+# The party key is the pair of labels beside the top row's markers, as published,
+# so the figure carries no legend.
 party_labels <- tibble(
   x = c(45, 20.5),
   y = levels(gg_df$ts2)[24],
@@ -79,11 +81,14 @@ g <- ggplot() +
   ) +
   geom_text(
     aes(x, y, label = lab), data = party_labels,
-    hjust = 0, size = 2.7, lineheight = .7, fontface = "italic"
+    hjust = 0, size = 2.2, lineheight = .7, fontface = "italic"
   ) +
+  scale_fill_manual(values = c(Democrat = "grey50", Republican = "white")) +
+  scale_x_continuous(labels = \(x) if_else(x >= 1000, str_c(x / 1000, "k"), as.character(x))) +
   facet_grid(congeniality ~ cfac, scales = "free", space = "free_y", drop = TRUE) +
   theme_bw() +
   theme_tw +
-  labs(x = "", y = "", fill = "")
+  theme(legend.position = "none") +
+  labs(x = "", y = "")
 
 save_figure(g, gg_df, "figure_1_fc_traffic_and_control_agreement", width = 9, height = 7)

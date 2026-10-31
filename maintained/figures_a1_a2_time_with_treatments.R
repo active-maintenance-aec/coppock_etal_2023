@@ -48,14 +48,15 @@ gg_df <- timings |>
                conf.int = TRUE))
 
 # The tercile labels are written directly beside the points rather than into a
-# legend, so only one facet carries them.
+# legend, so only one facet carries them. The dodge is reversed so that high sits
+# above low and Democrat above Republican within each row, as published.
 plot_timings <- function(data, label_data, label_x, facets) {
   ggplot(data, aes(estimate, name, group = value, shape = value)) +
-    geom_point(position = position_dodge(width = .3)) +
+    geom_point(position = position_dodge(width = .3, reverse = TRUE)) +
     geom_linerange(aes(xmin = conf.low, xmax = conf.high),
-                   position = position_dodge(width = .3)) +
+                   position = position_dodge(width = .3, reverse = TRUE)) +
     geom_text(aes(label = value, x = label_x), hjust = 0, size = 2,
-              position = position_dodge(width = .4), data = label_data) +
+              position = position_dodge(width = .4, reverse = TRUE), data = label_data) +
     facets +
     theme_bw() +
     theme(axis.title.y = element_blank(), legend.position = "none",

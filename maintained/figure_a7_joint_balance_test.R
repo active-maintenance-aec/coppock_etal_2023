@@ -17,7 +17,7 @@ g <- gg_df |>
   facet_wrap(~name) +
   theme_bw() +
   theme(strip.background = element_blank()) +
-  labs(x = "p.value of joint test", y = "Count of fact checks")
+  labs(x = "p.value of joint test", y = "count")
 
 save_figure(g, gg_df, "figure_a7_joint_balance_test", width = 6.5, height = 4)
 

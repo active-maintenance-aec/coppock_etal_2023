@@ -43,9 +43,12 @@ g <- gg_df |>
   ) +
   scale_x_continuous(breaks = 1:3, labels = str_c("Wave ", 1:3),
                      expand = expansion(add = .3)) +
+  scale_fill_manual(values = c("False claim congenial to Democrats" = "black",
+                               "False claim congenial to Republicans" = "white")) +
   facet_grid(issues ~ lucid_pid_3, labeller = label_wrap_gen(15)) +
-  labs(x = "", y = "Correction effect estimate", fill = "") +
+  labs(x = "", y = "Factcheck - Control") +
   theme_bw() +
-  theme_tw
+  theme_tw +
+  theme(legend.position = "none")
 
 save_figure(g, gg_df, "figure_4_persistence", width = 9, height = 6)
