@@ -505,8 +505,7 @@ entries <- tribble(
     "the fifty-five the published figures imply. This is the only entry in this note that ",
     "changes a reported effect rather than a misprint."),
   "art_intro_attitudes_quarter;res_attitudes_half",
-
-  NA_character_,
+  str_c(as.integer(max(abs(c(fc_est, mi_est))) < 0.25), ";", as.integer(max(abs(c(fc_est, mi_est))) < 0.5)),
   17, "float", "remaster", "full",
   "The Wave column is empty on every Wave 3 row of the three-wave tables",
   "published, appendix p. 20",
@@ -602,6 +601,18 @@ entries <- tribble(
 
 stopifnot(nrow(entries) == max(entries$entry), !anyDuplicated(entries$entry))
 
+# values_in_spans is FALSE where the claim's scale is not the sentence's, under PROCEDURES'
+# rule that corrected_values is always on the claim's scale. A method row or other id with
+# no number on any scale stores NA in its position. Such an entry's note must say why.
+off_claim_scale <- c(16)
+entries <- entries |>
+  mutate(values_in_spans = case_when(
+    is.na(corrected_values) ~ NA,
+    entry %in% off_claim_scale ~ FALSE,
+    .default = TRUE
+  ))
+stopifnot(all(str_length(entries$note[!replace_na(entries$values_in_spans, TRUE)]) > 0))
+
 # Gate: corrected_values agrees with the sentence it was glued into ----
 # The column and the sentence are written from one expression, so they begin in agreement
 # and this gate exists for the edit that separates them: a value moved from one marked span
@@ -619,7 +630,7 @@ in_span <- function(v, s) {
 }
 
 quantified <- entries |>
-  filter(!is.na(corrected_values)) |>
+  filter(!is.na(corrected_values), values_in_spans) |>
   mutate(ids = str_split(claim_ids, ";"), values = str_split(corrected_values, ";"),
          spans = map(corrected, marked_spans))
 
@@ -641,9 +652,9 @@ if (!all(value_placed)) {
 
 # A quantity entry that corrects something has to say which quantity, and an entry that
 # corrects none (any other class, or a note) may not carry a value. The class is the
-# declaration and this is where it binds. An empty claim_ids counts as missing. Entry 16 is exempt from the first line: its ids are bounds that each cover two estimates.
+# declaration and this is where it binds. An empty claim_ids counts as missing.
 has_ids <- !is.na(entries$claim_ids) & nzchar(entries$claim_ids)
-no_value_ok <- 16
+no_value_ok <- integer(0)
 stopifnot(
   all(!is.na(entries$corrected_values[entries$class == "quantity" & entries$form != "note" &
                                         has_ids & !entries$entry %in% no_value_ok])),
