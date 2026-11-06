@@ -200,20 +200,33 @@ stopifnot(all(map_lgl(fig5_traits, fig5_direction_holds, term = "treatmentcontro
 # bibliographic or typographical entry. An entry correcting a sentence that restates a float
 # cell is keyed to the row for the sentence. ground_truth/build_ground_truth.R refuses to
 # build if any id here is absent from the ground truth.
+#
+# corrected_values runs parallel to claim_ids, one value per id in the same order, carrying
+# the corrected quantity as a number rather than as a sentence. Each value is built from the
+# same expression that builds the marked span of the corrected sentence, so the two cannot be
+# written apart, and the gate below re-checks that each one is still inside its span. An
+# entry that changes no quantity carries NA, as does entry 16: its ids are bounds ("smaller
+# than one-quarter of a point") that each cover two estimates in the corrected sentence, so
+# no single number belongs to either id. Entry 2's span spells its count, so its value is
+# the numeral and the gate accepts either form.
+cv_total   <- respondents
+cv_misinfo <- as.character(value("res_misinfo_sig_count"))
+
 entries <- tribble(
-  ~entry, ~class, ~source, ~form, ~title, ~location, ~published, ~corrected, ~note, ~claim_ids,
+  ~entry, ~class, ~source, ~form, ~title, ~location, ~published, ~corrected, ~note, ~claim_ids, ~corrected_values,
 
   1, "quantity", "pipeline", "full",
   "The reported total sample size",
   "published, introduction",
   "To study fact-checking during the 2020 election season, we conducted eight preregistered panel experiments (total [[N = 17,681]]).",
-  str_glue("To study fact-checking during the 2020 election season, we conducted eight preregistered panel experiments (total [[N = {respondents}]])."),
+  str_glue("To study fact-checking during the 2020 election season, we conducted eight preregistered panel experiments (total [[N = {cv_total}]])."),
   str_glue(
     "The article's own appendix Table 1 reports the eight panel sizes as 2,321, 2,090, ",
     "2,059, 2,390, 2,582, 2,200, 1,599 and 2,388, which sum to {respondents}, and the ",
     "deposited respondent data hold exactly that many."),
   "art_intro_total_n",
 
+  cv_total,
   2, "quantity", "pipeline", "full",
   "The count of experiments in which misinformation reduced accuracy",
   "published, results",
@@ -224,6 +237,7 @@ entries <- tribble(
     "the deposited estimates and the reproduction agree on every one of them."),
   "res_misinfo_sig_count",
 
+  cv_misinfo,
   3, "float", "pipeline", "full",
   "Two appendix floats carry the same number",
   "published, appendix",
@@ -234,6 +248,7 @@ entries <- tribble(
   "",
   "app_duplicate_table_1",
 
+  NA_character_,
   4, "quantity", "pipeline", "full",
   "The claim that fact-check effects remain detectable after more than two weeks",
   "published, main text, four passages",
@@ -284,6 +299,7 @@ entries <- tribble(
     "support is that one correction survived more than two weeks intact and the rest did not."),
   "art_intro_persist_w2;art_intro_persist_w3;res_persist_w2_precise;res_persist_w3_precise;disc_persist_w2;disc_persist_w3",
 
+  str_c(persist_w2, ";", persist_w3, ";", persist_w2, ";", persist_w3, ";", persist_w2, ";", persist_w3),
   5, "bibliographic", "reference_audit", "brief",
   "Rathje et al. (2022) is printed with one author",
   "published p. 1341",
@@ -295,6 +311,7 @@ entries <- tribble(
         "reads \"Rathje et al. 2022\", so the body of the article has it right."),
   "",
 
+  NA_character_,
   6, "bibliographic", "reference_audit", "brief",
   "Pennycook and Rand (2019) is printed with the wrong initial",
   "published p. 1340",
@@ -307,6 +324,7 @@ entries <- tribble(
         "Rand's."),
   "",
 
+  NA_character_,
   7, "bibliographic", "reference_audit", "full",
   "Do Facts Matter? is cited with its authors in the wrong order",
   "published pp. 1328 and 1340",
@@ -327,6 +345,7 @@ entries <- tribble(
         "it will find it where the article filed it."),
   "",
 
+  NA_character_,
   8, "bibliographic", "reference_audit", "full",
   "Swire-Thompson is cited under her earlier surname in a 2020 entry",
   "published pp. 1331 and 1341",
@@ -345,6 +364,7 @@ entries <- tribble(
         "the list."),
   "",
 
+  NA_character_,
   9, "bibliographic", "reference_audit", "brief",
   "Porter and Wood (2022) is given the title of its preprint",
   "published p. 1341",
@@ -357,6 +377,7 @@ entries <- tribble(
         "the entry mixes them."),
   "",
 
+  NA_character_,
   10, "bibliographic", "reference_audit", "brief",
   "Nyhan (2020) is given a month where its issue number belongs",
   "published p. 1340",
@@ -367,6 +388,7 @@ entries <- tribble(
         "in the list that gives an issue gives a numeral."),
   "",
 
+  NA_character_,
   11, "bibliographic", "reference_audit", "full",
   "Dillard is dated a year before the article it cites appeared",
   "published pp. 1328 and 1339",
@@ -384,6 +406,7 @@ entries <- tribble(
         "entry describes a report published before the event it reports."),
   "",
 
+  NA_character_,
   12, "bibliographic", "reference_audit", "brief",
   "Shin and Thorson (2017) carries a capital left over from its title case",
   "published p. 1341",
@@ -395,6 +418,7 @@ entries <- tribble(
         "standing from the original."),
   "",
 
+  NA_character_,
   13, "typographical", "remaster", "brief",
   "A sentence break in the appendix has lost its space",
   "published, appendix p. 8",
@@ -404,6 +428,7 @@ entries <- tribble(
         "edition. The two sentences are run together with no space after the full stop."),
   "",
 
+  NA_character_,
   14, "float", "remaster", "full",
   "Confidence intervals in the appendix regression tables are printed low bound last",
   "published, appendix pp. 15 to 20",
@@ -421,6 +446,7 @@ entries <- tribble(
         "in it reads from its lower limit to its upper one."),
   "app_reg_descending",
 
+  NA_character_,
   15, "float", "remaster", "full",
   "Significance markers in the appendix regression tables were set by comparing strings",
   "published, appendix pp. 15 to 20",
@@ -438,6 +464,7 @@ entries <- tribble(
         "its marker follows the p-value."),
   "app_reg_stars",
 
+  NA_character_,
   16, "quantity", "pipeline", "full",
   "The attitude effects are attenuated by a filter that does not filter",
   "published pp. 2 and 11",
@@ -479,6 +506,7 @@ entries <- tribble(
     "changes a reported effect rather than a misprint."),
   "art_intro_attitudes_quarter;res_attitudes_half",
 
+  NA_character_,
   17, "float", "remaster", "full",
   "The Wave column is empty on every Wave 3 row of the three-wave tables",
   "published, appendix p. 20",
@@ -496,6 +524,7 @@ entries <- tribble(
         "the reason entry 18 gives."),
   "",
 
+  NA_character_,
   18, "float", "pipeline", "full",
   "The adjusted three-wave table reports models of the wrong outcomes",
   "published, appendix p. 20",
@@ -524,6 +553,7 @@ entries <- tribble(
         "outcome the table names, the estimate is smaller and its interval spans zero."),
   "app_reg_t7_cells",
 
+  NA_character_,
   19, "float", "pipeline", "full",
   "Five of the effects in Figure 5 are pooled over one experiment fewer than the figure reports",
   "published p. 8",
@@ -565,11 +595,61 @@ entries <- tribble(
     "until the reproduction was re-run against a version that estimates the cell rather than ",
     "discarding it. The difference is not a matter of which version one prefers. Where a ",
     "standard error cannot be computed, the experiment leaves the pool without saying so."),
-  str_c(fig5_moved, collapse = ";")
+  str_c(fig5_moved, collapse = ";"),
+  NA_character_
 ) |>
-  mutate(across(c(title, published, corrected, note), as.character))
+  mutate(across(c(title, published, corrected, note, claim_ids, corrected_values), as.character))
 
 stopifnot(nrow(entries) == max(entries$entry), !anyDuplicated(entries$entry))
+
+# Gate: corrected_values agrees with the sentence it was glued into ----
+# The column and the sentence are written from one expression, so they begin in agreement
+# and this gate exists for the edit that separates them: a value moved from one marked span
+# to another, a span reworded to carry a second number, a claim id appended without its
+# value. Each value has to be inside the span it belongs to, matched by position where the
+# counts line up, and inside SOME span where an entry marks a label as well as a number and
+# its spans outnumber its values.
+marked_spans <- function(x) str_match_all(x, "\\[\\[(.*?)\\]\\]")[[1]][, 2]
+
+# A span may spell a count, so a whole-number value also matches its spelled form.
+in_span <- function(v, s) {
+  n <- suppressWarnings(as.integer(v))
+  str_detect(s, fixed(v)) ||
+    (!is.na(n) && n <= 20 && str_detect(s, fixed(number_word(n))))
+}
+
+quantified <- entries |>
+  filter(!is.na(corrected_values)) |>
+  mutate(ids = str_split(claim_ids, ";"), values = str_split(corrected_values, ";"),
+         spans = map(corrected, marked_spans))
+
+stopifnot(all(lengths(quantified$ids) == lengths(quantified$values)))
+
+value_placed <- pmap_lgl(quantified, function(...) {
+  e <- list(...)
+  if (length(e$values) == length(e$spans)) {
+    all(map2_lgl(e$values, e$spans, \(v, s) in_span(v, s)))
+  } else {
+    all(map_lgl(e$values, \(v) any(map_lgl(e$spans, \(s) in_span(v, s)))))
+  }
+})
+
+if (!all(value_placed)) {
+  print(quantified |> filter(!value_placed) |> select(entry, title, corrected_values, corrected))
+  stop("An entry's corrected_values are not in the spans of its corrected sentence.")
+}
+
+# A quantity entry that corrects something has to say which quantity, and an entry that
+# corrects none (any other class, or a note) may not carry a value. The class is the
+# declaration and this is where it binds. An empty claim_ids counts as missing. Entry 16 is exempt from the first line: its ids are bounds that each cover two estimates.
+has_ids <- !is.na(entries$claim_ids) & nzchar(entries$claim_ids)
+no_value_ok <- 16
+stopifnot(
+  all(!is.na(entries$corrected_values[entries$class == "quantity" & entries$form != "note" &
+                                        has_ids & !entries$entry %in% no_value_ok])),
+  all(is.na(entries$corrected_values[entries$class != "quantity" | entries$form == "note"])),
+  all(is.na(entries$corrected_values) | has_ids)
+)
 
 # NO BLOCK MAY BEGIN OR END WITH WHITESPACE. A stray space is invisible in this note and
 # does real damage in an edition, where the published block is the string matched against
