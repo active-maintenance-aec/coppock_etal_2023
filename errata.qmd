@@ -367,7 +367,7 @@ entries <- tribble(
   NA_character_,
   9, "bibliographic", "reference_audit", "brief",
   "Porter and Wood (2022) is given the title of its preprint",
-  "published p. 1341",
+  "published p. 1340",
   "Porter E and Wood TJ (2022) [[Misinformation on the Facebook news feed: experimental evidence]]. Journal of Politics 84, 1812-1817.",
   "Porter E and Wood TJ (2022) Political misinformation and factual corrections on the Facebook news feed: experimental evidence. Journal of Politics 84, 1812-1817.",
   paste("Crossref, doi 10.1086/719271: \"Political Misinformation and Factual Corrections on",
@@ -467,7 +467,7 @@ entries <- tribble(
   NA_character_,
   16, "quantity", "pipeline", "full",
   "The attitude effects are attenuated by a filter that does not filter",
-  "published pp. 2 and 11",
+  "published pp. 1329 and 1338",
   # str_c, not paste: paste's separator puts a space on either side of the block
   # break, and a block that begins or ends with one does not match the published
   # page. See the whitespace check below the tribble.
@@ -555,7 +555,7 @@ entries <- tribble(
   NA_character_,
   19, "float", "pipeline", "full",
   "Five of the effects in Figure 5 are pooled over one experiment fewer than the figure reports",
-  "published p. 8",
+  "published p. 1337",
   str_glue(
     "Figure 5 gives the high Emotional Stability tercile a misinformation effect of ",
     "[[{pub5('fig5_grp_emotstab_high_treatmentcontrol')}]] and a correction effect of ",
