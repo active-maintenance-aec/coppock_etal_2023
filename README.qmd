@@ -230,9 +230,9 @@ are estimable, so the pooling drops a different study.
 
 `r str_to_sentence(spell_errata(n_errata_entries))` errors in the published article are corrected in
 [`coppock_etal_2023_errata.pdf`](coppock_etal_2023_errata.pdf), whose values are computed
-at render time from this repository's output. **One of them changes a conclusion**: entry 4
+at render time from this repository's output. **One of them changes a conclusion**: entry 3
 withdraws the claim that the effects of fact-checks remain detectable more than two weeks after
-exposure, for the reason entry 18 gives. Everything else the article concludes stands. In summary, and
+exposure, for the reason entry 9 gives. Everything else the article concludes stands. In summary, and
 numbered as the note numbers them: **1.** the reported total sample size is `r "17,681"` where the
 article's own appendix table sums to
 `r format(as.numeric(value("art_intro_total_n")), big.mark = ",")`; **2.** the count of experiments in
@@ -246,7 +246,7 @@ random-effects pool of the same ratios,
 Wave 3 effect as detectable when neither it nor its ratio is distinguishable from zero; and
 **5.** the reference list gives Rathje et al. (2022) a single author where the letter has five.
 
-Entry 5 is the only one no ground truth row reaches. It comes from an audit that sends every printed
+Entry 12 is the only one no ground truth row reaches. It comes from an audit that sends every printed
 reference entry whole to Crossref and checks the authoritative record back into it, which flagged
 three entries here. The other two are false positives: the Axios news item under Fischer (2020) and
 the Pew report under Walker and Gottfried (2019) were each matched to an unrelated journal article,
@@ -505,7 +505,7 @@ figure("figure_2_raw_outcomes_by_treatment")
 ```{r}
 #| label: figure-5
 #| echo: false
-#| fig-cap: "Figure 5 as the rewrite draws it. Thirty-one of the thirty-six labels reproduce the published ones; the five that move are errata entry 19, where the deposit's pooling dropped an experiment whose standard errors it could not compute."
+#| fig-cap: "Figure 5 as the rewrite draws it. Thirty-one of the thirty-six labels reproduce the published ones; the five that move are errata entry 10, where the deposit's pooling dropped an experiment whose standard errors it could not compute."
 figure("figure_5_heterogeneity_by_trait")
 ```
 

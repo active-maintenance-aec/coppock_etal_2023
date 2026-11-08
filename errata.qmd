@@ -37,7 +37,7 @@ number_word <- function(x) {
 respondents <- format(as.numeric(value("art_intro_total_n")), big.mark = ",")
 significant_misinformation <- number_word(value("res_misinfo_sig_count"))
 
-# Entry 16. The pooled thermometer effects, from the rewrite's own fits, which apply the
+# Entry 4. The pooled thermometer effects, from the rewrite's own fits, which apply the
 # subset the deposit's loop intends. Read here so the corrected sentence and its note carry
 # computed values rather than typed ones.
 ft <- read_csv(here::here("maintained", "output", "figure_6_ft_targets_meta.csv"),
@@ -64,7 +64,7 @@ main <- function(label) {
 persist_w2 <- main("Pooled Wave 2 to Wave 1 ratio, covariate adjusted")
 persist_w3 <- main("Pooled Wave 3 to Wave 1 ratio, covariate adjusted")
 
-# Entry 4's Wave 3 claim, which is a claim about detection and not only about magnitude. The
+# Entry 3's Wave 3 claim, which is a claim about detection and not only about magnitude. The
 # six three-wave experiments are read out of the reproduction's own formatted cells, so how
 # many of them survive to Wave 3 is counted rather than asserted.
 three_wave <- read_csv(here::here("maintained", "output",
@@ -108,7 +108,7 @@ appendix_ratio_w2 <- published_ratio(5)
 appendix_ratio_w3 <- published_ratio(7)
 appendix_ratio_w3_unadj <- published_ratio(6, "no")
 
-# Entries 14 and 15 describe two properties of the appendix's regression tables rather than
+# Entries 6 and 7 describe two properties of the appendix's regression tables rather than
 # a value in one cell, so they are counted from the transcription of the published tables
 # and from the reproduction, never typed.
 n_cells <- nrow(published_cells)
@@ -117,7 +117,7 @@ n_stars_printed <- sum(published_cells$significance_marker != "" &
                          !is.na(published_cells$significance_marker))
 n_stars_should <- as.integer(value("app_reg_stars"))
 
-# Entries 17 and 18, the two three-wave tables. Both are counted from the transcription of
+# Entries 8 and 9, the two three-wave tables. Both are counted from the transcription of
 # the published pages and from the reproduction, the same way as 14 and 15. A wave token is
 # missing from a row_label exactly where the published page leaves the Wave cell empty, so
 # the count of blank cells is a property of the transcription rather than a reading of it.
@@ -133,7 +133,7 @@ t7_cells <- as.integer(value("app_reg_t7_cells", "value_paper"))
 t7_misplaced <- as.integer(value("app_reg_t7_cells"))
 t7_absent <- t7_cells - t7_misplaced
 
-# The one cell entry 18 quotes, from each side. The published side is the transcription; the
+# The one cell entry 9 quotes, from each side. The published side is the transcription; the
 # corrected side is the reproduction's own formatted output, which is what the edition sets.
 t7_w1_row <- "Presidential winner must be announced election night Panel 6 (MTurk) w1 yes"
 t7_published <- three_wave_cells |> filter(appendix_table == 7, row_label == t7_w1_row)
@@ -150,7 +150,7 @@ t7_corrected_cell <- read_csv(
   pull(`Average Effect of Correction versus Control`)
 stopifnot(length(t7_corrected_cell) == 1)
 
-# Entry 19. Figure 5's five moved values, from each side: the published labels are the
+# Entry 10. Figure 5's five moved values, from each side: the published labels are the
 # transcription of the figure and the corrected ones are the reproduction's own, rendered at
 # the precision the figure prints. The five are named here rather than discovered, so that an
 # entry which names five values cannot quietly become an entry which names four.
@@ -188,11 +188,14 @@ stopifnot(all(map_lgl(fig5_traits, fig5_direction_holds, term = "treatmentcontro
 #
 # [[...]] marks the span that changes. Each renderer supplies its own markup for it: bold
 # here, \was{} in an edition. Nothing else in a field is markup, so the same string can be
-# set by either. Entries 3 and 4 correct several passages at once, so published and
+# set by either. Entries 3 and 5 correct several passages at once, so published and
 # corrected carry one block per passage, separated by a blank line.
 #
-# Numbering is the published note's and is APPEND-ONLY: an entry can already have been
-# cited, so a later finding is added at the end and never interleaved.
+# Numbering follows PROCEDURES.md Stage 4b: entries are ordered by severity block (quantity;
+# description, interpretation, definition; label, float, cross_reference; wording, spelling,
+# typography; bibliographic), discovery order inside a block, and a finding that lands in an
+# earlier block renumbers the entries after it. Renumbered 2026-11-07; the old-to-new map is
+# in that day's commit message.
 #
 # claim_ids is the semicolon-separated list of ground-truth claim_id values the entry
 # corrects, and it is what makes "is this finding published?" a query rather than a reading
@@ -205,7 +208,7 @@ stopifnot(all(map_lgl(fig5_traits, fig5_direction_holds, term = "treatmentcontro
 # the corrected quantity as a number rather than as a sentence. Each value is built from the
 # same expression that builds the marked span of the corrected sentence, so the two cannot be
 # written apart, and the gate below re-checks that each one is still inside its span. An
-# entry that changes no quantity carries NA, as does entry 16: its ids are bounds ("smaller
+# entry that changes no quantity carries NA, as does entry 4: its ids are bounds ("smaller
 # than one-quarter of a point") that each cover two estimates in the corrected sentence, so
 # no single number belongs to either id. Entry 2's span spells its count, so its value is
 # the numeral and the gate accepts either form.
@@ -217,7 +220,7 @@ entries <- tribble(
 
   1, "quantity", "pipeline", "full",
   "The reported total sample size",
-  "published, introduction",
+  "introduction",
   "To study fact-checking during the 2020 election season, we conducted eight preregistered panel experiments (total [[N = 17,681]]).",
   str_glue("To study fact-checking during the 2020 election season, we conducted eight preregistered panel experiments (total [[N = {cv_total}]])."),
   str_glue(
@@ -229,7 +232,7 @@ entries <- tribble(
   cv_total,
   2, "quantity", "pipeline", "full",
   "The count of experiments in which misinformation reduced accuracy",
-  "published, results",
+  "results",
   "Overall, exposure to the misinformation significantly decreased accuracy in [[twelve]] out of the twenty-four opportunities.",
   str_glue("Overall, exposure to the misinformation significantly decreased accuracy in [[{significant_misinformation}]] out of the twenty-four opportunities."),
   str_glue(
@@ -238,20 +241,9 @@ entries <- tribble(
   "res_misinfo_sig_count",
 
   cv_misinfo,
-  3, "float", "pipeline", "full",
-  "Two appendix floats carry the same number",
-  "published, appendix",
-  str_c("[[Table 1:]] Sample composition by panel.",
-        "\n\n",
-        "[[Table 1:]] Average treatment effects at Wave 1 among all subjects"),
-  "the sample composition table on appendix page 3 and the Wave 1 average treatment effect table on appendix page 15 are two different floats, and both are captioned [[Table 1]]. The regression tables that follow are numbered 1 through 7 and the two tables of appendix section 7 are numbered 8 and 9, so the appendix's table numbering runs 1, 1, 2, 3, 4, 5, 6, 7, 8, 9. A reader citing \"appendix Table 1\" cannot be understood.",
-  "",
-  "app_duplicate_table_1",
-
-  NA_character_,
-  4, "quantity", "pipeline", "full",
+  3, "quantity", "pipeline", "full",
   "The claim that fact-check effects remain detectable after more than two weeks",
-  "published, main text, four passages",
+  "main text, four passages",
   str_c(
     # The mark runs from the comma, not from "with": the corrected text ends
     # the sentence there, so the published comma becomes a full stop and an
@@ -279,7 +271,7 @@ entries <- tribble(
     "the share of the Wave 1 effect it represents is {w3_ratio_pooled}; neither is ",
     "distinguishable from zero. The one-week claim is unaffected and stands.",
     "\n\n",
-    "The magnitude and the detection claim have the same cause, which is entry 18. The ",
+    "The magnitude and the detection claim have the same cause, which is entry 9. The ",
     "deposited three-wave models fitted with covariates regress the wrong outcomes, so the ",
     "ratio behind appendix Table 7's {appendix_ratio_w3} instruments the Wave 2 outcome ",
     "rather than the Wave 3 outcome. That cell carried a significance marker and its interval ",
@@ -300,174 +292,9 @@ entries <- tribble(
   "art_intro_persist_w2;art_intro_persist_w3;res_persist_w2_precise;res_persist_w3_precise;disc_persist_w2;disc_persist_w3",
 
   str_c(persist_w2, ";", persist_w3, ";", persist_w2, ";", persist_w3, ";", persist_w2, ";", persist_w3),
-  5, "bibliographic", "reference_audit", "brief",
-  "Rathje et al. (2022) is printed with one author",
-  "published p. 1341",
-  "[[Rathje S]] (2022) Letter to the Editors of Psychological Science: Meta-analysis Reveals that Accuracy Nudges Have Little to No Effect for U.S. Conservatives: Regarding Pennycook et al.",
-  "Rathje S et al. (2022) Letter to the Editors of Psychological Science: Meta-analysis Reveals that Accuracy Nudges Have Little to No Effect for U.S. Conservatives: Regarding Pennycook et al.",
-  paste("Crossref, doi 10.31234/osf.io/945na: Rathje, Roozenbeek, Traberg, Van Bavel and",
-        "van der Linden. Four coauthors are missing from the entry, which the reference",
-        "list's own style would give as \"Rathje S et al.\" The in-text citation on p. 1330",
-        "reads \"Rathje et al. 2022\", so the body of the article has it right."),
-  "",
-
-  NA_character_,
-  6, "bibliographic", "reference_audit", "brief",
-  "Pennycook and Rand (2019) is printed with the wrong initial",
-  "published p. 1340",
-  "[[Pennycook D]] and Rand DG (2019) Lazy, not biased",
-  "Pennycook G and Rand DG (2019) Lazy, not biased",
-  paste("Crossref, doi 10.1016/j.cognition.2018.06.011: Gordon Pennycook and David G. Rand.",
-        "The same author is given correctly as \"Pennycook G\" in the 2021 Nature entry two",
-        "lines below, and footnote 2 of the article cites \"Pennycook and Rand 2019\", so",
-        "only the initial in this entry is wrong. It appears to have been copied from",
-        "Rand's."),
-  "",
-
-  NA_character_,
-  7, "bibliographic", "reference_audit", "full",
-  "Do Facts Matter? is cited with its authors in the wrong order",
-  "published pp. 1328 and 1340",
-  str_c(
-    "Belief in falsehoods may shape political attitudes and behavior in ways that damage democratic accountability ([[Einstein and Hochschild]] 2015; Nyhan 2020)",
-    "\n\n",
-    "[[Einstein KL and Hochschild J]] (2015) Do Facts Matter? Information and Misinformation in American Politics. Norman, OK: University of Oklahoma Press."),
-  str_c(
-    "Belief in falsehoods may shape political attitudes and behavior in ways that damage democratic accountability ([[Hochschild and Einstein]] 2015; Nyhan 2020)",
-    "\n\n",
-    "[[Hochschild JL and Einstein KL]] (2015) Do Facts Matter? Information and Misinformation in American Politics. Norman, OK: University of Oklahoma Press."),
-  paste("Library of Congress, LCCN 2014027612: \"Do facts matter? : information and",
-        "misinformation in American politics / Jennifer L. Hochschild and Katherine Levine",
-        "Einstein\", Norman: University of Oklahoma Press, 2015. Hochschild is the book's",
-        "first author. The publisher and the city are as the entry gives them. The entry",
-        "keeps the place the published list gave it, under E, because moving an entry is a",
-        "re-presentation of the list rather than a correction to it; a reader looking for",
-        "it will find it where the article filed it."),
-  "",
-
-  NA_character_,
-  8, "bibliographic", "reference_audit", "full",
-  "Swire-Thompson is cited under her earlier surname in a 2020 entry",
-  "published pp. 1331 and 1341",
-  str_c(
-    "The use of multiple outcome measures helps mitigate concerns about measurement error ([[Swire, DeGutis, and Lazer]] 2020)",
-    "\n\n",
-    "[[Swire B, DeGutis J and Lazer D]] (2020) Searching for the Backfire Effect"),
-  str_c(
-    "The use of multiple outcome measures helps mitigate concerns about measurement error ([[Swire-Thompson, DeGutis, and Lazer]] 2020)",
-    "\n\n",
-    "[[Swire-Thompson B, DeGutis J and Lazer D]] (2020) Searching for the Backfire Effect"),
-  paste("Crossref, doi 10.31234/osf.io/ba2kc, and the published version at",
-        "doi 10.1016/j.jarmac.2020.06.006, both give Briony Swire-Thompson. The 2017 Royal",
-        "Society Open Science entry above it is correct as \"Swire B\": the name changed",
-        "between the two papers. As with entry 7, the entry keeps its published place in",
-        "the list."),
-  "",
-
-  NA_character_,
-  9, "bibliographic", "reference_audit", "brief",
-  "Porter and Wood (2022) is given the title of its preprint",
-  "published p. 1340",
-  "Porter E and Wood TJ (2022) [[Misinformation on the Facebook news feed: experimental evidence]]. Journal of Politics 84, 1812-1817.",
-  "Porter E and Wood TJ (2022) Political misinformation and factual corrections on the Facebook news feed: experimental evidence. Journal of Politics 84, 1812-1817.",
-  paste("Crossref, doi 10.1086/719271: \"Political Misinformation and Factual Corrections on",
-        "the Facebook News Feed: Experimental Evidence\", The Journal of Politics 84(3),",
-        "1812-1817. The volume and the page range are the version of record's; the title is",
-        "the OSF preprint's, which the entry also links. The two are different documents and",
-        "the entry mixes them."),
-  "",
-
-  NA_character_,
-  10, "bibliographic", "reference_audit", "brief",
-  "Nyhan (2020) is given a month where its issue number belongs",
-  "published p. 1340",
-  "Nyhan B (2020) Facts and myths about misperceptions. Journal of Economic Perspectives [[34(August)]], 220-236.",
-  "Nyhan B (2020) Facts and myths about misperceptions. Journal of Economic Perspectives 34(3), 220-236.",
-  paste("Crossref, doi 10.1257/jep.34.3.220: Journal of Economic Perspectives 34(3),",
-        "220-236. The doi the entry itself prints encodes the issue as 3. Every other entry",
-        "in the list that gives an issue gives a numeral."),
-  "",
-
-  NA_character_,
-  11, "bibliographic", "reference_audit", "full",
-  "Dillard is dated a year before the article it cites appeared",
-  "published pp. 1328 and 1339",
-  str_c(
-    "culminated in an insurrection that policymakers have attributed to misinformation about the \"big lie\" of election fraud (Dillard [[2020]]; US House Committee on Energy and Commerce Staff, 2021)",
-    "\n\n",
-    "Dillard J ([[2020]]) Ocasio-Cortez Reveals Past Sexual Assault, Faults GOP over Riot. Bloomberg."),
-  str_c(
-    "culminated in an insurrection that policymakers have attributed to misinformation about the \"big lie\" of election fraud (Dillard [[2021]]; US House Committee on Energy and Commerce Staff, 2021)",
-    "\n\n",
-    "Dillard J ([[2021]]) Ocasio-Cortez Reveals Past Sexual Assault, Faults GOP over Riot. Bloomberg."),
-  paste("The Bloomberg article is dated 2 February 2021, which the entry's own URL records",
-        "in its path, and it reports the aftermath of the 6 January 2021 attack on the",
-        "Capitol. Its author is Jarrell Dillard, so the initial is right. Dated 2020 the",
-        "entry describes a report published before the event it reports."),
-  "",
-
-  NA_character_,
-  12, "bibliographic", "reference_audit", "brief",
-  "Shin and Thorson (2017) carries a capital left over from its title case",
-  "published p. 1341",
-  "Shin J and Thorson K (2017) Partisan selective sharing: the biased diffusion of fact-checking messages on [[social Media]]. Journal of Communication 67(2), 233-255.",
-  "Shin J and Thorson K (2017) Partisan selective sharing: the biased diffusion of fact-checking messages on social media. Journal of Communication 67(2), 233-255.",
-  paste("The published title is \"Partisan Selective Sharing: The Biased Diffusion of",
-        "Fact-Checking Messages on Social Media\" (doi 10.1111/jcom.12284). The reference",
-        "list sets titles in sentence case, and the M of Media is the only capital left",
-        "standing from the original."),
-  "",
-
-  NA_character_,
-  13, "typographical", "remaster", "brief",
-  "A sentence break in the appendix has lost its space",
-  "published, appendix p. 8",
-  "Figures 4, 5, 6 display the coefficient [[estimates.These]] regressions return p-values below 0.05",
-  "Figures 4, 5, 6 display the coefficient estimates. These regressions return p-values below 0.05",
-  paste("Found by reading the appendix against its own PDF while preparing the remastered",
-        "edition. The two sentences are run together with no space after the full stop."),
-  "",
-
-  NA_character_,
-  14, "float", "remaster", "full",
-  "Confidence intervals in the appendix regression tables are printed low bound last",
-  "published, appendix pp. 15 to 20",
-  str_c("12.97 (2.01) [[[16.91, 9.03]]]"),
-  str_glue(
-    "the seven regression tables print [[{n_descending} of their {n_cells} intervals with the ",
-    "bounds transposed]], so that the interval reads from its upper limit to its lower one. ",
-    "The cell quoted above, the first in appendix table 1, should read [9.03, 16.91]. Every ",
-    "interval whose estimate is negated by the table code is affected and no other is."),
-  paste("The deposited script negates an estimate and both of its interval bounds without",
-        "reversing them, so a two-sided interval comes out backwards whenever the sign is",
-        "flipped. The bounds themselves are right and the reproduction returns the same two",
-        "numbers for every affected cell; only their order on the page is wrong. The",
-        "remastered edition sets all seven tables from the reproduction, so every interval",
-        "in it reads from its lower limit to its upper one."),
-  "app_reg_descending",
-
-  NA_character_,
-  15, "float", "remaster", "full",
-  "Significance markers in the appendix regression tables were set by comparing strings",
-  "published, appendix pp. 15 to 20",
-  str_glue("[[{n_stars_printed}]] of the {n_cells} cells in the seven regression tables carry a significance marker."),
-  str_glue(
-    "[[{n_stars_should}]] of them have a p-value below 0.05. The marker is on the wrong cells: ",
-    "\"0.0144\" sorts before \"0.05\" and earns a star, while \"1.28e-10\" sorts after it and does ",
-    "not, so the most significant estimates in these tables are among the unstarred ones."),
-  paste("The deposited table script reshapes each fit with a function whose identifier",
-        "columns omit a character column, which coerces every value in the reshaped frame to",
-        "a string; the surviving comparison with 0.05 is then a comparison of two strings",
-        "rather than of two numbers. It is deterministic and reproducible: running the",
-        "deposit's own script prints the published tables verbatim, star pattern included.",
-        "As with entry 14, the remastered edition sets the tables from the reproduction, so",
-        "its marker follows the p-value."),
-  "app_reg_stars",
-
-  NA_character_,
-  16, "quantity", "pipeline", "full",
+  4, "quantity", "pipeline", "full",
   "The attitude effects are attenuated by a filter that does not filter",
-  "published pp. 1329 and 1338",
+  "pp. 1329 and 1338",
   # str_c, not paste: paste's separator puts a space on either side of the block
   # break, and a block that begins or ends with one does not match the published
   # page. See the whitespace check below the tribble.
@@ -506,9 +333,56 @@ entries <- tribble(
     "changes a reported effect rather than a misprint."),
   "art_intro_attitudes_quarter;res_attitudes_half",
   str_c(as.integer(max(abs(c(fc_est, mi_est))) < 0.25), ";", as.integer(max(abs(c(fc_est, mi_est))) < 0.5)),
-  17, "float", "remaster", "full",
+  5, "float", "pipeline", "full",
+  "Two appendix floats carry the same number",
+  "app.",
+  str_c("[[Table 1:]] Sample composition by panel.",
+        "\n\n",
+        "[[Table 1:]] Average treatment effects at Wave 1 among all subjects"),
+  "the sample composition table on appendix page 3 and the Wave 1 average treatment effect table on appendix page 15 are two different floats, and both are captioned [[Table 1]]. The regression tables that follow are numbered 1 through 7 and the two tables of appendix section 7 are numbered 8 and 9, so the appendix's table numbering runs 1, 1, 2, 3, 4, 5, 6, 7, 8, 9. A reader citing \"appendix Table 1\" cannot be understood.",
+  "",
+  "app_duplicate_table_1",
+
+  NA_character_,
+  6, "float", "reading", "full",
+  "Confidence intervals in the appendix regression tables are printed low bound last",
+  "app. pp. 15 to 20",
+  str_c("12.97 (2.01) [[[16.91, 9.03]]]"),
+  str_glue(
+    "the seven regression tables print [[{n_descending} of their {n_cells} intervals with the ",
+    "bounds transposed]], so that the interval reads from its upper limit to its lower one. ",
+    "The cell quoted above, the first in appendix table 1, should read [9.03, 16.91]. Every ",
+    "interval whose estimate is negated by the table code is affected and no other is."),
+  paste("The deposited script negates an estimate and both of its interval bounds without",
+        "reversing them, so a two-sided interval comes out backwards whenever the sign is",
+        "flipped. The bounds themselves are right and the reproduction returns the same two",
+        "numbers for every affected cell; only their order on the page is wrong. The",
+        "remastered edition sets all seven tables from the reproduction, so every interval",
+        "in it reads from its lower limit to its upper one."),
+  "app_reg_descending",
+
+  NA_character_,
+  7, "float", "reading", "full",
+  "Significance markers in the appendix regression tables were set by comparing strings",
+  "app. pp. 15 to 20",
+  str_glue("[[{n_stars_printed}]] of the {n_cells} cells in the seven regression tables carry a significance marker."),
+  str_glue(
+    "[[{n_stars_should}]] of them have a p-value below 0.05. The marker is on the wrong cells: ",
+    "\"0.0144\" sorts before \"0.05\" and earns a star, while \"1.28e-10\" sorts after it and does ",
+    "not, so the most significant estimates in these tables are among the unstarred ones."),
+  paste("The deposited table script reshapes each fit with a function whose identifier",
+        "columns omit a character column, which coerces every value in the reshaped frame to",
+        "a string; the surviving comparison with 0.05 is then a comparison of two strings",
+        "rather than of two numbers. It is deterministic and reproducible: running the",
+        "deposit's own script prints the published tables verbatim, star pattern included.",
+        "As with entry 6, the remastered edition sets the tables from the reproduction, so",
+        "its marker follows the p-value."),
+  "app_reg_stars",
+
+  NA_character_,
+  8, "float", "reading", "full",
   "The Wave column is empty on every Wave 3 row of the three-wave tables",
-  "published, appendix p. 20",
+  "app. p. 20",
   str_glue("[[{n_blank_wave}]] of the {n_three_wave_rows} rows of appendix Tables 6 and 7 print nothing in the Wave column."),
   str_glue(
     "every one of them is a [[Wave 3]] row. The edition sets w3 in those cells and returns ",
@@ -520,13 +394,13 @@ entries <- tribble(
         "line is right where it appears earlier in the same file for the two-wave tables,",
         "whose waves those levels are. Table 6's",
         "numbers are unaffected and every one of its cells reproduces. Table 7's are not, for",
-        "the reason entry 18 gives."),
+        "the reason entry 9 gives."),
   "",
 
   NA_character_,
-  18, "float", "pipeline", "full",
+  9, "float", "pipeline", "full",
   "The adjusted three-wave table reports models of the wrong outcomes",
-  "published, appendix p. 20",
+  "app. p. 20",
   str_glue("[[{t7_published_cell}]]"),
   str_glue(
     "the Wave 1 row of appendix Table 7 should read [[{t7_corrected_cell}]]. The cell quoted ",
@@ -545,7 +419,7 @@ entries <- tribble(
         "half re-edited. Its other trace on the page is Figure 4, whose bottom-left panel",
         "draws the Wave 1 and the Wave 2 point at the same height because they are the same",
         "estimate. The unadjusted table beside it, Table 6, is unaffected and reproduces in",
-        "every cell. **This entry is the reason entry 4 changes a conclusion.** The ratio row",
+        "every cell. **This entry is the reason entry 3 changes a conclusion.** The ratio row",
         "of the published Table 7 carried a significance marker and an interval excluding",
         "zero, and it was the article's only statistical support for the claim that fact-check",
         "effects remain detectable more than two weeks after exposure. Instrumented on the",
@@ -553,9 +427,9 @@ entries <- tribble(
   "app_reg_t7_cells",
 
   NA_character_,
-  19, "float", "pipeline", "full",
+  10, "float", "pipeline", "full",
   "Five of the effects in Figure 5 are pooled over one experiment fewer than the figure reports",
-  "published p. 1337",
+  "p. 1337",
   str_glue(
     "Figure 5 gives the high Emotional Stability tercile a misinformation effect of ",
     "[[{pub5('fig5_grp_emotstab_high_treatmentcontrol')}]] and a correction effect of ",
@@ -595,6 +469,135 @@ entries <- tribble(
     "discarding it. The difference is not a matter of which version one prefers. Where a ",
     "standard error cannot be computed, the experiment leaves the pool without saying so."),
   str_c(fig5_moved, collapse = ";"),
+  NA_character_,
+  11, "typography", "reading", "brief",
+  "A sentence break in the appendix has lost its space",
+  "app. p. 8",
+  "Figures 4, 5, 6 display the coefficient [[estimates.These]] regressions return p-values below 0.05",
+  "Figures 4, 5, 6 display the coefficient estimates. These regressions return p-values below 0.05",
+  paste("Found by reading the appendix against its own PDF while preparing the remastered",
+        "edition. The two sentences are run together with no space after the full stop."),
+  "",
+
+  NA_character_,
+  12, "bibliographic", "reference_audit", "brief",
+  "Rathje et al. (2022) is printed with one author",
+  "p. 1341",
+  "[[Rathje S]] (2022) Letter to the Editors of Psychological Science: Meta-analysis Reveals that Accuracy Nudges Have Little to No Effect for U.S. Conservatives: Regarding Pennycook et al.",
+  "Rathje S et al. (2022) Letter to the Editors of Psychological Science: Meta-analysis Reveals that Accuracy Nudges Have Little to No Effect for U.S. Conservatives: Regarding Pennycook et al.",
+  paste("Crossref, doi 10.31234/osf.io/945na: Rathje, Roozenbeek, Traberg, Van Bavel and",
+        "van der Linden. Four coauthors are missing from the entry, which the reference",
+        "list's own style would give as \"Rathje S et al.\" The in-text citation on p. 1330",
+        "reads \"Rathje et al. 2022\", so the body of the article has it right."),
+  "",
+
+  NA_character_,
+  13, "bibliographic", "reference_audit", "brief",
+  "Pennycook and Rand (2019) is printed with the wrong initial",
+  "p. 1340",
+  "[[Pennycook D]] and Rand DG (2019) Lazy, not biased",
+  "Pennycook G and Rand DG (2019) Lazy, not biased",
+  paste("Crossref, doi 10.1016/j.cognition.2018.06.011: Gordon Pennycook and David G. Rand.",
+        "The same author is given correctly as \"Pennycook G\" in the 2021 Nature entry two",
+        "lines below, and footnote 2 of the article cites \"Pennycook and Rand 2019\", so",
+        "only the initial in this entry is wrong. It appears to have been copied from",
+        "Rand's."),
+  "",
+
+  NA_character_,
+  14, "bibliographic", "reference_audit", "full",
+  "Do Facts Matter? is cited with its authors in the wrong order",
+  "pp. 1328 and 1340",
+  str_c(
+    "Belief in falsehoods may shape political attitudes and behavior in ways that damage democratic accountability ([[Einstein and Hochschild]] 2015; Nyhan 2020)",
+    "\n\n",
+    "[[Einstein KL and Hochschild J]] (2015) Do Facts Matter? Information and Misinformation in American Politics. Norman, OK: University of Oklahoma Press."),
+  str_c(
+    "Belief in falsehoods may shape political attitudes and behavior in ways that damage democratic accountability ([[Hochschild and Einstein]] 2015; Nyhan 2020)",
+    "\n\n",
+    "[[Hochschild JL and Einstein KL]] (2015) Do Facts Matter? Information and Misinformation in American Politics. Norman, OK: University of Oklahoma Press."),
+  paste("Library of Congress, LCCN 2014027612: \"Do facts matter? : information and",
+        "misinformation in American politics / Jennifer L. Hochschild and Katherine Levine",
+        "Einstein\", Norman: University of Oklahoma Press, 2015. Hochschild is the book's",
+        "first author. The publisher and the city are as the entry gives them. The entry",
+        "keeps the place the published list gave it, under E, because moving an entry is a",
+        "re-presentation of the list rather than a correction to it; a reader looking for",
+        "it will find it where the article filed it."),
+  "",
+
+  NA_character_,
+  15, "bibliographic", "reference_audit", "full",
+  "Swire-Thompson is cited under her earlier surname in a 2020 entry",
+  "pp. 1331 and 1341",
+  str_c(
+    "The use of multiple outcome measures helps mitigate concerns about measurement error ([[Swire, DeGutis, and Lazer]] 2020)",
+    "\n\n",
+    "[[Swire B, DeGutis J and Lazer D]] (2020) Searching for the Backfire Effect"),
+  str_c(
+    "The use of multiple outcome measures helps mitigate concerns about measurement error ([[Swire-Thompson, DeGutis, and Lazer]] 2020)",
+    "\n\n",
+    "[[Swire-Thompson B, DeGutis J and Lazer D]] (2020) Searching for the Backfire Effect"),
+  paste("Crossref, doi 10.31234/osf.io/ba2kc, and the published version at",
+        "doi 10.1016/j.jarmac.2020.06.006, both give Briony Swire-Thompson. The 2017 Royal",
+        "Society Open Science entry above it is correct as \"Swire B\": the name changed",
+        "between the two papers. As with entry 14, the entry keeps its published place in",
+        "the list."),
+  "",
+
+  NA_character_,
+  16, "bibliographic", "reference_audit", "brief",
+  "Porter and Wood (2022) is given the title of its preprint",
+  "p. 1340",
+  "Porter E and Wood TJ (2022) [[Misinformation on the Facebook news feed: experimental evidence]]. Journal of Politics 84, 1812-1817.",
+  "Porter E and Wood TJ (2022) Political misinformation and factual corrections on the Facebook news feed: experimental evidence. Journal of Politics 84, 1812-1817.",
+  paste("Crossref, doi 10.1086/719271: \"Political Misinformation and Factual Corrections on",
+        "the Facebook News Feed: Experimental Evidence\", The Journal of Politics 84(3),",
+        "1812-1817. The volume and the page range are the version of record's; the title is",
+        "the OSF preprint's, which the entry also links. The two are different documents and",
+        "the entry mixes them."),
+  "",
+
+  NA_character_,
+  17, "bibliographic", "reference_audit", "brief",
+  "Nyhan (2020) is given a month where its issue number belongs",
+  "p. 1340",
+  "Nyhan B (2020) Facts and myths about misperceptions. Journal of Economic Perspectives [[34(August)]], 220-236.",
+  "Nyhan B (2020) Facts and myths about misperceptions. Journal of Economic Perspectives 34(3), 220-236.",
+  paste("Crossref, doi 10.1257/jep.34.3.220: Journal of Economic Perspectives 34(3),",
+        "220-236. The doi the entry itself prints encodes the issue as 3. Every other entry",
+        "in the list that gives an issue gives a numeral."),
+  "",
+
+  NA_character_,
+  18, "bibliographic", "reference_audit", "full",
+  "Dillard is dated a year before the article it cites appeared",
+  "pp. 1328 and 1339",
+  str_c(
+    "culminated in an insurrection that policymakers have attributed to misinformation about the \"big lie\" of election fraud (Dillard [[2020]]; US House Committee on Energy and Commerce Staff, 2021)",
+    "\n\n",
+    "Dillard J ([[2020]]) Ocasio-Cortez Reveals Past Sexual Assault, Faults GOP over Riot. Bloomberg."),
+  str_c(
+    "culminated in an insurrection that policymakers have attributed to misinformation about the \"big lie\" of election fraud (Dillard [[2021]]; US House Committee on Energy and Commerce Staff, 2021)",
+    "\n\n",
+    "Dillard J ([[2021]]) Ocasio-Cortez Reveals Past Sexual Assault, Faults GOP over Riot. Bloomberg."),
+  paste("The Bloomberg article is dated 2 February 2021, which the entry's own URL records",
+        "in its path, and it reports the aftermath of the 6 January 2021 attack on the",
+        "Capitol. Its author is Jarrell Dillard, so the initial is right. Dated 2020 the",
+        "entry describes a report published before the event it reports."),
+  "",
+
+  NA_character_,
+  19, "bibliographic", "reference_audit", "brief",
+  "Shin and Thorson (2017) carries a capital left over from its title case",
+  "p. 1341",
+  "Shin J and Thorson K (2017) Partisan selective sharing: the biased diffusion of fact-checking messages on [[social Media]]. Journal of Communication 67(2), 233-255.",
+  "Shin J and Thorson K (2017) Partisan selective sharing: the biased diffusion of fact-checking messages on social media. Journal of Communication 67(2), 233-255.",
+  paste("The published title is \"Partisan Selective Sharing: The Biased Diffusion of",
+        "Fact-Checking Messages on Social Media\" (doi 10.1111/jcom.12284). The reference",
+        "list sets titles in sentence case, and the M of Media is the only capital left",
+        "standing from the original."),
+  "",
+
   NA_character_
 ) |>
   mutate(across(c(title, published, corrected, note, claim_ids, corrected_values), as.character))
@@ -608,7 +611,7 @@ stopifnot(nrow(entries) == max(entries$entry), !anyDuplicated(entries$entry))
 # values_in_spans is FALSE where the claim's scale is not the sentence's, under PROCEDURES'
 # rule that corrected_values is always on the claim's scale. A method row or other id with
 # no number on any scale stores NA in its position. Such an entry's note must say why.
-off_claim_scale <- c(16)
+off_claim_scale <- c(4)
 entries <- entries |>
   mutate(values_in_spans = case_when(
     is.na(corrected_values) ~ NA,
@@ -673,7 +676,7 @@ stopifnot(
 # does real damage in an edition, where the published block is the string matched against
 # the published page: a trailing space demands whitespace where the page has a full stop, so
 # the match fails and the correction is silently never made, and a leading space is consumed
-# by the replacement, welding the corrected text to the word before it. Entry 16 did both on
+# by the replacement, welding the corrected text to the word before it. Entry 4 did both on
 # 2026-08-12, from a paste() whose separator fell either side of the block break, and the
 # edition printed one sentence uncorrected while this note published it as corrected.
 whitespace_at_a_block_edge <- function(x) {
@@ -702,12 +705,12 @@ blocks <- function(x) str_split_1(x, "\n\n")
 
 # A heading is only a heading when a blank line precedes it, which is why every emitted
 # entry opens with one. Where an entry corrects several passages the blocks pair off in
-# order; entry 3's correction is one explanation of two captions, so the counts differ
+# order; entry 5's correction is one explanation of two captions, so the counts differ
 # there and the published blocks are set together ahead of it.
 # Which entries this document has set, so that the check at the foot of the file can refuse
 # a spine entry that no section emits. The sections are explicit lists rather than a walk
-# over the whole spine, because the order of the note is not the order of the numbering:
-# entry 16 is set last of the first sixteen, and 17 and 18 follow it.
+# over the whole spine, because the note groups entries under headings that say how they
+# were found.
 emitted <- integer(0)
 
 emit <- function(n, lead = "") {
@@ -728,11 +731,11 @@ emit <- function(n, lead = "") {
 ```
 
 `r str_glue("{str_to_sentence(number_word(nrow(entries)))} corrections to *British Journal of Political Science* article 10.1017/S0007123422000631.")`
-**One of them changes a conclusion of the article.** Entry 4 withdraws the claim that the effects
+**One of them changes a conclusion of the article.** Entry 3 withdraws the claim that the effects
 of fact-checks remain detectable more than two weeks after exposure. The pooled Wave 3 effect is
 not distinguishable from zero, nor is the share of the Wave 1 effect it represents, and the only
 statistical support the article had for the claim was a cell produced by a model of the wrong
-outcome, which entry 18 corrects. The one-week finding is unaffected and stands, as does
+outcome, which entry 9 corrects. The one-week finding is unaffected and stands, as does
 everything else the article concludes. Of the remaining entries, eight are in the reference list,
 two correct estimates the article reports, and the rest correct misprints and appendix floats. Every corrected value
 below is computed at render time from a
@@ -741,12 +744,12 @@ full reproduction of the published analysis, held in the repository
 throughout, including in sentences where the article gave a whole number, so that every quantity
 in a corrected sentence is one the reproduction has verified. Bold marks the values that changed.
 
-```{r entries-1-3, results="asis"}
-walk(1:3, emit)
+```{r entries-1-2, results="asis"}
+walk(1:2, emit)
 ```
 
-```{r entry-4, results="asis"}
-emit(4, lead = str_glue(
+```{r entry-3, results="asis"}
+emit(3, lead = str_glue(
   "The share of the Wave 1 correction effect that survives to a later wave is the quantity ",
   "the pre-analysis plan defines and the appendix prints in the `ratio` row of each ",
   "persistence table: the per-experiment ratio of the later-wave coefficient to the Wave 1 ",
@@ -769,9 +772,54 @@ emit(4, lead = str_glue(
   "4 plots. Random effects should have been used throughout."))
 ```
 
+```{r entry-4, results="asis"}
+emit(4, lead = str_glue(
+  "This note's other entries correct what the article prints. This one corrects what the ",
+  "article concludes from a quantity its own code miscomputed, so it is set out at more ",
+  "length. The finding is not new to this reproduction: the repository has recorded the ",
+  "defect since the rewrite was built, in the reproducibility report rather than here, on ",
+  "the reasoning that the fault lay in the deposited code rather than in the article. That ",
+  "reasoning was wrong. Where a defect in the code reaches the printed page, a reader is ",
+  "misled by the page, and whose mistake it was does not change what the reader takes away."))
+```
+
+```{r entry-5, results="asis"}
+emit(5)
+```
+
+# Found while preparing the remastered edition
+
+Entries 6 to 11 were found by reading every word of the article and its appendix against the published PDF while a corrected re-typesetting was being prepared, which is a finer sieve than any pass this repository had run. Entries 6 and 7 describe properties of the appendix's regression tables that the reproduction measures rather than values in a single cell; entries 8 to 10 are set out under their own headings below.
+
+```{r remaster-entries, results="asis"}
+walk(c(6, 7), emit)
+```
+
+# The three-wave persistence tables
+
+The two entries below correct appendix Tables 6 and 7, which report the persistence of the correction effect to Wave 3. Both were found by setting those tables from the reproduction rather than reproducing the published pages as images, which is what the remastered edition now does with all seven regression tables: a table that has to be rebuilt cell by cell is read far more closely than a table that is photographed. The first corrects a column of labels the deposit's own script emptied. The second corrects the numbers.
+
+```{r three-wave-entries, results="asis"}
+walk(c(8, 9), emit)
+```
+
+# Figure 5
+
+The entry below corrects five of the `r length(fig5_ids)` conditional effects plotted in Figure 5. It is the only entry in this note found by re-running the reproduction against a later version of the package that fits its models, which computes standard errors the earlier version could not and so pools an experiment the published figure left out of five of its values.
+
+```{r entry-10, results="asis"}
+emit(10)
+```
+
+# A misprint in the appendix
+
+```{r entry-11, results="asis"}
+emit(11)
+```
+
 # The reference list
 
-The entry below corrects the article's reference list. It was found by an audit that sends every printed entry whole to Crossref and checks the authoritative record back into it, and it is verified against the record named in the note. No cited work is missing and no citation in the text points at the wrong work.
+The entries below correct the article's reference list. Each was found by an audit that sends every printed entry whole to Crossref and checks the authoritative record back into it, and each is verified against the record named in its note. No cited work is missing and no citation in the text points at the wrong work.
 
 ```{r reference-entries, results="asis"}
 walk(entries$entry[entries$source == "reference_audit"], function(n) {
@@ -783,51 +831,6 @@ walk(entries$entry[entries$source == "reference_audit"], function(n) {
 })
 ```
 
-# Found while preparing the remastered edition
-
-The entries below were found by reading every word of the article and its appendix against
-the published PDF while a corrected re-typesetting was being prepared, which is a finer sieve
-than any pass this repository had run. The last two describe properties of the appendix's
-regression tables that the reproduction measures rather than values in a single cell.
-
-```{r remaster-entries, results="asis"}
-walk(c(13, 14, 15), emit)
-```
-
-# The attitude estimates
-
-The entry below changes a reported effect rather than correcting a misprint, and it is set
-out here rather than earlier because the numbering of this note is append-only: an entry
-that has been published can already have been cited, so a later finding is added at the end
-and no earlier entry moves.
-
-```{r entry-16, results="asis"}
-emit(16, lead = str_glue(
-  "This note's other entries correct what the article prints. This one corrects what the ",
-  "article concludes from a quantity its own code miscomputed, so it is set out at more ",
-  "length. The finding is not new to this reproduction: the repository has recorded the ",
-  "defect since the rewrite was built, in the reproducibility report rather than here, on ",
-  "the reasoning that the fault lay in the deposited code rather than in the article. That ",
-  "reasoning was wrong. Where a defect in the code reaches the printed page, a reader is ",
-  "misled by the page, and whose mistake it was does not change what the reader takes away."))
-```
-
-# The three-wave persistence tables
-
-The two entries below correct appendix Tables 6 and 7, which report the persistence of the correction effect to Wave 3. Both were found by setting those tables from the reproduction rather than reproducing the published pages as images, which is what the remastered edition now does with all seven regression tables: a table that has to be rebuilt cell by cell is read far more closely than a table that is photographed. The first corrects a column of labels the deposit's own script emptied. The second corrects the numbers.
-
-```{r three-wave-entries, results="asis"}
-walk(c(17, 18), emit)
-```
-
-# Figure 5
-
-The entry below corrects five of the `r length(fig5_ids)` conditional effects plotted in Figure 5. It is the only entry in this note found by re-running the reproduction against a later version of the package that fits its models, which computes standard errors the earlier version could not and so pools an experiment the published figure left out of five of its values.
-
-```{r entry-19, results="asis"}
-emit(19)
-```
-
 ```{r emit-spine}
 # Every entry in the spine is set once by exactly one section above. Without this an entry
 # could be added to the spine, counted in the note's own opening sentence, written into the
@@ -837,5 +840,12 @@ stopifnot(setequal(emitted, entries$entry), !anyDuplicated(emitted))
 # The machine-readable spine, written wherever this document is rendered. Anything else
 # that needs these entries reads it rather than keeping its own copy, so the two cannot
 # drift.
-write_csv(entries, here("errata_entries.csv"))
+# The spine's vocabularies are closed (cleanup of 2026-11-07): a value outside them is a
+# typo, and the edition builders read these columns to shape every entry.
+stopifnot(
+  all(entries$class %in% c("quantity", "description", "interpretation", "definition", "label", "float", "cross_reference", "wording", "spelling", "typography", "bibliographic")),
+  all(entries$form %in% c("full", "brief", "note")),
+  all(entries$source %in% c("pipeline", "reading", "reference_audit", "publisher_record", "authors_archive", "proof"))
+)
+write_csv(select(entries, -any_of("values_in_spans")), here("errata_entries.csv"))
 ```

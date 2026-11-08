@@ -178,9 +178,9 @@ estimable, so the pooling drops a different study.
 Nineteen errors in the published article are corrected in
 [`coppock_etal_2023_errata.pdf`](coppock_etal_2023_errata.pdf), whose
 values are computed at render time from this repository’s output. **One
-of them changes a conclusion**: entry 4 withdraws the claim that the
+of them changes a conclusion**: entry 3 withdraws the claim that the
 effects of fact-checks remain detectable more than two weeks after
-exposure, for the reason entry 18 gives. Everything else the article
+exposure, for the reason entry 9 gives. Everything else the article
 concludes stands. In summary, and numbered as the note numbers them:
 **1.** the reported total sample size is 17,681 where the article’s own
 appendix table sums to 17,629; **2.** the count of experiments in which
@@ -195,7 +195,7 @@ neither it nor its ratio is distinguishable from zero; and **5.** the
 reference list gives Rathje et al. (2022) a single author where the
 letter has five.
 
-Entry 5 is the only one no ground truth row reaches. It comes from an
+Entry 12 is the only one no ground truth row reaches. It comes from an
 audit that sends every printed reference entry whole to Crossref and
 checks the authoritative record back into it, which flagged three
 entries here. The other two are false positives: the Axios news item
@@ -486,7 +486,7 @@ reproduce the published labels
 exactly.](maintained/output/figure_2_raw_outcomes_by_treatment.png)
 
 ![Figure 5 as the rewrite draws it. Thirty-one of the thirty-six labels
-reproduce the published ones; the five that move are errata entry 19,
+reproduce the published ones; the five that move are errata entry 10,
 where the deposit’s pooling dropped an experiment whose standard errors
 it could not
 compute.](maintained/output/figure_5_heterogeneity_by_trait.png)
@@ -521,9 +521,9 @@ changes on every run.
 
 | component | version    |
 |:----------|:-----------|
-| R         | 4.6.0      |
+| R         | 4.6.1      |
 | tidyverse | 2.0.0      |
-| estimatr  | 2.0.0.9000 |
+| estimatr  | 2.0.1.9000 |
 | metafor   | 5.0.1      |
 | ggplot2   | 4.0.3      |
 | broom     | 1.0.13     |
