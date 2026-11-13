@@ -163,9 +163,11 @@ archive_check <- bind_rows(
   select(object,
          max_abs_difference_estimate_archive_spec = max_abs_difference_estimate)
 
+# Sorted on the difference rounded to 1e-6, because below that the differences are
+# floating point noise that changes with the BLAS and would reorder the rows across machines.
 check <- check |>
   left_join(archive_check, by = "object") |>
-  arrange(desc(max_abs_difference_estimate), object, .locale = "en")
+  arrange(desc(round(max_abs_difference_estimate, 6)), object, .locale = "en")
 
 write_csv(check, file.path(out_dir, "text_archive_fit_check.csv"))
 print(check, n = nrow(check))
