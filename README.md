@@ -11,9 +11,8 @@
 - [Errata](#errata)
   - [Corrections the rewrite makes to the deposited
     code](#corrections-the-rewrite-makes-to-the-deposited-code)
-  - [The persistence percentages are pooled one way in the main text and
-    another in the
-    appendix](#the-persistence-percentages-are-pooled-one-way-in-the-main-text-and-another-in-the-appendix)
+  - [The persistence percentages in the main text do not match the
+    appendix](#the-persistence-percentages-in-the-main-text-do-not-match-the-appendix)
   - [Two further quantities with no
     counterpart](#two-further-quantities-with-no-counterpart)
 - [The ground truth](#the-ground-truth)
@@ -25,7 +24,10 @@
 - [Rewrite verification](#rewrite-verification)
 - [R environment](#r-environment)
 
-**Archived at Zenodo:** [doi:10.5281/zenodo.24168334](https://doi.org/10.5281/zenodo.24168334). This DOI always resolves to the latest release of the maintained version.
+**Archived at Zenodo:**
+[doi:10.5281/zenodo.24168334](https://doi.org/10.5281/zenodo.24168334).
+This DOI always resolves to the latest release of the maintained
+version.
 
 *Drafted by Claude Opus 5 under the supervision of Alex Coppock.*
 
@@ -185,23 +187,22 @@ concludes stands. In summary, and numbered as the note numbers them:
 **1.** the reported total sample size is 17,681 where the article’s own
 appendix table sums to 17,629; **2.** the count of experiments in which
 misinformation significantly reduced accuracy is given as twelve where
-the deposited estimates give 13; **3.** two different appendix floats
-are both captioned Table 1; and **4.** the four sentences reporting how
-much of the correction effect survives to a later wave report a figure
-of the order a fixed-effect pool gives where the appendix gives a
-random-effects pool of the same ratios, 48.9 per cent at Wave 2 and 34.3
-per cent at Wave 3, and report the Wave 3 effect as detectable when
-neither it nor its ratio is distinguishable from zero; and **5.** the
+the deposited estimates give 13; **3.** the four sentences reporting how
+much of the correction effect survives to a later wave report figures
+left over from an earlier version of the analysis where the appendix
+gives a random-effects pool of the same ratios, 48.9 per cent at Wave 2
+and 34.3 per cent at Wave 3, and report the Wave 3 effect as detectable
+when neither it nor its ratio is distinguishable from zero; **5.** two
+different appendix floats are both captioned Table 1; and **12.** the
 reference list gives Rathje et al. (2022) a single author where the
 letter has five.
 
-Entry 12 is the only one no ground truth row reaches. It comes from an
-audit that sends every printed reference entry whole to Crossref and
-checks the authoritative record back into it, which flagged three
-entries here. The other two are false positives: the Axios news item
-under Fischer (2020) and the Pew report under Walker and Gottfried
-(2019) were each matched to an unrelated journal article, and both
-entries are correct as printed.
+Entries 12 to 19 come from an audit that sends every printed reference
+entry whole to Crossref and checks the authoritative record back into
+it, which also flagged two false positives: the Axios news item under
+Fischer (2020) and the Pew report under Walker and Gottfried (2019) were
+each matched to an unrelated journal article, and both entries are
+correct as printed.
 
 ### Corrections the rewrite makes to the deposited code
 
@@ -263,9 +264,9 @@ anywhere in the corrected table; asked row by row, which is the question
 a reader of the page asks, every one of the table’s cells is wrong where
 it stands. And Figure 4’s bottom-left panel draws its Wave 1 and Wave 2
 points at the same height, because they are the same estimate. This is
-erratum 18, and the blank Wave column that hides it on the page, which
+erratum 9, and the blank Wave column that hides it on the page, which
 the same block produces by declaring the wave factor with the two-wave
-tables’ levels, is erratum 17.
+tables’ levels, is erratum 8.
 
 **Every negated confidence interval prints backwards.** The deposit’s
 `filter_and_flip()` negates the estimate and both interval bounds for
@@ -281,16 +282,17 @@ outside `id.vars` every melted value becomes a string. The surviving
 `if_else(p.value < 0.05, "* ", " ")` then compares two strings, so
 `"0.0144"` sorts before `"0.05"` and earns a star while `"1.28e-10"`
 sorts after it and does not. The effect is that the most significant
-estimates in the table are the ones printed without a marker: the
-published tables carry 205 stars where 256 cells have p \< 0.05. It is
-deterministic and visible on the page once you know to look for it. It
-was recorded here rather than in the errata while it was read as a
-property of the presentation rather than of an estimate; that reading
-did not survive the remastered edition, which had to set these tables
-and could not set a marker it knew to be on the wrong cell. It is
-erratum 15, as the transposed intervals above are erratum 14.
+estimates in the table are the ones printed without a marker, while
+every marker sits on a significant cell: the published tables carry 205
+stars where 256 cells have p \< 0.05. It is deterministic and visible on
+the page once you know to look for it. It was recorded here rather than
+in the errata while it was read as a property of the presentation rather
+than of an estimate; that reading did not survive the remastered
+edition, which had to set these tables and could not leave a marker off
+a cell it knew to be significant. It is erratum 7, as the transposed
+intervals above are erratum 6.
 
-### The persistence percentages are pooled one way in the main text and another in the appendix
+### The persistence percentages in the main text do not match the appendix
 
 The article states three times that fact-check effects persist “at 66
 per cent” of their original magnitude after one week, once at the
@@ -304,21 +306,18 @@ coefficient, pooled across experiments by meta-analysis. Pooled with
 random effects, which is what `metafor` does by default and what the
 appendix’s meta-analysis rows carry, it is 48.9 per cent at Wave 2 and
 34.3 per cent at Wave 3 with covariates, and 54.4 and 38.9 per cent
-without them. Pooled with fixed effects, the same ratios give 64.9 and
-70.8 per cent at Wave 2 and 52.2 and 63.3 per cent at Wave 3. The ratio
-of the pooled Wave 2 effect to the pooled Wave 1 effect, a different
-derivation of the same idea, gives 46.9 per cent, and the corresponding
-Wave 3 figure is 39.7 per cent.
+without them. The ratio of the pooled Wave 2 effect to the pooled Wave 1
+effect, a different derivation of the same idea, gives 46.9 per cent,
+and the corresponding Wave 3 figure is 39.7 per cent.
 
-The published percentages are of the order the fixed-effect pool gives
-and not of the order the appendix’s own rows give, so a reader of the
-introduction takes away a materially different number from a reader of
-the appendix. No combination of adjustment, estimator and sample returns
-66.4 or 50 exactly. The article should have used random effects
-throughout, and the four sentences carrying these figures are corrected
-on that basis in `errata.qmd`. The Wave 3 correction is larger than the
-pooling alone would make it, because the ratio behind appendix Table 7
-also instruments the wrong outcome; see the three-wave finding above.
+No combination of adjustment, estimator, and sample returns 66.4 or 50.
+The published percentages are left over from an earlier version of the
+analysis, so a reader of the introduction takes away a materially
+different number from a reader of the appendix. The four sentences
+carrying these figures are corrected to the appendix’s random-effects
+pool in `errata.qmd`. The Wave 3 correction is larger than the pooling
+alone would make it, because the ratio behind appendix Table 7 also
+instruments the wrong outcome; see the three-wave finding above.
 
 ### Two further quantities with no counterpart
 
@@ -532,14 +531,14 @@ changes on every run.
 
 ## R environment
 
-| component | version |
-|:----------|:--------|
-| R         | 4.6.2   |
-| tidyverse | 2.0.0   |
-| estimatr  | 2.0.1   |
-| metafor   | 5.2.1   |
-| ggplot2   | 4.0.3   |
-| broom     | 1.0.13  |
+| component | version    |
+|:----------|:-----------|
+| R         | 4.6.1      |
+| tidyverse | 2.0.0      |
+| estimatr  | 2.0.1.9000 |
+| metafor   | 5.0.1      |
+| ggplot2   | 4.0.3      |
+| broom     | 1.0.13     |
 
 The rewrite keeps the current sampler and the current packages
 throughout. Nothing in this analysis draws at random: no script calls
