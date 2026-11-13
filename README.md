@@ -90,11 +90,10 @@ a scratch copy, twice: once as the archive ships, and once stripped to
 data plus code so that a script which passes only because the deposit
 ships the object it reads is visible as a failure.
 
-| pass               | clean | error |
-|:-------------------|------:|------:|
-| as_shipped         |    12 |     2 |
-| stripped           |     7 |     7 |
-| stripped_after_fit |    10 |     3 |
+| pass       | clean | error |
+|:-----------|------:|------:|
+| as_shipped |    12 |     2 |
+| stripped   |    11 |     3 |
 
 Deposited scripts by pass and outcome.
 
@@ -104,18 +103,17 @@ not installed, and `appendix_figure_9.R` reads
 `data/clean/all_panels_long.rds`, a path the deposit does not contain:
 its copy of that file sits at `data/all_panels_long.rds`.
 
-Stripping the copy to data plus code is what the second pass adds, and
-it changes the answer: 7 of 14 scripts fail without the deposited model
-objects, against 2 as shipped. Every one of the additional failures is a
-`readRDS` of an object `fit_all_models.R` builds. Running
-`fit_all_models.R` first and then the analysis scripts, which is the
-third pass in the table above, leaves 3 failures. Two are the pair that
-fail regardless. The third is `figure_5.R`, and it is a finding of its
-own: it reads `fitted_models/meta_trait_dic_w1_all_adj`, a deposited
-file with no extension, while the deposit’s own code writes that object
-as `meta_trait_dic_w1_all_adj.rds`, which the archive does not contain.
-The object survives only as a deposited artifact; nothing in the deposit
-can regenerate it under the name the figure reads.
+Stripping the copy to data plus code is what the second pass adds. The
+analysis scripts read model objects that only `fit_all_models.R` builds,
+so the stripped pass runs that script first and the analysis scripts
+after it. That leaves 3 of 14 scripts failing, against 2 as shipped. Two
+are the pair that fail regardless. The third is `figure_5.R`, and it is
+a finding of its own: it reads
+`fitted_models/meta_trait_dic_w1_all_adj`, a deposited file with no
+extension, while the deposit’s own code writes that object as
+`meta_trait_dic_w1_all_adj.rds`, which the archive does not contain. The
+object survives only as a deposited artifact; nothing in the deposit can
+regenerate it under the name the figure reads.
 
 **The deposit writes nothing except model objects.** Grepping the
 fourteen scripts for uncommented calls that touch a file returns
@@ -128,8 +126,8 @@ analysis.
 
 Running the deposit in place would not be harmless. Measured by
 modification time in a scratch copy, `fit_all_models.R` overwrites 32
-deposited model objects and adds 3 more, and the figure scripts leave an
-`Rplots.pdf` behind.
+deposited model objects, of which 32 come back with different bytes, and
+adds 2 more, and the figure scripts leave an `Rplots.pdf` behind.
 
 ### Do the deposited objects follow from the deposited data?
 
@@ -369,39 +367,40 @@ established).
 
 ### Coverage, float by float
 
-| float | printed numbers | covered | fraction | plotted quantities | counts verified |
-|:---|---:|---:|---:|---:|---:|
-| Appendix Figure 1 | 0 | 0 | NA | 36 | 1 |
-| Appendix Figure 2 | 0 | 0 | NA | 72 | 1 |
-| Appendix Figure 3 | 0 | 0 | NA | 21 | 1 |
-| Appendix Figure 7 | 0 | 0 | NA | 48 | 1 |
-| Appendix Figure 8 | 0 | 0 | NA | 108 | 1 |
-| Appendix Figure 9 | 12 | 1 | 0.083 | 12 | 1 |
-| Appendix Figures 4 to 6 | 0 | 0 | NA | 816 | 1 |
-| Appendix regression table 1 | 400 | 400 | 1.000 | 400 | 0 |
-| Appendix regression table 2 | 400 | 400 | 1.000 | 400 | 0 |
-| Appendix regression table 3 | 400 | 400 | 1.000 | 400 | 0 |
-| Appendix regression table 4 | 300 | 300 | 1.000 | 300 | 0 |
-| Appendix regression table 5 | 300 | 300 | 1.000 | 300 | 0 |
-| Appendix regression table 6 | 84 | 84 | 1.000 | 84 | 0 |
-| Appendix regression table 7 | 84 | 28 | 0.333 | 84 | 0 |
-| Appendix Table 1 (sample composition) | 206 | 9 | 0.044 | 206 | 1 |
-| Appendix Table 8 | 72 | 0 | 0.000 | 72 | 0 |
-| Appendix Table 9 | 10 | 1 | 0.100 | 10 | 0 |
-| Figure 1 | 0 | 0 | NA | 72 | 2 |
-| Figure 2 | 72 | 72 | 1.000 | 72 | 0 |
-| Figure 3 | 68 | 0 | 0.000 | 104 | 1 |
-| Figure 4 | 0 | 1 | NA | 30 | 1 |
-| Figure 5 | 36 | 36 | 1.000 | 36 | 0 |
-| Figure 6 | 8 | 8 | 1.000 | 8 | 0 |
+| float | printed numbers | covered | reproduced by rewrite | reproduced by archive | plotted | plotted, reproduced |
+|:---|---:|---:|---:|---:|---:|---:|
+| Appendix Figure 1 | 0 | 0 | 0 | NA | 36 | 36 |
+| Appendix Figure 2 | 0 | 0 | 0 | NA | 72 | 72 |
+| Appendix Figure 3 | 0 | 0 | 0 | NA | 21 | 21 |
+| Appendix Figure 7 | 0 | 0 | 0 | NA | 48 | 48 |
+| Appendix Figure 8 | 0 | 0 | 0 | NA | 108 | 108 |
+| Appendix Figure 9 | 12 | 0 | 0 | NA | 12 | 12 |
+| Appendix Figures 4 to 6 | 0 | 0 | 0 | NA | 816 | 816 |
+| Appendix regression table 1 | 400 | 400 | 400 | 400 | NA | NA |
+| Appendix regression table 2 | 400 | 400 | 400 | 400 | NA | NA |
+| Appendix regression table 3 | 400 | 400 | 400 | 400 | NA | NA |
+| Appendix regression table 4 | 300 | 300 | 300 | 300 | NA | NA |
+| Appendix regression table 5 | 300 | 300 | 300 | 300 | NA | NA |
+| Appendix regression table 6 | 84 | 84 | 84 | 84 | NA | NA |
+| Appendix regression table 7 | 84 | 84 | 28 | 84 | NA | NA |
+| Appendix Table 1 (sample composition) | 206 | 9 | 9 | 8 | NA | NA |
+| Appendix Table 8 | 72 | 0 | 0 | NA | NA | NA |
+| Appendix Table 9 | 10 | 0 | 0 | NA | NA | NA |
+| Figure 1 | 0 | 0 | 0 | NA | 72 | 72 |
+| Figure 2 | 72 | 72 | 72 | NA | 72 | 72 |
+| Figure 3 | 68 | 0 | 0 | NA | 104 | 96 |
+| Figure 4 | 0 | 0 | 0 | NA | 30 | 30 |
+| Figure 5 | 36 | 36 | 31 | 36 | 36 | 31 |
+| Figure 6 | 8 | 8 | 0 | 6 | 8 | 0 |
 
 Coverage per published float. Printed numbers are what a float puts on
-its own face; plotted quantities are what it draws.
+its own face, and covered counts those laid against an instrument;
+plotted is what a figure draws.
 
 Seven of the appendix’s floats and two of the article’s print no numbers
 at all. For those the checkable published quantity is the count of what
-they plot, and that count is verified; the fraction is left empty rather
-than reported as zero.
+they plot, and that count is verified; a table plots nothing, so its
+plotted columns are left empty rather than reported as zero.
 
 Two floats are covered thinly and both are worth stating plainly.
 **Figure 3 is the largest gap in this repository.** It labels every
@@ -435,22 +434,34 @@ Two instruments read the same pipeline output by separate paths.
 `ground_truth/build_ground_truth.R` builds the comparison table.
 `maintained/in_text_claims.R` carries the article’s own sentence in a
 block comment beside code that recomputes the number, and prints 219
-claims in the form `CLAIM <id> = <value> || <label>`. It reads
+claims in the form `CLAIM <id> = <value> || [verdict] <label>`. It reads
 `maintained/output/` and the extraction, never the ground truth, so the
 two derivations are independent and a disagreement between them is a
-finding.
+finding. The verdict comes from `excheckr`, which derives it from the
+extraction and the errata spine: a claim matches the page, or a quantity
+erratum names it and it matches the corrected value instead, or its
+block declares that it computes something other than the printed token
+(`derived`) or that the deposit has no counterpart (`absent`), or it is
+a descriptive claim that disagrees, scored `hedged` with its verdict
+left to the ground truth’s `holds`. Any other outcome stops the run, and
+the file’s last line counts every verdict.
 
 The build asserts all of the following and stops if any fails.
 
 - Every `pipeline` and `descriptive` claim has a block and a row.
 - The number of printed claims equals the number of rows requiring one,
   and the two sets of ids are equal in both directions.
-- Every value the two instruments both produce agrees exactly.
+- Every value the two instruments both produce agrees exactly at the
+  article’s precision.
+- The claims the extraction’s `expect` column marks `derived` or
+  `absent` are exactly those the claims file declares so.
 - Re-rendering `value_paper` from its own number at its own recorded
   precision returns the string the extraction stores, which is what
   catches a precision that is right about the value and wrong about the
   digits.
 - Every adverse row carries a `defect_locus` and no clean match does.
+- Every `paper_internal` row carries a `disposition`, which is
+  `corrected_here` wherever the errata spine names the claim.
 - Every published float has at least one row.
 
 Each of the first, third and fourth was tested by breaking it: deleting
@@ -521,14 +532,14 @@ changes on every run.
 
 ## R environment
 
-| component | version    |
-|:----------|:-----------|
-| R         | 4.6.1      |
-| tidyverse | 2.0.0      |
-| estimatr  | 2.0.1.9000 |
-| metafor   | 5.0.1      |
-| ggplot2   | 4.0.3      |
-| broom     | 1.0.13     |
+| component | version |
+|:----------|:--------|
+| R         | 4.6.2   |
+| tidyverse | 2.0.0   |
+| estimatr  | 2.0.1   |
+| metafor   | 5.2.1   |
+| ggplot2   | 4.0.3   |
+| broom     | 1.0.13  |
 
 The rewrite keeps the current sampler and the current packages
 throughout. Nothing in this analysis draws at random: no script calls

@@ -7,6 +7,11 @@
 #   only because the deposit ships the object it reads is visible as a failure.
 #   The scratch copy also answers a question the checksum gate cannot: which
 #   deposited files the deposit's own code overwrites when it is run in place.
+#
+#   Both tables are long, one row per script per pass and one row per file per
+#   pass. The stripped pass runs fit_all_models.R first, because every analysis
+#   script reads a model object only that script builds, so a stripped pass in
+#   any other order records only that the objects are missing.
 
 library(tidyverse)
 library(here)
@@ -94,6 +99,11 @@ make_copy(shipped_dir, strip = FALSE)
 deposited_fits <- list.files(file.path(shipped_dir, "fitted_models"))
 mtime_before <- file.mtime(file.path(shipped_dir, "fitted_models", deposited_fits))
 
+# Whether a file a pass wrote holds the bytes the deposit ships under that name.
+matches_deposit <- function(dir, files) {
+  unname(tools::md5sum(file.path(dir, files)) == tools::md5sum(file.path(original_dir, files)))
+}
+
 shipped <- run_pass(shipped_dir, analysis_scripts, "as_shipped")
 shipped_fit <- run_pass(shipped_dir, fit_script, "as_shipped")
 
@@ -107,21 +117,44 @@ added <- setdiff(
   list.files(original_dir, recursive = TRUE, all.files = TRUE, no.. = TRUE)
 )
 
-overwrites <- bind_rows(
-  tibble(file = overwritten, effect = "overwritten"),
-  tibble(file = added, effect = "added")
-) |>
-  arrange(effect, file, .locale = "en")
+shipped_overwrites <- bind_rows(
+  tibble(file = overwritten, effect = "overwritten",
+         matches_deposit = matches_deposit(shipped_dir, overwritten)),
+  tibble(file = added, effect = "added", matches_deposit = NA)
+)
 
 # Stripped to data plus code ----
 stripped_dir <- file.path(archive_run_dir, "stripped")
 make_copy(stripped_dir, strip = TRUE)
 
-stripped <- run_pass(stripped_dir, analysis_scripts, "stripped")
 stripped_fit <- run_pass(stripped_dir, fit_script, "stripped")
-regenerated <- run_pass(stripped_dir, analysis_scripts, "stripped_after_fit")
+stripped <- run_pass(stripped_dir, analysis_scripts, "stripped")
 
-status <- bind_rows(shipped, shipped_fit, stripped, stripped_fit, regenerated)
+# Every model object the deposit ships is withheld from this pass, so each one has
+# a row: rebuilt where the deposit's own code wrote it again, withheld where it
+# did not.
+rebuilt <- file.exists(file.path(stripped_dir, "fitted_models", deposited_fits))
+stripped_added <- setdiff(
+  list.files(stripped_dir, recursive = TRUE, all.files = TRUE, no.. = TRUE),
+  list.files(original_dir, recursive = TRUE, all.files = TRUE, no.. = TRUE)
+)
+
+stripped_overwrites <- bind_rows(
+  tibble(file = file.path("fitted_models", deposited_fits[rebuilt]), effect = "rebuilt") |>
+    mutate(matches_deposit = matches_deposit(stripped_dir, file)),
+  tibble(file = file.path("fitted_models", deposited_fits[!rebuilt]), effect = "withheld",
+         matches_deposit = NA),
+  tibble(file = stripped_added, effect = "added", matches_deposit = NA)
+)
+
+overwrites <- bind_rows(as_shipped = shipped_overwrites, stripped = stripped_overwrites,
+                        .id = "pass") |>
+  arrange(pass, effect, file, .locale = "en")
+
+# Every script run here is an analysis script: the deposit ships no cleaning code,
+# and helpers.R, which the others source, is never run on its own and has no row.
+status <- bind_rows(shipped, shipped_fit, stripped_fit, stripped) |>
+  mutate(role = "analysis")
 
 # The log is a property of the run and carries scratch paths, so it is printed
 # and not committed.
@@ -130,8 +163,11 @@ walk(which(status$outcome != "clean"), function(i) {
   print(status$stopped_at[i])
 })
 
+stopifnot(nrow(status) == 2 * (length(analysis_scripts) + 1),
+          !anyDuplicated(status[c("pass", "script")]))
+
 status |>
-  select(pass, script, exit_status, outcome, stopped_at) |>
+  select(pass, script, role, exit_status, outcome, stopped_at) |>
   write_csv(here::here("ground_truth", "archive_run_status.csv"))
 
 write_csv(overwrites, here::here("ground_truth", "archive_overwrites.csv"))

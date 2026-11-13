@@ -849,5 +849,12 @@ stopifnot(
   all(entries$form %in% c("full", "brief", "note")),
   all(entries$source %in% c("pipeline", "reading", "reference_audit", "publisher_record", "authors_archive", "proof"))
 )
-write_csv(select(entries, -any_of("values_in_spans")), here("errata_entries.csv"))
+# values_in_spans is the spine's last column, one logical per entry: TRUE where the placement
+# gate above found every corrected value in its span, FALSE where a value is stored on the
+# claim's scale rather than the sentence's, and NA for an entry with no values.
+stopifnot(all(entries$values_in_spans[entries$entry %in% quantified$entry] == value_placed))
+entries |>
+  select(entry, class, source, form, title, location, published, corrected, note, claim_ids,
+         corrected_values, values_in_spans) |>
+  write_csv(here("errata_entries.csv"))
 ```

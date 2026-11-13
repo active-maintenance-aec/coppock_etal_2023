@@ -62,6 +62,7 @@ value <- function(id, column = "value_rewrite") {
 }
 
 pass <- function(name) run_status |> filter(pass == name)
+shipped_overwritten <- overwrites |> filter(pass == "as_shipped", effect == "overwritten")
 
 main <- function(label) {
   row <- main_claims[main_claims$claim == label, ]
@@ -160,13 +161,11 @@ Two scripts fail in every pass, for reasons unrelated to the analysis.
 `appendix_figure_9.R` reads `data/clean/all_panels_long.rds`, a path the deposit does not
 contain: its copy of that file sits at `data/all_panels_long.rds`.
 
-Stripping the copy to data plus code is what the second pass adds, and it changes the answer:
-`r nrow(pass("stripped") |> filter(outcome != "clean"))` of
-`r nrow(pass("stripped"))` scripts fail without the deposited model objects, against
-`r nrow(pass("as_shipped") |> filter(outcome != "clean"))` as shipped. Every one of the
-additional failures is a `readRDS` of an object `fit_all_models.R` builds. Running
-`fit_all_models.R` first and then the analysis scripts, which is the third pass in the table
-above, leaves `r nrow(pass("stripped_after_fit") |> filter(outcome != "clean"))` failures. Two are
+Stripping the copy to data plus code is what the second pass adds. The analysis scripts read
+model objects that only `fit_all_models.R` builds, so the stripped pass runs that script first and
+the analysis scripts after it. That leaves
+`r nrow(pass("stripped") |> filter(outcome != "clean"))` of `r nrow(pass("stripped"))` scripts
+failing, against `r nrow(pass("as_shipped") |> filter(outcome != "clean"))` as shipped. Two are
 the pair that fail regardless. The third is `figure_5.R`, and it is a finding of its own: it reads
 `fitted_models/meta_trait_dic_w1_all_adj`, a deposited file with no extension, while the deposit's
 own code writes that object as `meta_trait_dic_w1_all_adj.rds`, which the archive does not
@@ -182,9 +181,10 @@ download rather than about the analysis.
 
 Running the deposit in place would not be harmless. Measured by modification time in a scratch
 copy, `fit_all_models.R` overwrites
-`r nrow(overwrites |> filter(effect == "overwritten"))` deposited model objects and adds
-`r nrow(overwrites |> filter(effect == "added"))` more, and the figure scripts leave an
-`Rplots.pdf` behind.
+`r nrow(shipped_overwritten)` deposited model objects, of which
+`r sum(!shipped_overwritten$matches_deposit)` come back with different bytes, and adds
+`r nrow(overwrites |> filter(pass == "as_shipped", effect == "added", str_starts(file, "fitted_models/")))`
+more, and the figure scripts leave an `Rplots.pdf` behind.
 
 ### Do the deposited objects follow from the deposited data?
 
@@ -315,7 +315,7 @@ block produces by declaring the wave factor with the two-wave tables' levels, is
 the estimate and both interval bounds for the misinformation contrast without reversing their
 order, so those cells print as `[upper, lower]`.
 `r value("app_reg_descending", "value_paper")` of the
-`r sum(coverage$printed_numbers[str_starts(coverage$float, "Appendix regression table")]) / 4`
+`r sum(coverage$published_numbers[str_starts(coverage$float, "Appendix regression table")]) / 4`
 published appendix cells are printed this way. The interval itself is right; only the order is
 wrong. The rewrite swaps the bounds back.
 
@@ -418,19 +418,20 @@ it), `rewrite` (ours) and `unresolved` (cause not established).
 #| label: coverage
 #| echo: false
 coverage |>
-  select(float, `printed numbers` = printed_numbers, covered = numbers_covered,
-         fraction = covered_fraction, `plotted quantities` = plotted_quantities,
-         `counts verified` = counts_verified) |>
-  show_table(caption = "Coverage per published float. Printed numbers are what a float puts on its own face; plotted quantities are what it draws.")
+  select(float, `printed numbers` = published_numbers, covered,
+         `reproduced by rewrite` = reproduced_by_rewrite,
+         `reproduced by archive` = reproduced_by_archive, plotted,
+         `plotted, reproduced` = plotted_reproduced) |>
+  show_table(caption = "Coverage per published float. Printed numbers are what a float puts on its own face, and covered counts those laid against an instrument; plotted is what a figure draws.")
 ```
 
 Seven of the appendix's floats and two of the article's print no numbers at all. For those the
-checkable published quantity is the count of what they plot, and that count is verified; the
-fraction is left empty rather than reported as zero.
+checkable published quantity is the count of what they plot, and that count is verified; a table
+plots nothing, so its plotted columns are left empty rather than reported as zero.
 
 Two floats are covered thinly and both are worth stating plainly. **Figure 3 is the largest gap in
 this repository.** It labels every effect significantly different from zero and every one of its
-eight meta-analytic summaries, roughly `r coverage$printed_numbers[coverage$float == "Figure 3"]`
+eight meta-analytic summaries, roughly `r coverage$published_numbers[coverage$float == "Figure 3"]`
 printed numbers, and none of those labels was transcribed. What is verified is that the figure
 plots `r value("fig3_cells")` conditional effect estimates, and that those estimates are the
 covariate-adjusted cells of appendix Tables 2 and 3, every one of which reproduces. **Appendix
@@ -456,20 +457,30 @@ Two instruments read the same pipeline output by separate paths.
 `ground_truth/build_ground_truth.R` builds the comparison table.
 `maintained/in_text_claims.R` carries the article's own sentence in a block comment beside code
 that recomputes the number, and prints
-`r sum(extraction$needs_block)` claims in the form `CLAIM <id> = <value> || <label>`. It reads
+`r sum(extraction$needs_block)` claims in the form `CLAIM <id> = <value> || [verdict] <label>`. It reads
 `maintained/output/` and the extraction, never the ground truth, so the two derivations are
-independent and a disagreement between them is a finding.
+independent and a disagreement between them is a finding. The verdict comes from `excheckr`, which
+derives it from the extraction and the errata spine: a claim matches the page, or a quantity
+erratum names it and it matches the corrected value instead, or its block declares that it
+computes something other than the printed token (`derived`) or that the deposit has no
+counterpart (`absent`), or it is a descriptive claim that disagrees, scored `hedged` with its
+verdict left to the ground truth's `holds`. Any other outcome stops the run, and the file's last
+line counts every verdict.
 
 The build asserts all of the following and stops if any fails.
 
 - Every `pipeline` and `descriptive` claim has a block and a row.
 - The number of printed claims equals the number of rows requiring one, and the two sets of ids
   are equal in both directions.
-- Every value the two instruments both produce agrees exactly.
+- Every value the two instruments both produce agrees exactly at the article's precision.
+- The claims the extraction's `expect` column marks `derived` or `absent` are exactly those the
+  claims file declares so.
 - Re-rendering `value_paper` from its own number at its own recorded precision returns the string
   the extraction stores, which is what catches a precision that is right about the value and
   wrong about the digits.
 - Every adverse row carries a `defect_locus` and no clean match does.
+- Every `paper_internal` row carries a `disposition`, which is `corrected_here` wherever the errata
+  spine names the claim.
 - Every published float has at least one row.
 
 Each of the first, third and fourth was tested by breaking it: deleting a block fails the count,

@@ -1,21 +1,49 @@
 # coppock_etal_2023/maintained/in_text_claims.R
-# Output: (none; a human-readable audit trail on stdout)
-# Depends on: maintained/output/, ground_truth/published_claims.csv
+# Output: printed CLAIM lines and a CLAIM SUMMARY line; no files
+# Depends on: maintained/output/, ground_truth/published_claims.csv,
+#   ground_truth/published_appendix_values.csv, errata_entries.csv, excheckr
 # Description: A second, independent reading of every number the article states.
 #   Each entry carries the article's own sentence and then recomputes the number
 #   from the pipeline's committed output, in the article's units and at the
 #   article's precision.
 #
-#   It reads maintained/output/ and nothing else. It does not refit, it does not
-#   touch original/, and it does not read the ground truth: the point is for two
-#   separate derivations to reach the same number, so reading the comparison
-#   would defeat it. Reading published_claims.csv is a different thing, and is
-#   allowed: it is the transcription of the page, not the verdict.
+#   It reads maintained/output/ and nothing else of the pipeline's. It does not
+#   refit, it does not touch original/, and it does not read the ground truth: the
+#   point is for two separate derivations to reach the same number, so reading the
+#   comparison would defeat it. Reading published_claims.csv and
+#   published_appendix_values.csv is a different thing, and is allowed: they are
+#   the transcription of the page, not the verdict. errata_entries.csv is the
+#   errata spine, which errata.qmd writes.
 #
-#   cat() is used here and nowhere else in this repository.
+#   Every block prints a line of the form
+#
+#       CLAIM <claim_id> = <value> || [verdict] <label>
+#
+#   which is what build_ground_truth.R parses to check coverage. The verdict is
+#   derived, never typed here: published_claims.csv says what the article prints,
+#   and errata_entries.csv says which of those a quantity erratum corrects and to
+#   what. [match] and [corrected] assert; [hedged] (a descriptive claim that does
+#   not agree) asserts nothing and its verdict lives in the ground truth's holds.
+#   Two exemptions are declared at the call site, where a reader of the block sees
+#   why: expect = "derived" where the block computes something other than the
+#   article's token in order to test what the article says, and expect = "absent"
+#   where the deposit has no counterpart at all. The extraction's expect column
+#   records the same declarations and is not passed to claim_start();
+#   build_ground_truth.R checks that the two agree.
+#
+#   A failure is MISMATCH (the article and this value disagree and no published
+#   erratum says they should), STALE (an erratum says they disagree and they no
+#   longer do), DRIFT (this value is not the one the erratum publishes as the
+#   correction) or MISSING (the block produced no value). DRIFT is the weakest of
+#   the three that compare: errata.qmd computes its corrected value from the same
+#   output files this script reads, so what it catches is a divergence of column,
+#   filter or rounding between the two, not an independent confirmation.
+#
+#   cat() is used here and nowhere else in this repository, by excheckr.
 
 library(tidyverse)
 library(here)
+library(excheckr)
 
 here::i_am("maintained/in_text_claims.R")
 
@@ -25,23 +53,16 @@ out <- function(file) read_csv(here::here("maintained", "output", file), show_co
 fit <- function(name) read_csv(here::here("maintained", "output", "fits", str_c(name, ".csv")),
                                show_col_types = FALSE)
 
-extraction <- read_csv(
-  here::here("ground_truth", "published_claims.csv"),
-  col_types = cols(value_paper = col_character(), digits = col_integer(),
-                   needs_block = col_logical(), .default = col_character())
-)
+# Every column is read as character: value_paper and corrected_values carry
+# strings such as "0.040", which a reader left to guess would return as 0.04 and
+# so destroy the precision the comparison depends on.
+published <- read_csv(here::here("ground_truth", "published_claims.csv"),
+                      col_types = cols(.default = col_character()))
+errata <- read_csv(here::here("errata_entries.csv"), col_types = cols(.default = col_character()))
 
-# The printed line is the only load-bearing link to the extraction, so it carries
-# the claim id. A value that rounds to zero from below prints as "-0" and would
-# fail string equality against a published "0".
-claim <- function(id, value) {
-  row <- extraction[extraction$claim_id == id, ]
-  stopifnot(nrow(row) == 1)
-  rendered <- if (is.na(value)) "NA" else sprintf(paste0("%.", row$digits, "f"), value)
-  if (str_detect(rendered, "^-0(\\.0*)?$")) rendered <- str_remove(rendered, "^-")
-  cat("CLAIM ", id, " = ", rendered, " || ", row$claim, " (article prints ", row$value_paper, ")\n",
-      sep = "")
-}
+# The label printed beside each value is the extraction's own description of the
+# claim, so every line can be read against the page without this file.
+claim_start(published = published, errata = errata, format = "id", label_column = "claim")
 
 main <- out("text_main_claims.csv")
 descriptive <- out("text_descriptive_claims.csv")
@@ -56,6 +77,14 @@ verdict <- function(id) {
   value <- descriptive$holds[descriptive$claim_id == id]
   stopifnot(length(value) == 1)
   as.numeric(value)
+}
+
+# The magnitude a hedged descriptive claim is about, for the two the descriptive
+# script returns no verdict on.
+magnitude <- function(id) {
+  value <- descriptive$quantity[descriptive$claim_id == id]
+  stopifnot(length(value) == 1)
+  value
 }
 
 # Abstract ----
@@ -139,7 +168,12 @@ claim("design_balance", verdict("d_balance"))
 # misinformation received 45,123 views."
 claim("design_traffic_rep", quantity("Mean fact-check page views, Republican-congenial claims"))
 claim("design_traffic_dem", quantity("Mean fact-check page views, Democratic-congenial claims"))
-claim("design_traffic_weeks", quantity("Maximum weeks of page views observed for a fact check"))
+#
+# The deposited traffic series runs from four to thirteen weeks per fact check, so
+# the block prints the longest series the deposit holds rather than the eight
+# weeks the sentence describes, and is declared derived.
+claim("design_traffic_weeks", quantity("Maximum weeks of page views observed for a fact check"),
+      expect = "derived")
 
 # "Six of our eight panels were comprised of two waves; the remaining two
 # featured a third wave."
@@ -192,12 +226,24 @@ claim("res_meta_correction_se",
 
 # "Being exposed to misinformation increased belief in the false claim by about
 # the same amount across categories, both among Republicans and among Democrats."
-claim("res_misinfo_symmetric", verdict("d_fig3_misinformation_symmetric"))
+#
+# "About the same amount" is a hedge and the descriptive script returns no verdict
+# for it, so the block prints the largest within-party difference in pooled
+# misinformation effects across the two congeniality categories, in points, and is
+# declared derived.
+claim("res_misinfo_symmetric", magnitude("d_fig3_misinformation_symmetric"),
+      "largest within-party difference in misinformation effects across categories (points)",
+      digits = 2, expect = "derived")
 
 # "For false claims congenial to Republicans, the effects are approximately equal
 # in magnitude across party lines. However, Democrats update substantially
 # further than Republicans when corrected about congenial false claims."
-claim("res_rep_congenial_symmetric", verdict("d_fig3_republican_congenial_symmetric"))
+#
+# "Approximately equal" is a hedge too, so the block prints the cross-party
+# difference in pooled correction effects on Republican-congenial claims, in points.
+claim("res_rep_congenial_symmetric", magnitude("d_fig3_republican_congenial_symmetric"),
+      "cross-party difference in correction effects, Republican-congenial claims (points)",
+      digits = 2, expect = "derived")
 claim("res_dems_update_further", verdict("d_fig3_democrats_update_further"))
 
 # "The effects of fact-checks observed immediately after treatment dissipate
@@ -345,7 +391,18 @@ figure_5 <- out("figure_5_heterogeneity_by_trait.csv") |>
 
 stopifnot(!any(is.na(figure_5$claim_id)), nrow(figure_5) == 36)
 
-walk2(figure_5$claim_id, figure_5$estimate, claim)
+# Five of these values are pooled over twenty-three experiments in the deposit,
+# because a fit whose HC2 standard error is undefined drops out of the pool
+# without saying so (errata entry 10). The rewrite pools all twenty-four, so those
+# five print the full pool and are declared derived.
+pooled_over_23 <- c("fig5_grp_emotstab_high_treatmentcontrol",
+                    "fig5_grp_emotstab_high_treatmentfactcheck",
+                    "fig5_grp_pk_low_treatmentcontrol", "fig5_grp_pk_high_treatmentcontrol",
+                    "fig5_grp_pk_high_treatmentfactcheck")
+
+walk2(figure_5$claim_id, figure_5$estimate, function(id, value) {
+  claim(id, value, expect = if (id %in% pooled_over_23) "derived" else "compare")
+})
 
 # Figure 6 ----
 # covers: fig6_*
@@ -354,7 +411,11 @@ figure_6 <- out("figure_6_ft_targets_meta.csv") |>
                           "_", term2)) |>
   arrange(claim_id, .locale = "en")
 
-walk2(figure_6$claim_id, figure_6$estimate, claim)
+# The deposit fits every thermometer model on all eight panels pooled, because its
+# filter compares each column with itself. The rewrite applies the subset the loop
+# was written to apply, so all eight labels print the corrected fit and are
+# declared derived.
+walk2(figure_6$claim_id, figure_6$estimate, \(id, value) claim(id, value, expect = "derived"))
 
 # Appendix Table 1, sample composition ----
 # covers: app_t1_*
@@ -366,7 +427,7 @@ panel_n <- table_a1 |>
   pivot_longer(everything(), names_to = "panel", values_to = "n") |>
   transmute(claim_id = str_c("app_t1_n_", panel), value = as.numeric(str_remove_all(n, ",")))
 
-walk2(panel_n$claim_id, panel_n$value, claim)
+walk2(panel_n$claim_id, panel_n$value, \(id, value) claim(id, value))
 
 claim("app_t1_percentage_cells",
       sum(!is.na(as.matrix(table_a1 |>
@@ -393,7 +454,10 @@ claim("app_fig9_rows", nrow(out("figure_a9_attitude_effects_by_congeniality.csv"
 # "Figure 9 reports meta-analytic estimates of correction and misinformation
 # effects, accounting for the 22 different political figures and groups for whom
 # we observed attitudinal outcomes."
-claim("app_fig9_targets", quantity("Distinct thermometer targets"))
+#
+# The deposited data carry fourteen thermometer columns, so the block counts the
+# targets the deposit holds and is declared derived.
+claim("app_fig9_targets", quantity("Distinct thermometer targets"), expect = "derived")
 
 # Appendix regression tables ----
 # covers: app_reg_*
@@ -435,10 +499,18 @@ matched <- published_cells |>
                                                        first(appendix_table)]),
             .groups = "drop")
 
-walk2(str_c("app_reg_t", matched$appendix_table, "_cells"), matched$matched, claim)
+# Table 7 reports models of the wrong outcomes (errata entry 9), so the count of
+# its published cells the corrected table returns is declared derived.
+walk2(str_c("app_reg_t", matched$appendix_table, "_cells"), matched$matched, function(id, value) {
+  claim(id, value, expect = if (id == "app_reg_t7_cells") "derived" else "compare")
+})
 
-claim("app_reg_stars", sum(rewrite_cells$p.value < 0.05))
-claim("app_reg_descending", 0)
+# The published markers come from a comparison of strings and the published
+# intervals from a negation that leaves the bounds reversed (errata entries 7 and
+# 6). The blocks print the count of cells with p < 0.05 and the count of intervals
+# the rewrite prints high bound first, and both are declared derived.
+claim("app_reg_stars", sum(rewrite_cells$p.value < 0.05), expect = "derived")
+claim("app_reg_descending", 0, expect = "derived")
 
 # Appendix Table 9 ----
 # covers: app_t9_*
@@ -450,10 +522,22 @@ claim("app_reg_descending", 0)
 # The deposit ships no code for this table and the rewrite adds none, since
 # writing one would be estimating something the deposited archive never did.
 # What the pipeline can say is how many experiments there are.
-claim("app_t9_experiments", quantity("Experiments (panel by topic)"))
-claim("app_t9_models", NA_real_)
+# The count is declared derived because the article elsewhere describes
+# twenty-four experiments, and the block prints that count. The model count and
+# the ten r-squared cells are declared absent.
+claim("app_t9_experiments", quantity("Experiments (panel by topic)"), expect = "derived")
+claim("app_t9_models", NA_real_, expect = "absent")
 
 walk(c("app_t9_partisanship", "app_t9_conscientiousness", "app_t9_political_knowledge",
        "app_t9_agreeableness", "app_t9_crt", "app_t9_openness", "app_t9_emotional_stability",
        "app_t9_political_interest", "app_t9_need_for_cognition", "app_t9_extraversion"),
-     function(id) claim(id, NA_real_))
+     \(id) claim(id, NA_real_, expect = "absent"))
+
+# Summary ----
+# assert_claims() stops on any MISMATCH, STALE, DRIFT or MISSING, on a quantity
+# erratum naming a claim this file does not print, and on a difference between
+# the claims printed and those the extraction declares need a block.
+# claim_summary() then counts every verdict, so an exemption cannot grow in
+# silence.
+assert_claims()
+invisible(claim_summary())
